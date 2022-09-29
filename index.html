@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Drawing App</title>
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+		<meta charset="UTF-8">
+		<meta name="author" content="Louie Jones-Strong">
+		<script src="lib/p5.min.js"></script>
+		<script src="lib/p5.dom.js"></script>
+
+		<script src="Code/Sketch.js"></script>
+
+		<!-- add extra scripts below -->
+		<script src="Code/Toolbox.js"></script>
+		<script src="Code/ColorPalette/ColorPalette.js"></script>
+		<script src="Code/ColorPalette/ColorPicker.js"></script>
+		<script src="Code/HelperFunctions.js"></script>
+		<script src="Code/HashSet.js"></script>
+
+		<script src="Code/Tools/Tool.js"></script>
+		<script src="Code/UiComponents/Slider.js"></script>
+
+		<script src="Code/Tools/FreehandTool.js"></script>
+		<script src="Code/Tools/LineToTool.js"></script>
+		<script src="Code/Tools/MirrorDrawTool.js"></script>
+		<script src="Code/Tools/SprayCanTool.js"></script>
+		<script src="Code/Tools/ShapeTool.js"></script>
+		<script src="Code/Tools/EditableShapeTool.js"></script>
+		<script src="Code/Tools/FloodFillTool.js"></script>
+		<script src="Code/Tools/TextTool.js"></script>
+		<script src="Code/Tools/CopyPasteTool.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="Styles/Style.css">
+	</head>
+
+	<body>
+		<header class="center">
+			<h1> My Drawing App</h1>
+			<button id="clearButton">
+				<img src="assets/NewCanvasIcon.png" alt="Logo">
+				<h3>New</h3>
+			</button>
+			<button id="saveImageButton">
+				<img src="assets/SaveIcon.png" alt="Logo">
+				<h3>Save</h3>
+			</button>
+		</header>
+		<div id="toolListSideBar">
+			<h3 class="center">Tools</h3>
+			<div id="toolListHolder"></div>
+		</div>
+		<div id="content"></div>
+		<div class="colorPickers">
+			<div class="RGBAPicker">
+				<h3 class="center">Colour 1</h3>
+				<input class="colorPicker" id="color1_color" type="color" value="#000000">
+				<input class="alphaSlider" id="color1_alpha" type="range" min="0" max="255" value="255">
+			</div>
+
+			<div class="RGBAPicker">
+				<h3 class="center">Colour 2</h3>
+				<input class="colorPicker" id="color2_color" type="color" value="#ffffff">
+				<input class="alphaSlider" id="color2_alpha" type="range" min="0" max="255" value="255">
+			</div>
+		</div>
+		<div class="recentColors center">
+			<h3>Recent Colours</h3>
+			<div class="recentColorsGrid">
+
+			</div>
+		</div>
+		<div class="toolInfo">
+			<div class="ToolTitle">
+
+			</div>
+			<div class="ToolOptions">
+
+			</div>
+		</div>
+		<footer id="footer">
+
+		</footer>
+	</body>
+</html>

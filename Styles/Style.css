@@ -1,0 +1,161 @@
+@import "TextStyle.css";
+@import "ColorPickerStyle.css";
+
+html, body{
+	margin: 0px;
+	height: 100%;
+	user-select: none; /* supported by Chrome and Opera */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+}
+
+/* Buttons */
+button{
+	transition-duration: 0.5s;
+	border: none;
+	margin: 3px;
+	background-color: white;
+	color: black;
+	border-radius: 0.25em;
+	box-shadow:	0.125em 0.125em 0.25em 0 rgba(0,0,0,50%);
+	display: flex;
+	align-items: center;
+	margin: 1em;
+}
+button > *{
+	margin: 0;
+}
+
+button img{
+	max-height: 2em;
+	max-width: 2em;
+}
+
+button:hover{
+	border-radius: 0.5em;
+	box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.3);
+}
+
+/* layout */
+body{
+	display: grid;
+	height: 100%;
+	grid-template-columns: 60px 20px 230px  minmax(200px, 1fr);
+	grid-template-rows: 50px minmax(300px, 1fr) 200px 1.5em;
+	grid-template-areas:
+			"header header header header"
+			"toolListSideBar content content content"
+			"colorP colorP recentColors toolInfo"
+			"colorP colorP recentColors footer";
+	background-color: #444;
+	color: #fff;
+}
+
+header{
+	grid-area: header;
+	display: flex;
+	align-items: center;
+	background-color: rgb(160, 0, 0);
+}
+
+#toolListSideBar{
+	grid-area: toolListSideBar;
+	overflow: hidden;
+	overflow-y:auto;
+}
+
+#content{
+	grid-area: content;
+	overflow: auto;
+	background-color: #222;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#canvas{
+	background: url(ColorPicker/alpha.png);
+	background-size: 16px 16px;
+}
+
+.colorPickers{
+	grid-area: colorP;
+}
+
+.recentColors{
+	grid-area: recentColors;
+}
+
+.toolInfo{
+	grid-area: toolInfo;
+	padding-left: 10px;
+}
+
+footer{
+	grid-area: footer;
+	background-color: #111;
+	display: flex;
+	align-items: center;
+}
+
+footer > *{
+	margin-inline: 0.5em;
+}
+
+.ToolOptions{
+	display: grid;
+	grid-template-rows: 75px 75px;
+	grid-template-columns: max-content max-content max-content max-content;
+}
+
+
+/* slider holder */
+.sliderHolder{
+	margin-block: 0.25em;
+	margin-inline: 0.75em;
+}
+
+/* iconButton */
+.iconButton, .optionsBarItem{
+	height: 50px;
+	width: 50px;
+	margin: 5px;
+	transition-duration: 0.3s;
+	opacity: 0.5;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.iconButton:hover, .optionsBarItem:hover, .selected{
+	opacity: 1;
+}
+
+.iconButton img, .optionsBarItem img{
+	border-radius: 10px;
+	transition-duration: 0.3s;
+	background-color: black;
+	height: 75%;
+	width:  75%;
+}
+
+.iconButton:hover img, .optionsBarItem:hover img{
+	height: 85%;
+	width:  85%;
+}
+
+.selected img, .selected:hover img{
+	background-color: white;
+	height: 100%;
+	width: 100%;
+}
+
+.disabled img, .disabled:hover img{
+	background-color: rgb(50, 0, 0);
+	height: 60%;
+	width: 60%;
+	cursor: not-allowed;
+}

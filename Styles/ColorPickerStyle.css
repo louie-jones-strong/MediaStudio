@@ -1,0 +1,85 @@
+/* color picker */
+.RGBAPicker{
+	width: 100%;
+	height: 50%;
+}
+
+.colorPicker{
+	background: url(ColorPicker/alpha.png);
+	-webkit-appearance: none;
+	border: none;
+	height: 35px;
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+}
+.colorPicker::-webkit-color-swatch-wrapper{
+	padding: 0;
+}
+.colorPicker::-webkit-color-swatch{
+	border: none;
+}
+
+
+.alphaSlider{
+	background: url(ColorPicker/alpha_mask.png);
+	-webkit-appearance: none;
+	width: 100%;
+	height: 20px;
+	outline: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.alphaSlider::-webkit-slider-thumb{
+	-webkit-appearance: none;
+	width: 5px;
+	height: 25px;
+	background: white;
+}
+
+.alphaSlider::-moz-range-thumb{
+	width: 5px;
+	height: 25px;
+	background: white;
+}
+
+
+.SliderTextBox{
+	max-width: 3em;
+}
+
+.recentColors{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/* .recentColors */
+.recentColorsGrid{
+	display: grid;
+	grid-template-rows: 50px 50px 50px;
+	grid-template-columns: 50px 50px 50px 50px;
+}
+
+.recentColorHolder{
+	background: url(ColorPicker/alpha.png);
+	height: 45px;
+	width: 45px;
+	margin: 2px;
+	border-radius: 10px;
+	transition-duration: 0.3s;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.recentColorHolder:hover{
+	transform: scale(1.1);
+}
+
+.recentColor{
+	height: 100%;
+	width: 100%;
+	border-radius: 10px;
+}

@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&family=Roboto:wght@400;500;700;900&display=swap');
+
+
+.left{
+	text-align: left;
+}
+.right{
+	text-align: right;
+}
+.center{
+	text-align: center;
+}
+
+*{
+	font-size: 1rem;
+	text-rendering: optimizelegibility;
+	-webkit-font-smoothing: antialiased;
+	font-style: normal;
+	font-variant: normal;
+
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+
+	margin-top: 0em;
+	margin-bottom: 0em;
+	line-height: 125%;
+}
+
+h4{
+	font-size: 1rem;
+	text-transform: capitalize;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+
+	margin-top: 0em;
+	margin-bottom: 0em;
+	line-height: 95%;
+}
+
+h3{
+	font-size: 1.25rem;
+	text-transform: capitalize;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+
+	padding-top: 0.35em;
+	padding-bottom: 0.25em;
+	line-height: 95%;
+}
+
+h2{
+	font-size: 2rem;
+	text-transform: capitalize;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 600;
+
+	padding-top: 0.35em;
+	padding-bottom: 0.25em;
+	line-height: 95%;
+}
+
+h1{
+	font-size: 2rem;
+	text-transform: capitalize;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 700;
+
+	margin: 1em;
+	line-height: 95%;
+}
+
+
+/* Root Font Sizes + Scaling */
+
+:root{
+	font-size: calc(var(--BaseFontSize) * var(--FontScale));
+	--FontScale: 1;
+	--BaseFontSize: 16px;
+}
