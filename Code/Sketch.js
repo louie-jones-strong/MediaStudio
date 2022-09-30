@@ -3,6 +3,7 @@
 var ToolManager = null;
 var ColorP = null;
 var Helpers = null;
+var Layers = null;
 
 function setup()
 {
@@ -16,6 +17,7 @@ function setup()
 	var canvasContainer = select('#content');
 	var canvas = createCanvas(canvasContainer.size().width - 10, canvasContainer.size().height - 10);
 	canvas.id('canvas');
+	canvas.elt.classList.add("canvas")
 	canvas.parent("content");
 	background(255);
 
@@ -36,6 +38,9 @@ function setup()
 	ToolManager.AddTool(new FloodFillTool());
 	ToolManager.AddTool(new TextTool());
 	ToolManager.AddTool(new CopyPasteTool());
+
+
+	Layers = new LayerManger();
 }
 
 function draw()
@@ -43,8 +48,21 @@ function draw()
 
 	ColorP.UpdateColors();
 
+	// Draw Under Layers
+
+	// Draw current layer
+
 	//call the draw function on the selected tool
 	ToolManager.Draw();
+
+
+
+	// Draw Over Layers
+
+
+	// update layers ui icons
+	Layers.UpdateIcons();
+
 }
 
 function keyPressed()

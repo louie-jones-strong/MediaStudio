@@ -42,13 +42,13 @@ button:hover{
 body{
 	display: grid;
 	height: 100%;
-	grid-template-columns: 60px 20px 230px  minmax(200px, 1fr);
+	grid-template-columns: 60px 20px 230px minmax(200px, 1fr) 200px;
 	grid-template-rows: 50px minmax(300px, 1fr) 200px 1.5em;
 	grid-template-areas:
-			"header header header header"
-			"toolListSideBar content content content"
-			"colorP colorP recentColors toolInfo"
-			"colorP colorP recentColors footer";
+			"header header header header header"
+			"toolListSideBar content content content layerSideBar"
+			"colorP colorP recentColors toolInfo layerSideBar"
+			"footer footer footer footer layerSideBar";
 	background-color: #444;
 	color: #fff;
 }
@@ -76,7 +76,7 @@ header{
 	align-items: center;
 }
 
-#canvas{
+.canvas{
 	background: url(ColorPicker/alpha.png);
 	background-size: 16px 16px;
 }
@@ -94,6 +94,11 @@ header{
 	padding-left: 10px;
 }
 
+#layerSideBar{
+	grid-area: layerSideBar;
+}
+
+
 footer{
 	grid-area: footer;
 	background-color: #111;
@@ -101,7 +106,13 @@ footer{
 	align-items: center;
 }
 
-footer > *{
+#footer{
+
+	display: flex;
+	align-items: center;
+}
+
+#footer > *{
 	margin-inline: 0.5em;
 }
 
