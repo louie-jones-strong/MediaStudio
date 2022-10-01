@@ -14,7 +14,9 @@ class Layer
 
 	DrawLayerIcon(holder)
 	{
-		let layer = createDiv(`<h3>${this.LayerName}</h3>`)
+		let layer = createDiv(`<div class="layerHeader"> <h3>${this.LayerName}</h3>
+		Show
+		<input type="checkbox" id="${this.LayerId}LayerShowToggle" checked></div>`)
 		layer.class("layer");
 		layer.parent(holder);
 
@@ -36,6 +38,8 @@ class Layer
 
 	DrawLayer()
 	{
+		let showCheckBox = document.getElementById(`${this.LayerId}LayerShowToggle`);
+		this.Show = showCheckBox.checked;
 		if (!this.Show)
 		{
 			return;

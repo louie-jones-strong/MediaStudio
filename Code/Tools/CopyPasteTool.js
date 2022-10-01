@@ -93,7 +93,7 @@ class CopyPasteTool extends Tool
 
 				//save current canvas state
 				//this loads the pixels on the canvas in to the pixel array
-				loadPixels();
+				Layers.CurrentImg.loadPixels();
 			}
 			else
 			{
@@ -137,7 +137,7 @@ class CopyPasteTool extends Tool
 		{
 			//save current canvas state
 			//this loads the pixels on the canvas in to the pixel array
-			loadPixels();
+			Layers.CurrentImg.loadPixels();
 		}
 	}
 
@@ -180,7 +180,7 @@ class CopyPasteTool extends Tool
 		//return to the original
 		pop();
 
-		loadPixels();
+		Layers.CurrentImg.loadPixels();
 		this.SetState(eCopyPasteState.None);
 	}
 

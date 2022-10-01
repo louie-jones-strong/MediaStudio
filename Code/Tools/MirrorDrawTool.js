@@ -82,7 +82,7 @@ class MirrorDrawTool extends Tool
 		//after the drawing is done save the pixel state. We don't want the
 		//line of symmetry to be part of our drawing
 
-		loadPixels();
+		Layers.CurrentImg.loadPixels();
 
 		//push the drawing state so that we can set the stroke weight and color
 		push();

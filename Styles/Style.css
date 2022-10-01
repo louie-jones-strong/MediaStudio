@@ -104,6 +104,10 @@ header{
 
 }
 
+.layerHeader{
+	display: flex;
+}
+
 footer{
 	grid-area: footer;
 	background-color: #111;

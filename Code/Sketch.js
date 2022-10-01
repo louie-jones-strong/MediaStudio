@@ -30,6 +30,8 @@ function setup()
 	Helpers = new HelperFunctions();
 	ColorP = new ColorPalette();
 
+	Layers = new LayerManger();
+
 	//create a ToolManager for storing the tools
 	ToolManager = new Toolbox();
 
@@ -45,11 +47,12 @@ function setup()
 	ToolManager.AddTool(new CopyPasteTool());
 
 
-	Layers = new LayerManger();
 }
 
 function draw()
 {
+	clear();
+
 
 	ColorP.UpdateColors();
 

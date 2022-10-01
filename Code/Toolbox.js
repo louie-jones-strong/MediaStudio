@@ -82,7 +82,7 @@ class Toolbox
 			}
 		}
 		//call loadPixels to make sure most recent changes are saved to pixel array
-		loadPixels();
+		Layers.CurrentImg.loadPixels();
 	}
 
 	Reset()
