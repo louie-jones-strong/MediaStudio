@@ -38,13 +38,13 @@ class LineToTool extends Tool
 
 				//save current canvas state
 				//this loads the pixels on the canvas in to the pixel array
-				loadPixels();
+				Layers.CurrentImg.loadPixels();
 			}
 			else
 			{
 				//reset canvas to last saved canvas
 				//this updates the pixels on the canvas from the pixel array
-				updatePixels();
+				Layers.CurrentImg.updatePixels();
 
 				var endX = mouseX;
 				var endY = mouseY;
@@ -87,7 +87,7 @@ class LineToTool extends Tool
 				}
 
 				//draw line on top of the last saved state of the canvas
-				line(this.StartMouseX, this.StartMouseY, endX, endY);
+				Layers.CurrentImg.line(this.StartMouseX, this.StartMouseY, endX, endY);
 			}
 		}
 		else if(this.Drawing) //if the user has released the mouse while drawing we reset the tool

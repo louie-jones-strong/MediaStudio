@@ -67,7 +67,7 @@ class EditableShapeTool extends Tool
 	// this removed redundant points while drawing them
 	DrawPointList()
 	{
-		updatePixels();
+		Layers.CurrentImg.updatePixels();
 
 		if (this.PointList.length <= 0)
 		{
@@ -75,11 +75,11 @@ class EditableShapeTool extends Tool
 		}
 		push();
 
-		noFill();
-		beginShape();
+		Layers.CurrentImg.noFill();
+		Layers.CurrentImg.beginShape();
 
 		var lastPoint = 0;
-		vertex(this.PointList[lastPoint].x, this.PointList[lastPoint].y);
+		Layers.CurrentImg.vertex(this.PointList[lastPoint].x, this.PointList[lastPoint].y);
 
 		var loop = 1;
 		while (loop < this.PointList.length)
@@ -100,7 +100,7 @@ class EditableShapeTool extends Tool
 				loop += 1;
 			}
 		}
-		endShape(CLOSE);
+		Layers.CurrentImg.endShape(CLOSE);
 
 		pop();
 
@@ -111,9 +111,9 @@ class EditableShapeTool extends Tool
 				const point = this.PointList[index];
 				push();
 				Layers.CurrentImg.strokeWeight(3);
-				noFill();
-				stroke("red");
-				ellipse(point.x, point.y, EditGrabRadius);
+				Layers.CurrentImg.noFill();
+				Layers.CurrentImg.stroke("red");
+				Layers.CurrentImg.ellipse(point.x, point.y, EditGrabRadius);
 				pop();
 			}
 		}
@@ -123,7 +123,7 @@ class EditableShapeTool extends Tool
 	{
 		this.SetEditMode(false);
 		this.DrawPointList();
-		loadPixels();
+		Layers.CurrentImg.loadPixels();
 		this.PointList = [];
 		this.SelectedPoint = -1;
 	}

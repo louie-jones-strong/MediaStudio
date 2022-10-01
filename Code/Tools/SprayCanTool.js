@@ -40,7 +40,7 @@ class SprayCanTool extends Tool
 				var x = mouseX + Math.sin(angle) * distance;
 				var y = mouseY + Math.cos(angle) * distance;
 
-				point(x, y);
+				Layers.CurrentImg.point(x, y);
 			}
 		}
 	}

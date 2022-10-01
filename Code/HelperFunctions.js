@@ -11,11 +11,11 @@ function HelperFunctions()
 		ToolManager.Reset();
 
 		//reset the color to white
-		background(255);
+		Layers.CurrentImg.background(255);
 
 		//call loadPixels to update the drawing state
 		//this is needed for the mirror tool
-		loadPixels();
+		Layers.CurrentImg.loadPixels();
 	});
 
 	//event handler for the save image button. saves the canvas to the
@@ -35,10 +35,10 @@ function HelperFunctions()
 			for (let j = 0; j < d; ++j)
 			{
 				let idx = 4 * ((y * d + j) * width * d + (x * d + i));
-				color[0] = pixels[idx];
-				color[1] = pixels[idx+1];
-				color[2] = pixels[idx+2];
-				color[3] = pixels[idx+3];
+				color[0] = Layers.CurrentImg.pixels[idx];
+				color[1] = Layers.CurrentImg.pixels[idx+1];
+				color[2] = Layers.CurrentImg.pixels[idx+2];
+				color[3] = Layers.CurrentImg.pixels[idx+3];
 			}
 		}
 		return color;
@@ -53,10 +53,10 @@ function HelperFunctions()
 			for (var j = 0; j < d; ++j)
 			{
 				var idx = 4 * ((y * d + j) * width * d + (x * d + i));
-				pixels[idx]   = color.levels[0];
-				pixels[idx+1] = color.levels[1];
-				pixels[idx+2] = color.levels[2];
-				pixels[idx+3] = color.levels[3];
+				Layers.CurrentImg.pixels[idx]   = color.levels[0];
+				Layers.CurrentImg.pixels[idx+1] = color.levels[1];
+				Layers.CurrentImg.pixels[idx+2] = color.levels[2];
+				Layers.CurrentImg.pixels[idx+3] = color.levels[3];
 			}
 		}
 	}

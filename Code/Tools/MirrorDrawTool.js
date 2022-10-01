@@ -57,7 +57,7 @@ class MirrorDrawTool extends Tool
 			{
 				//if there are values in the previous locations
 				//draw a line between them and the current positions
-				line(this.PreviousMouseX, this.PreviousMouseY, mouseX, mouseY);
+				Layers.CurrentImg.line(this.PreviousMouseX, this.PreviousMouseY, mouseX, mouseY);
 				this.PreviousMouseX = mouseX;
 				this.PreviousMouseY = mouseY;
 
@@ -65,7 +65,7 @@ class MirrorDrawTool extends Tool
 				//line of symmetry
 				var oX = this.CalculateOpposite(mouseX, eAxis.XAxis);
 				var oY = this.CalculateOpposite(mouseY, eAxis.YAxis);
-				line(this.PreviousOppositeMouseX, this.PreviousOppositeMouseY, oX, oY);
+				Layers.CurrentImg.line(this.PreviousOppositeMouseX, this.PreviousOppositeMouseY, oX, oY);
 				this.PreviousOppositeMouseX = oX;
 				this.PreviousOppositeMouseY = oY;
 			}
@@ -92,11 +92,11 @@ class MirrorDrawTool extends Tool
 		//draw the line of symmetry
 		if (this.Axis == eAxis.XAxis)
 		{
-			line(width / 2, 0, width / 2, height);
+			Layers.CurrentImg.line(width / 2, 0, width / 2, height);
 		}
 		else
 		{
-			line(0, height / 2, width, height / 2);
+			Layers.CurrentImg.line(0, height / 2, width, height / 2);
 		}
 
 		//return to the original stroke

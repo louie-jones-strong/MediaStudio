@@ -46,7 +46,7 @@ class FloodFillTool extends Tool
 				var timeNow = performance.now();
 			}
 			while (timeNow - frameStartTime <= 30 && this.ToFill.length > 0);
-			updatePixels();
+			Layers.CurrentImg.updatePixels();
 
 		}
 		else if (mouseIsPressed && Helpers.PosOnCanvas(mouseX, mouseY))
@@ -54,7 +54,7 @@ class FloodFillTool extends Tool
 			var x = Math.round(mouseX);
 			var y = Math.round(mouseY);
 
-			loadPixels();
+			Layers.CurrentImg.loadPixels();
 			this.StartingColor = Helpers.GetPixel(x, y);
 			this.FillColor = ColorP.SelectedColor;
 

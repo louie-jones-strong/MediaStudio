@@ -153,7 +153,7 @@ class CopyPasteTool extends Tool
 		fill(color(0, 0, 200, 100));
 
 		//draw shape on top of the last saved state of the canvas
-		rect(this.SelectionStartX, this.SelectionStartY, this.SelectionWidth, this.SelectionHeight);
+		Layers.CurrentImg.rect(this.SelectionStartX, this.SelectionStartY, this.SelectionWidth, this.SelectionHeight);
 
 		//return to the original
 		pop();
@@ -175,7 +175,7 @@ class CopyPasteTool extends Tool
 		fill(color(255, 255, 255));
 
 		//draw shape on top of the last saved state of the canvas
-		rect(this.SelectionStartX, this.SelectionStartY, this.SelectionWidth, this.SelectionHeight);
+		Layers.CurrentImg.rect(this.SelectionStartX, this.SelectionStartY, this.SelectionWidth, this.SelectionHeight);
 
 		//return to the original
 		pop();
