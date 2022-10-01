@@ -98,6 +98,11 @@ header{
 	grid-area: layerSideBar;
 }
 
+#layerListHolder{
+	display: flex;
+	flex-direction: column-reverse;
+
+}
 
 footer{
 	grid-area: footer;
