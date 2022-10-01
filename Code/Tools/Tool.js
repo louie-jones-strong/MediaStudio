@@ -41,7 +41,7 @@ class Tool
 		if (this.ShowStrokeSettings)
 		{
 			Tool.StrokeWeight = this.StrokeWeightSlider.Value;
-			strokeWeight(Tool.StrokeWeight);
+			Layers.CurrentImg.strokeWeight(Tool.StrokeWeight);
 		}
 
 		this.Sliders.forEach(item => {

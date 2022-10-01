@@ -86,7 +86,7 @@ class MirrorDrawTool extends Tool
 
 		//push the drawing state so that we can set the stroke weight and color
 		push();
-		strokeWeight(3);
+		Layers.CurrentImg.strokeWeight(3);
 		stroke("red");
 
 		//draw the line of symmetry

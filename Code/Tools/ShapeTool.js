@@ -41,42 +41,42 @@ class ShapeTool extends Tool
 
 				//save current canvas state
 				//this loads the pixels on the canvas in to the pixel array
-				loadPixels();
+				Layers.CurrentImg.loadPixels();
 			}
 			else if (this.Drawing)
 			{
 				//reset canvas to last saved canvas
 				//this updates the pixels on the canvas from the pixel array
-				updatePixels();
+				Layers.CurrentImg.updatePixels();
 
 				var size = this.GetWidthAndHeight();
 
 
 				//draw shape on top of the last saved state of the canvas
 				push();
-				strokeWeight(0);
+				Layers.CurrentImg.strokeWeight(0);
 
 				switch (this.Shape)
 				{
 					case eShape.Rect:
 					{
-						rect(this.StartMouseX, this.StartMouseY, size[0], size[1]);
+						Layers.CurrentImg.rect(this.StartMouseX, this.StartMouseY, size[0], size[1]);
 						break;
 					}
 					case eShape.Ellipse:
 					{
-						ellipse(this.StartMouseX, this.StartMouseY, size[0] * 2, size[1] * 2);
+						Layers.CurrentImg.ellipse(this.StartMouseX, this.StartMouseY, size[0] * 2, size[1] * 2);
 						break;
 					}
 					case eShape.Emoji:
 					{
-						image(this.EmojiImage, this.StartMouseX, this.StartMouseY, size[0], size[1])
+						Layers.CurrentImg.image(this.EmojiImage, this.StartMouseX, this.StartMouseY, size[0], size[1])
 						break;
 					}
 					case eShape.Pentagon:
 					{
-					this.DrawVariableSidedShape(5, this.StartMouseX, this.StartMouseY, size[0], size[1])
-					break;
+						this.DrawVariableSidedShape(5, this.StartMouseX, this.StartMouseY, size[0], size[1])
+						break;
 					}
 					case eShape.Hexagon:
 					{
@@ -172,14 +172,14 @@ class ShapeTool extends Tool
 
 	DrawVariableSidedShape(numSides, x, y, width, height)
 	{
-		beginShape();
+		Layers.CurrentImg.beginShape();
 		for (let i = 0; i < numSides; i++)
 		{
 			var pointX = width * cos(2 * Math.PI * i / numSides) + x;
 			var pointY = height * sin(2 * Math.PI * i / numSides) + y;
 
-			vertex(pointX, pointY);
+			Layers.CurrentImg.vertex(pointX, pointY);
 		}
-		endShape(CLOSE);
+		Layers.CurrentImg.endShape(CLOSE);
 	}
 }

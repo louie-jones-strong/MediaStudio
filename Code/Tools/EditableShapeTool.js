@@ -110,7 +110,7 @@ class EditableShapeTool extends Tool
 			{
 				const point = this.PointList[index];
 				push();
-				strokeWeight(3);
+				Layers.CurrentImg.strokeWeight(3);
 				noFill();
 				stroke("red");
 				ellipse(point.x, point.y, EditGrabRadius);

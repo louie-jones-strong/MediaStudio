@@ -38,9 +38,9 @@ class TextTool extends Tool
 		super.Draw();
 
 		this.TextSize = this.Slider.Value;
-		textSize(this.TextSize);
+		Layers.CurrentImg.textSize(this.TextSize);
 
-		updatePixels();
+		Layers.CurrentImg.updatePixels();
 		if(mouseIsPressed && Helpers.PosOnCanvas(mouseX, mouseY))
 		{
 			this.FinishCurrentText();
@@ -49,14 +49,14 @@ class TextTool extends Tool
 			this.PosY = mouseY;
 		}
 
-		loadPixels();
+		Layers.CurrentImg.loadPixels();
 
 		push();
-		strokeWeight(1);
+		Layers.CurrentImg.strokeWeight(1);
 
 		if(this.PosX >= 0)
 		{
-			text(this.CurrentString, this.PosX, this.PosY);
+			Layers.CurrentImg.text(this.CurrentString, this.PosX, this.PosY);
 		}
 
 		//switch the state of the line showing every 400 mill seconds
@@ -76,7 +76,7 @@ class TextTool extends Tool
 				var y = this.PosY;
 			}
 
-			rect(x, y, 1, -this.Slider.Value);
+			Layers.CurrentImg.rect(x, y, 1, -this.Slider.Value);
 		}
 
 		pop();
@@ -100,7 +100,7 @@ class TextTool extends Tool
 	UnselectTool()
 	{
 		super.UnselectTool();
-		updatePixels();
+		Layers.CurrentImg.updatePixels();
 		this.FinishCurrentText();
 		this.PosX = -1;
 		this.PosY = -1;
@@ -109,8 +109,8 @@ class TextTool extends Tool
 	FinishCurrentText()
 	{
 		push();
-		strokeWeight(1);
-		text(this.CurrentString, this.PosX, this.PosY);
+		Layers.CurrentImg.strokeWeight(1);
+		Layers.CurrentImg.text(this.CurrentString, this.PosX, this.PosY);
 		this.CurrentString = "";
 		pop();
 	}

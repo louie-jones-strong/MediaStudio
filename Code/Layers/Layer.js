@@ -5,35 +5,56 @@ class Layer
 		this.LayerId = layerId;
 		this.LayerName = layerName;
 		this.Show = true;
+		this.Alpha = 1;
 
-		if (pixelArray == null)
-		{
-			pixelArray = new Uint8ClampedArray(width * pixelDensity() * height * pixelDensity() * 4)
-		}
-		this.PixelArray = pixelArray;
+		this.Canvas = null;
+		this.P5 = new p5(s);
+		this.LayerImage = null;
 	}
 
-	DrawLayerIcon(html, selected)
+	DrawLayerIcon(holder)
 	{
-		html += `<div>
-		<h3>${this.LayerName}</h3>
-		<canvas id="${this.LayerId}Canvas" class="canvas" width="${width/10}" height="${height/10}"></canvas>
+		let layer = createDiv(`<h3>${this.LayerName}</h3>`)
+		layer.class("layer");
+		layer.parent(holder);
 
-		</div>`;
+		let iconWidth = 150;
+		let iconHeight = height / (width / iconWidth);
 
-		return html;
+		this.Canvas = this.P5.createCanvas(iconWidth, iconHeight);
+		this.Canvas.id(`${this.LayerId}LayerCanvas`);
+		this.Canvas.elt.classList.add("canvas")
+		this.Canvas.parent(layer);
+
+		this.LayerImage = createGraphics(CanvasWidth, CanvasHeight);
 	}
 
 	UpdateIcon()
 	{
-		let canvas = document.getElementById(`${this.LayerId}Canvas`);
-		let ctx = canvas.getContext('2d');
-		let canvasWidth = canvas.width;
-		let canvasHeight = canvas.height;
+		this.P5.image(this.LayerImage, 0, 0, this.P5.width, this.P5.height);
 	}
 
 	DrawLayer()
 	{
+		if (!this.Show)
+		{
+			return;
+		}
 
+		image(this.LayerImage, 0, 0);
 	}
 }
+
+
+
+var s = function( sketch )
+{
+
+	sketch.setup = function()
+	{
+	}
+
+	sketch.draw = function()
+	{
+	}
+};

@@ -4,6 +4,8 @@ var ToolManager = null;
 var ColorP = null;
 var Helpers = null;
 var Layers = null;
+var CanvasWidth = null;
+var CanvasHeight = null;
 
 function setup()
 {
@@ -15,11 +17,14 @@ function setup()
 
 	//create a canvas to fill the content div from index.html
 	var canvasContainer = select('#content');
-	var canvas = createCanvas(canvasContainer.size().width - 10, canvasContainer.size().height - 10);
+
+	CanvasWidth = canvasContainer.size().width - 10;
+	CanvasHeight = canvasContainer.size().height - 10;
+	var canvas = createCanvas(CanvasWidth, CanvasHeight);
 	canvas.id('canvas');
 	canvas.elt.classList.add("canvas")
 	canvas.parent("content");
-	background(255);
+	// background(255);
 
 	//create helper functions and the color palette
 	Helpers = new HelperFunctions();
@@ -49,20 +54,16 @@ function draw()
 	ColorP.UpdateColors();
 
 	// Draw Under Layers
+	Layers.DrawUnderLayers();
 
 	// Draw current layer
+	Layers.DrawSelectedLayer();
 
 	//call the draw function on the selected tool
 	ToolManager.Draw();
 
-
-
 	// Draw Over Layers
-
-
-	// update layers ui icons
-	Layers.UpdateIcons();
-
+	Layers.DrawOverLayers();
 }
 
 function keyPressed()

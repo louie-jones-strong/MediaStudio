@@ -3,85 +3,60 @@ class LayerManger
 	constructor()
 	{
 		this.Layers = [];
-		this.SelectedLayer = 0;
 
 		let baseLayer = new Layer(0, "background", null);
 		this.AddLayer(baseLayer);
 
 		let temp = new Layer(1, "temp", null);
 		this.AddLayer(temp);
+
+
+		this.SelectIndex(0)
 	}
 
 	AddLayer(layer)
 	{
 		this.Layers.push(layer);
-		this.DrawLayerIcons();
+
+
+		let holder = select('#layerListHolder');
+		layer.DrawLayerIcon(holder);
+		layer.UpdateIcon();
 	}
 
-	DrawLayerIcons()
+	SelectIndex(index)
 	{
-		let html = "";
-		for (let i = this.Layers.length-1; i >= 0; i--)
-		{
-			const layer = this.Layers[i];
-			html = layer.DrawLayerIcon(html, this.SelectedLayer == i)
-		}
-		let holder = document.getElementById("layerListHolder");
-		holder.innerHTML = html;
+		this.SelectedIndex = index;
+		this.CurrentImg = this.Layers[this.SelectedIndex].LayerImage;
 	}
 
-	UpdateIcons()
-	{
-		for (let i = 0; i < this.Layers.length; i++)
-		{
-			const layer = this.Layers[i];
-			layer.UpdateIcon();
 
-		}
-	}
-
+//#region drawing
 	DrawUnderLayers()
 	{
-		for (let i = 0; i < this.Layers.length; i++)
+		for (let i = 0; i < this.SelectedIndex; i++)
 		{
 			const layer = this.Layers[i];
 
-			if (i == this.SelectedLayer)
-			{
-				return;
-			}
 			layer.DrawLayer()
-
 		}
 	}
 
-	UnderLayers()
+	DrawSelectedLayer()
 	{
-		for (let i = 0; i < this.Layers.length; i++)
-		{
-			const layer = this.Layers[i];
-
-			if (i != this.SelectedLayer)
-			{
-				continue;
-			}
-			layer.DrawLayer()
-
-		}
+		this.Layers[this.SelectedIndex].DrawLayer()
+		this.Layers[this.SelectedIndex].UpdateIcon();
 	}
 
 	DrawOverLayers()
 	{
-		for (let i = 0; i < this.Layers.length; i++)
+		for (let i = this.SelectedIndex + 1; i < this.Layers.length; i++)
 		{
 			const layer = this.Layers[i];
 
-			if (i <= this.SelectedLayer)
-			{
-				continue;
-			}
 			layer.DrawLayer()
 
 		}
 	}
+//#endregion
 }

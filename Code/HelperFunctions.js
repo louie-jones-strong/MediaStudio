@@ -28,17 +28,17 @@ function HelperFunctions()
 	//faster function to get the color of pixels
 	this.GetPixel = function(x, y)
 	{
-		var d = pixelDensity();
-		var color = [];
-		for (var i = 0; i < d; ++i)
+		let d = pixelDensity();
+		let color = [];
+		for (let i = 0; i < d; ++i)
 		{
-			for (var j = 0; j < d; ++j)
+			for (let j = 0; j < d; ++j)
 			{
-			var idx = 4 * ((y * d + j) * width * d + (x * d + i));
-			color[0] = pixels[idx];
-			color[1] = pixels[idx+1];
-			color[2] = pixels[idx+2];
-			color[3] = pixels[idx+3];
+				let idx = 4 * ((y * d + j) * width * d + (x * d + i));
+				color[0] = pixels[idx];
+				color[1] = pixels[idx+1];
+				color[2] = pixels[idx+2];
+				color[3] = pixels[idx+3];
 			}
 		}
 		return color;
@@ -47,7 +47,7 @@ function HelperFunctions()
 	//faster function to set the color of pixels
 	this.SetPixel = function(x, y, color)
 	{
-		var d = pixelDensity();
+		let d = pixelDensity();
 		for (var i = 0; i < d; ++i)
 		{
 			for (var j = 0; j < d; ++j)
