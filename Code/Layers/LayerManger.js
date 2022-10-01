@@ -16,11 +16,16 @@ class LayerManger
 
 	AddLayer(layer)
 	{
-		this.Layers.push(layer);
 
 
 		let holder = select('#layerListHolder');
-		layer.DrawLayerIcon(holder);
+
+		var index = this.Layers.length;
+		layer.DrawLayerIcon(holder, function() {
+			Layers.SelectIndex(index);
+		});
+
+		this.Layers.push(layer);
 		layer.UpdateIcon();
 	}
 

@@ -12,11 +12,12 @@ class Layer
 		this.LayerImage = null;
 	}
 
-	DrawLayerIcon(holder)
+	DrawLayerIcon(holder, onClick)
 	{
 		let layer = createDiv(`<div class="layerHeader"> <h3>${this.LayerName}</h3>
 		Show
-		<input type="checkbox" id="${this.LayerId}LayerShowToggle" checked></div>`)
+		<input type="checkbox" id="${this.LayerId}LayerShowToggle" checked></div>`);
+		layer.mouseClicked(onClick);
 		layer.class("layer");
 		layer.parent(holder);
 
