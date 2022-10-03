@@ -9,6 +9,17 @@ function HelperFunctions()
 
 	select("#removeLayerButton").mouseClicked(function() {
 
+		if (Layers.Layers.length > 1)
+		{
+			Layers.Layers.splice(Layers.SelectedIndex, 1);
+
+			let newIndex = Layers.SelectedIndex - 1;
+			if (newIndex < 0)
+			{
+				newIndex = Layers.Layers.length - 1
+			}
+			Layers.SelectIndex(newIndex);
+		}
 	});
 
 	select("#duplicateLayerButton").mouseClicked(function() {
