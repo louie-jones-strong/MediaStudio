@@ -20,7 +20,7 @@ class Layer
 	{
 		let layer = createDiv(`<div class="layerHeader"> <h3>${this.LayerName}</h3>
 		Show
-		<input type="checkbox" id="${this.LayerId}LayerShowToggle" checked><button>X</button></div>`);
+		<input type="checkbox" id="${this.LayerId}LayerShowToggle" checked></div>`);
 		layer.mouseClicked(onClick);
 		layer.class("layer");
 		layer.parent(holder);
