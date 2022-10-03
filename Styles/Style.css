@@ -179,3 +179,12 @@ footer{
 	width: 60%;
 	cursor: not-allowed;
 }
+
+.layer{
+	border:dashed transparent 2px;
+}
+
+.selected.layer{
+	border-radius: 1.5em;
+	border:dashed rgb(160, 0, 0) 2px;
+}

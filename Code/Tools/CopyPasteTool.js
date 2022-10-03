@@ -118,7 +118,7 @@ class CopyPasteTool extends Tool
 		{
 			//reset canvas to last saved canvas
 			//this updates the pixels on the canvas from the pixel array
-			updatePixels();
+			Layers.CurrentImg.updatePixels();
 			this.CopiedImage = get(this.SelectionStartX, this.SelectionStartY, this.SelectionWidth, this.SelectionHeight);
 
 			this.SetState(eCopyPasteState.Selected);
@@ -129,9 +129,9 @@ class CopyPasteTool extends Tool
 	{
 		//reset canvas to last saved canvas
 		//this updates the pixels on the canvas from the pixel array
-		updatePixels();
+		Layers.CurrentImg.updatePixels();
 
-		image(this.CopiedImage, mouseX - this.SelectionWidth/2, mouseY - this.SelectionHeight/2)
+		Layers.CurrentImg.image(this.CopiedImage, mouseX - this.SelectionWidth/2, mouseY - this.SelectionHeight/2)
 
 		if(mouseIsPressed && Helpers.PosOnCanvas(mouseX, mouseY))
 		{
@@ -145,10 +145,10 @@ class CopyPasteTool extends Tool
 	{
 		//reset canvas to last saved canvas
 		//this updates the pixels on the canvas from the pixel array
-		updatePixels();
+		Layers.CurrentImg.updatePixels();
 
 		//push the drawing state so that we can set the stroke weight and color
-		push();
+		Layers.CurrentImg.push();
 		noStroke(0);
 		fill(color(0, 0, 200, 100));
 
@@ -156,7 +156,7 @@ class CopyPasteTool extends Tool
 		Layers.CurrentImg.rect(this.SelectionStartX, this.SelectionStartY, this.SelectionWidth, this.SelectionHeight);
 
 		//return to the original
-		pop();
+		Layers.CurrentImg.pop();
 	}
 
 	Clear()
@@ -168,9 +168,9 @@ class CopyPasteTool extends Tool
 
 		//reset canvas to last saved canvas
 		//this updates the pixels on the canvas from the pixel array
-		updatePixels();
+		Layers.CurrentImg.updatePixels();
 
-		push();
+		Layers.CurrentImg.push();
 		noStroke(0);
 		fill(color(255, 255, 255));
 
@@ -178,7 +178,7 @@ class CopyPasteTool extends Tool
 		Layers.CurrentImg.rect(this.SelectionStartX, this.SelectionStartY, this.SelectionWidth, this.SelectionHeight);
 
 		//return to the original
-		pop();
+		Layers.CurrentImg.pop();
 
 		Layers.CurrentImg.loadPixels();
 		this.SetState(eCopyPasteState.None);
@@ -202,7 +202,7 @@ class CopyPasteTool extends Tool
 		{
 			case eCopyPasteState.None:
 			{
-				updatePixels();
+				Layers.CurrentImg.updatePixels();
 				this.SetToolOptionSelected(this.StartSelectionButton, true);
 				this.SetToolOptionSelected(this.StampOptionButton, false);
 
@@ -278,6 +278,6 @@ class CopyPasteTool extends Tool
 		this.Reset();
 		//reset canvas to last saved canvas
 		//this updates the pixels on the canvas from the pixel array
-		updatePixels();
+		Layers.CurrentImg.updatePixels();
 	}
 }

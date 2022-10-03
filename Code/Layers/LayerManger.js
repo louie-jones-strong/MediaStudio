@@ -4,12 +4,11 @@ class LayerManger
 	{
 		this.Layers = [];
 
-		let baseLayer = new Layer(0, "background", null);
+		let img = createGraphics(CanvasWidth, CanvasHeight);
+		img.background(255);
+
+		let baseLayer = new Layer(0, "background", img);
 		this.AddLayer(baseLayer);
-
-		let temp = new Layer(1, "temp", null);
-		this.AddLayer(temp);
-
 
 		this.SelectIndex(0)
 	}
@@ -31,8 +30,15 @@ class LayerManger
 
 	SelectIndex(index)
 	{
+		if (this.SelectedIndex != null)
+			this.Layers[this.SelectedIndex].SetSelected(false);
+
+
 		this.SelectedIndex = index;
 		this.CurrentImg = this.Layers[this.SelectedIndex].LayerImage;
+
+
+		this.Layers[this.SelectedIndex].SetSelected(true);
 	}
 
 
@@ -65,3 +71,5 @@ class LayerManger
 	}
 //#endregion
 }
+
+

@@ -73,7 +73,7 @@ class EditableShapeTool extends Tool
 		{
 			return;
 		}
-		push();
+		Layers.CurrentImg.push();
 
 		Layers.CurrentImg.noFill();
 		Layers.CurrentImg.beginShape();
@@ -102,19 +102,19 @@ class EditableShapeTool extends Tool
 		}
 		Layers.CurrentImg.endShape(CLOSE);
 
-		pop();
+		Layers.CurrentImg.pop();
 
 		if (this.IsEditMode)
 		{
 			for (let index = 0; index < this.PointList.length; index++)
 			{
 				const point = this.PointList[index];
-				push();
+				Layers.CurrentImg.push();
 				Layers.CurrentImg.strokeWeight(3);
 				Layers.CurrentImg.noFill();
 				Layers.CurrentImg.stroke("red");
 				Layers.CurrentImg.ellipse(point.x, point.y, EditGrabRadius);
-				pop();
+				Layers.CurrentImg.pop();
 			}
 		}
 	}

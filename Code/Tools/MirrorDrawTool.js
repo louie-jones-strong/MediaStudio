@@ -39,7 +39,7 @@ class MirrorDrawTool extends Tool
 		super.Draw();
 
 		//display the last save state of pixels
-		updatePixels();
+		Layers.CurrentImg.updatePixels();
 
 		//do the drawing if the mouse is pressed
 		if (mouseIsPressed)
@@ -85,7 +85,7 @@ class MirrorDrawTool extends Tool
 		Layers.CurrentImg.loadPixels();
 
 		//push the drawing state so that we can set the stroke weight and color
-		push();
+		Layers.CurrentImg.push();
 		Layers.CurrentImg.strokeWeight(3);
 		stroke("red");
 
@@ -100,7 +100,7 @@ class MirrorDrawTool extends Tool
 		}
 
 		//return to the original stroke
-		pop();
+		Layers.CurrentImg.pop();
 
 	}
 
@@ -165,6 +165,6 @@ class MirrorDrawTool extends Tool
 	UnselectTool()
 	{
 		super.UnselectTool();
-		updatePixels();
+		Layers.CurrentImg.updatePixels();
 	}
 }

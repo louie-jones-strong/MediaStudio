@@ -53,7 +53,7 @@ class ShapeTool extends Tool
 
 
 				//draw shape on top of the last saved state of the canvas
-				push();
+				Layers.CurrentImg.push();
 				Layers.CurrentImg.strokeWeight(0);
 
 				switch (this.Shape)
@@ -89,7 +89,7 @@ class ShapeTool extends Tool
 						break;
 					}
 				}
-				pop();
+				Layers.CurrentImg.pop();
 			}
 		}
 		else if(this.Drawing) //if the user has released the mouse while drawing we reset the tool

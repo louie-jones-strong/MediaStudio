@@ -51,7 +51,7 @@ class TextTool extends Tool
 
 		Layers.CurrentImg.loadPixels();
 
-		push();
+		Layers.CurrentImg.push();
 		Layers.CurrentImg.strokeWeight(1);
 
 		if(this.PosX >= 0)
@@ -79,7 +79,7 @@ class TextTool extends Tool
 			Layers.CurrentImg.rect(x, y, 1, -this.Slider.Value);
 		}
 
-		pop();
+		Layers.CurrentImg.pop();
 	}
 
 	KeyPressed()
@@ -108,11 +108,11 @@ class TextTool extends Tool
 
 	FinishCurrentText()
 	{
-		push();
+		Layers.CurrentImg.push();
 		Layers.CurrentImg.strokeWeight(1);
 		Layers.CurrentImg.text(this.CurrentString, this.PosX, this.PosY);
 		this.CurrentString = "";
-		pop();
+		Layers.CurrentImg.pop();
 	}
 
 	//adds a button and click handler to the ToolOptions area.
