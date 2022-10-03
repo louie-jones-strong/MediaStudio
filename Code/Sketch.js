@@ -46,6 +46,11 @@ function setup()
 	ToolManager.AddTool(new TextTool());
 	ToolManager.AddTool(new CopyPasteTool());
 
+	input = createFileInput(handleFile);
+
+	input.parent(select("#header"));
+
+
 
 }
 
@@ -82,4 +87,19 @@ function keyReleased()
 function keyTyped()
 {
 	ToolManager.KeyTyped();
+}
+
+function handleFile(file)
+{
+	if (file.type === 'image')
+	{
+		img = createImg(file.data, '');
+		img.hide();
+
+		let graphic = createGraphics(CanvasWidth, CanvasHeight);
+		graphic.image(img, 0, 0);
+
+		let layer = new Layer(Layers.Layers.length, file.name, graphic);
+		Layers.AddLayer(layer);
+	}
 }
