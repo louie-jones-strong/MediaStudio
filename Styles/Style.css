@@ -23,6 +23,9 @@ button{
 	display: flex;
 	align-items: center;
 	margin: 1em;
+
+	transition: transform 0.2s;
+	transform: scale(1);
 }
 button > *{
 	margin: 0;
@@ -34,9 +37,10 @@ button img{
 }
 
 button:hover{
-	border-radius: 0.5em;
 	box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.3);
+	transform: scale(1.1);
 }
+
 
 /* layout */
 body{
