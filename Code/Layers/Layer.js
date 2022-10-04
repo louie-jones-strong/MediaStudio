@@ -14,6 +14,11 @@ class Layer
 
 		if (this.LayerImage == null)
 			this.LayerImage = createGraphics(CanvasWidth, CanvasHeight);
+
+		this.AffectEffectsCache = createGraphics(CanvasWidth, CanvasHeight);
+		this.LayerEffects = [];
+
+		this.ForceEffectRefresh = true;
 	}
 
 	DrawLayerIcon(holder, onClick)
@@ -55,7 +60,10 @@ class Layer
 	UpdateIcon()
 	{
 		this.P5.clear();
-		this.P5.image(this.LayerImage, 0, 0, this.P5.width, this.P5.height);
+
+		let afterEffectsImg = this.ApplyEffects();
+
+		this.P5.image(afterEffectsImg, 0, 0, this.P5.width, this.P5.height);
 	}
 
 	DrawLayer()
@@ -67,7 +75,28 @@ class Layer
 			return;
 		}
 
-		image(this.LayerImage, 0, 0);
+		let afterEffectsImg = this.ApplyEffects();
+		image(afterEffectsImg, 0, 0);
+	}
+
+
+	ApplyEffects()
+	{
+		if (!this.ForceEffectRefresh)
+			return this.AffectEffectsCache;
+
+		this.AffectEffectsCache.clear();
+		this.AffectEffectsCache.image(this.LayerImage, 0, 0);
+
+		for (let i = 0; i < this.LayerEffects.length; i++)
+		{
+			const effect = this.LayerEffects[i];
+			this.AffectEffectsCache = effect.ApplyEffect(this.AffectEffectsCache);
+		}
+
+		this.ForceEffectRefresh = false;
+
+		return this.AffectEffectsCache;
 	}
 }
 
@@ -75,11 +104,9 @@ class Layer
 
 var s = function( sketch )
 {
-
 	sketch.setup = function()
 	{
 	}
-
 	sketch.draw = function()
 	{
 	}

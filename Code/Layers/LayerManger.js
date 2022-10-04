@@ -55,8 +55,10 @@ class LayerManger
 
 	DrawSelectedLayer()
 	{
-		this.Layers[this.SelectedIndex].DrawLayer()
-		this.Layers[this.SelectedIndex].UpdateIcon();
+		let layer = this.Layers[this.SelectedIndex];
+		layer.ForceEffectRefresh = true;
+		layer.DrawLayer()
+		layer.UpdateIcon();
 	}
 
 	DrawOverLayers()
