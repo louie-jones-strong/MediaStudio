@@ -49,10 +49,10 @@ class FloodFillTool extends Tool
 			Layers.CurrentImg.updatePixels();
 
 		}
-		else if (mouseIsPressed && Helpers.PosOnCanvas(mouseX, mouseY))
+		else if (mouseIsPressed && Helpers.PosOnCanvas(mousePosX, mousePosY))
 		{
-			var x = Math.round(mouseX);
-			var y = Math.round(mouseY);
+			var x = Math.round(mousePosX);
+			var y = Math.round(mousePosY);
 
 			Layers.CurrentImg.loadPixels();
 			this.StartingColor = Helpers.GetPixel(Layers.CurrentImg, x, y);

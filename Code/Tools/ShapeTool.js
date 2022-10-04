@@ -32,11 +32,11 @@ class ShapeTool extends Tool
 		if(mouseIsPressed)
 		{
 			if(!this.Drawing &&
-				Helpers.PosOnCanvas(mouseX, mouseY))
+				Helpers.PosOnCanvas(mousePosX, mousePosY))
 			{
 				//set start point of the line to current mouse position
-				this.StartMouseX = mouseX;
-				this.StartMouseY = mouseY;
+				this.StartMouseX = mousePosX;
+				this.StartMouseY = mousePosY;
 				this.Drawing = true;
 
 				//save current canvas state
@@ -106,8 +106,8 @@ class ShapeTool extends Tool
 		{
 			return [0, 0];
 		}
-		var width = mouseX-this.StartMouseX;
-		var height = mouseY-this.StartMouseY;
+		var width = mousePosX-this.StartMouseX;
+		var height = mousePosY-this.StartMouseY;
 
 		if (this.NormalizeAspectRatio)
 		{

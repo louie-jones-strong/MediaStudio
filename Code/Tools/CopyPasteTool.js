@@ -80,13 +80,13 @@ class CopyPasteTool extends Tool
 
 	Selecting()
 	{
-		if(mouseIsPressed && Helpers.PosOnCanvas(mouseX, mouseY))
+		if(mouseIsPressed && Helpers.PosOnCanvas(mousePosX, mousePosY))
 		{
 			if(this.State == eCopyPasteState.None)
 			{
 				//set start point of the line to current mouse position
-				this.SelectionStartX = mouseX;
-				this.SelectionStartY = mouseY;
+				this.SelectionStartX = mousePosX;
+				this.SelectionStartY = mousePosY;
 				this.SelectionWidth = 0;
 				this.SelectionHeight = 0;
 				this.SetState(eCopyPasteState.Selecting);
@@ -98,8 +98,8 @@ class CopyPasteTool extends Tool
 			else
 			{
 
-				this.SelectionWidth = mouseX-this.SelectionStartX;
-				this.SelectionHeight = mouseY-this.SelectionStartY;
+				this.SelectionWidth = mousePosX-this.SelectionStartX;
+				this.SelectionHeight = mousePosY-this.SelectionStartY;
 
 				if (this.NormalizeAspectRatio)
 				{
@@ -131,9 +131,9 @@ class CopyPasteTool extends Tool
 		//this updates the pixels on the canvas from the pixel array
 		Layers.CurrentImg.updatePixels();
 
-		Layers.CurrentImg.image(this.CopiedImage, mouseX - this.SelectionWidth/2, mouseY - this.SelectionHeight/2)
+		Layers.CurrentImg.image(this.CopiedImage, mousePosX - this.SelectionWidth/2, mousePosY - this.SelectionHeight/2)
 
-		if(mouseIsPressed && Helpers.PosOnCanvas(mouseX, mouseY))
+		if(mouseIsPressed && Helpers.PosOnCanvas(mousePosX, mousePosY))
 		{
 			//save current canvas state
 			//this loads the pixels on the canvas in to the pixel array

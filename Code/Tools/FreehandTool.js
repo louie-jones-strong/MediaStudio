@@ -36,16 +36,16 @@ class FreehandTool extends Tool
 			//mouse X and Y if they are.
 			if (this.PreviousMouseX == -1)
 			{
-				this.PreviousMouseX = mouseX;
-				this.PreviousMouseY = mouseY;
+				this.PreviousMouseX = mousePosX;
+				this.PreviousMouseY = mousePosY;
 			}
 			else
 			{
 				//if we already have values for previousX and Y we can draw a line from
 				//there to the current mouse location
-				Layers.CurrentImg.line(this.PreviousMouseX, this.PreviousMouseY, mouseX, mouseY);
-				this.PreviousMouseX = mouseX;
-				this.PreviousMouseY = mouseY;
+				Layers.CurrentImg.line(this.PreviousMouseX, this.PreviousMouseY, mousePosX, mousePosY);
+				this.PreviousMouseX = mousePosX;
+				this.PreviousMouseY = mousePosY;
 			}
 		}
 		else

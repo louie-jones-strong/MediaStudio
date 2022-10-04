@@ -9,6 +9,7 @@ var CanvasHeight = null;
 
 function setup()
 {
+	ScaleMousePos();
 	//this disables the default right click behavior for this page
 	document.addEventListener('contextmenu', event => {
 		event.preventDefault();
@@ -55,6 +56,7 @@ function setup()
 
 function draw()
 {
+	ScaleMousePos();
 	clear();
 
 
@@ -75,16 +77,19 @@ function draw()
 
 function keyPressed()
 {
+	ScaleMousePos();
 	ToolManager.KeyPressed();
 }
 
 function keyReleased()
 {
+	ScaleMousePos();
 	ToolManager.KeyReleased();
 }
 
 function keyTyped()
 {
+	ScaleMousePos();
 	ToolManager.KeyTyped();
 }
 
@@ -101,4 +106,11 @@ function handleFile(file)
 		let layer = new Layer(Layers.Layers.length, file.name, graphic);
 		Layers.AddLayer(layer);
 	}
+}
+
+function ScaleMousePos()
+{
+	let d = pixelDensity();
+	mousePosX = mouseX / d;
+	mousePosY = mouseY / d;
 }

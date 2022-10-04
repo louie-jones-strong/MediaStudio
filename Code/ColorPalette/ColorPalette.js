@@ -36,7 +36,7 @@ class ColorPalette
 			{
 				this.SelectedColor = this.LeftClickColor.RgbaColor;
 
-				if (Helpers.PosOnCanvas(mouseX, mouseY))
+				if (Helpers.PosOnCanvas(mousePosX, mousePosY))
 				{
 					this.LeftClickColor.UseColor();
 				}
@@ -45,7 +45,7 @@ class ColorPalette
 			{
 				this.SelectedColor = this.RightClickColor.RgbaColor;
 
-				if (Helpers.PosOnCanvas(mouseX, mouseY))
+				if (Helpers.PosOnCanvas(mousePosX, mousePosY))
 				{
 					this.RightClickColor.UseColor();
 				}

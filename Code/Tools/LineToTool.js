@@ -32,8 +32,8 @@ class LineToTool extends Tool
 			if(this.StartMouseX == -1)
 			{
 				//set start point of the line to current mouse position
-				this.StartMouseX = mouseX;
-				this.StartMouseY = mouseY;
+				this.StartMouseX = mousePosX;
+				this.StartMouseY = mousePosY;
 				this.Drawing = true;
 
 				//save current canvas state
@@ -46,8 +46,8 @@ class LineToTool extends Tool
 				//this updates the pixels on the canvas from the pixel array
 				Layers.CurrentImg.updatePixels();
 
-				var endX = mouseX;
-				var endY = mouseY;
+				var endX = mousePosX;
+				var endY = mousePosY;
 
 				if (this.NormalizeAspectRatio)
 				{
