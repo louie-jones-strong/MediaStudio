@@ -5,13 +5,15 @@ class BlurEffect extends LayerEffect
 		super();
 		this.Name = "Blur";
 		this.Icon = "";
+
+		this.BlurAmount = 2;
 	}
 
 	ApplyEffect(startImg)
 	{
 		startImg = super.ApplyEffect(startImg);
 
-		startImg.filter(BLUR, 2);
+		startImg.filter(BLUR, this.BlurAmount * (startImg.width / CanvasWidth));
 		return startImg;
 	}
 }

@@ -1,3 +1,5 @@
+const FastEffectScaleFactor = 4;
+
 class Layer
 {
 	constructor(layerId, layerName, graphic)
@@ -16,9 +18,14 @@ class Layer
 			this.LayerImage = createGraphics(CanvasWidth, CanvasHeight);
 
 		this.AffectEffectsCache = createGraphics(CanvasWidth, CanvasHeight);
+		this.FastEffectsCache = createGraphics(CanvasWidth / FastEffectScaleFactor, CanvasHeight / FastEffectScaleFactor);
+
 		this.LayerEffects = [];
 
+
+		this.LayerEffects.push(new BlurEffect())
 		this.ForceEffectRefresh = true;
+		this.UseFastEffect = true;
 	}
 
 	DrawLayerIcon(holder, onClick)
@@ -38,12 +45,14 @@ class Layer
 		this.Canvas.id(`${this.LayerId}LayerCanvas`);
 		this.Canvas.elt.classList.add("canvas")
 		this.Canvas.parent(layer);
-
-
 	}
 
 	SetSelected(selected)
 	{
+
+		this.UseFastEffect = selected;
+		this.ForceEffectRefresh = true;
+
 		let layer = select(`#${this.LayerId}Layer`)
 
 
@@ -76,27 +85,55 @@ class Layer
 		}
 
 		let afterEffectsImg = this.ApplyEffects();
-		image(afterEffectsImg, 0, 0);
+		image(afterEffectsImg, 0, 0, CanvasWidth, CanvasHeight);
 	}
 
 
 	ApplyEffects()
 	{
 		if (!this.ForceEffectRefresh)
-			return this.AffectEffectsCache;
+		{
+			if (this.UseFastEffect)
+				return this.FastEffectsCache;
+			else
+				return this.AffectEffectsCache;
+		}
 
-		this.AffectEffectsCache.clear();
-		this.AffectEffectsCache.image(this.LayerImage, 0, 0);
+
+
+		let img  = null;
+		if (this.UseFastEffect)
+		{
+			this.FastEffectsCache.clear();
+			this.FastEffectsCache.image(this.LayerImage, 0, 0, CanvasWidth / FastEffectScaleFactor, CanvasHeight / FastEffectScaleFactor);
+			img = this.FastEffectsCache;
+		}
+		else
+		{
+			this.AffectEffectsCache.clear();
+			this.AffectEffectsCache.image(this.LayerImage, 0, 0);
+			img = this.AffectEffectsCache;
+		}
 
 		for (let i = 0; i < this.LayerEffects.length; i++)
 		{
 			const effect = this.LayerEffects[i];
-			this.AffectEffectsCache = effect.ApplyEffect(this.AffectEffectsCache);
+			img = effect.ApplyEffect(img);
+		}
+
+
+		if (this.UseFastEffect)
+		{
+			this.FastEffectsCache = img;
+		}
+		else
+		{
+			this.AffectEffectsCache = img;
 		}
 
 		this.ForceEffectRefresh = false;
 
-		return this.AffectEffectsCache;
+		return img;
 	}
 }
 

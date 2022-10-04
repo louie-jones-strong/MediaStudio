@@ -31,7 +31,9 @@ class LayerManger
 	SelectIndex(index)
 	{
 		if (this.SelectedIndex != null)
+		{
 			this.Layers[this.SelectedIndex].SetSelected(false);
+		}
 
 
 		this.SelectedIndex = index;
