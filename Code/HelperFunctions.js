@@ -93,7 +93,7 @@ function HelperFunctions()
 
 	this.PosOnCanvas = function(x, y)
 	{
-		return x >= 0 && x <= width && y >= 0 && y <= height
+		return x >= 0 && x <= CanvasWidth && y >= 0 && y <= CanvasHeight
 	}
 
 	this.GetColorHex = function(rgbaColor, withAlpha=true)

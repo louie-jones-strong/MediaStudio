@@ -7,6 +7,7 @@ class Layer
 		this.LayerId = layerId;
 		this.LayerName = layerName;
 		this.Show = true;
+		this.MuteEffects = false;
 		this.Alpha = 1;
 
 		this.Canvas = null;
@@ -27,7 +28,7 @@ class Layer
 		this.UseFastEffect = true;
 
 
-		// this.LayerEffects.push(new BlurEffect())
+		this.LayerEffects.push(new BlurEffect())
 		// this.LayerEffects.push(new ChromaKeyEffect())
 	}
 
@@ -35,7 +36,8 @@ class Layer
 	{
 		let layer = createDiv(`<div class="layerHeader"> <h3>${this.LayerName}</h3>
 		Show
-		<input type="checkbox" id="${this.LayerId}LayerShowToggle" checked></div>`);
+		<input type="checkbox" id="${this.LayerId}LayerShowToggle" checked></div>
+		<input type="checkbox" id="${this.LayerId}LayerMuteEffectsToggle">`);
 		layer.mouseClicked(onClick);
 		layer.class("layer");
 		layer.parent(holder);
@@ -82,6 +84,10 @@ class Layer
 	{
 		let showCheckBox = document.getElementById(`${this.LayerId}LayerShowToggle`);
 		this.Show = showCheckBox.checked;
+
+		let muteEffectsCheckBox = document.getElementById(`${this.LayerId}LayerMuteEffectsToggle`);
+		this.MuteEffects = muteEffectsCheckBox.checked;
+
 		if (!this.Show)
 		{
 			return;
@@ -94,7 +100,8 @@ class Layer
 
 	ApplyEffects()
 	{
-		if (this.LayerEffects.length == 0)
+		if (this.LayerEffects.length == 0 ||
+			this.MuteEffects)
 		{
 			return this.LayerImage;
 		}
