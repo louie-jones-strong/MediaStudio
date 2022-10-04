@@ -56,7 +56,7 @@ function HelperFunctions()
 
 
 	//faster function to get the color of pixels
-	this.GetPixel = function(x, y)
+	this.GetPixel = function(img, x, y)
 	{
 		let d = pixelDensity();
 		let color = [];
@@ -64,29 +64,29 @@ function HelperFunctions()
 		{
 			for (let j = 0; j < d; ++j)
 			{
-				let idx = 4 * ((y * d + j) * width * d + (x * d + i));
-				color[0] = Layers.CurrentImg.pixels[idx];
-				color[1] = Layers.CurrentImg.pixels[idx+1];
-				color[2] = Layers.CurrentImg.pixels[idx+2];
-				color[3] = Layers.CurrentImg.pixels[idx+3];
+				let idx = 4 * ((y * d + j) * img.width * d + (x * d + i));
+				color[0] = img.pixels[idx];
+				color[1] = img.pixels[idx+1];
+				color[2] = img.pixels[idx+2];
+				color[3] = img.pixels[idx+3];
 			}
 		}
 		return color;
 	}
 
 	//faster function to set the color of pixels
-	this.SetPixel = function(x, y, color)
+	this.SetPixel = function(img, x, y, color)
 	{
 		let d = pixelDensity();
-		for (var i = 0; i < d; ++i)
+		for (let i = 0; i < d; ++i)
 		{
-			for (var j = 0; j < d; ++j)
+			for (let j = 0; j < d; ++j)
 			{
-				var idx = 4 * ((y * d + j) * width * d + (x * d + i));
-				Layers.CurrentImg.pixels[idx]   = color.levels[0];
-				Layers.CurrentImg.pixels[idx+1] = color.levels[1];
-				Layers.CurrentImg.pixels[idx+2] = color.levels[2];
-				Layers.CurrentImg.pixels[idx+3] = color.levels[3];
+				let idx = 4 * ((y * d + j) * img.width * d + (x * d + i));
+				img.pixels[idx]   = color.levels[0];
+				img.pixels[idx+1] = color.levels[1];
+				img.pixels[idx+2] = color.levels[2];
+				img.pixels[idx+3] = color.levels[3];
 			}
 		}
 	}

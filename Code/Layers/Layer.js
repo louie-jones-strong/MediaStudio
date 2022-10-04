@@ -18,14 +18,17 @@ class Layer
 			this.LayerImage = createGraphics(CanvasWidth, CanvasHeight);
 
 		this.AffectEffectsCache = createGraphics(CanvasWidth, CanvasHeight);
-		this.FastEffectsCache = createGraphics(CanvasWidth / FastEffectScaleFactor, CanvasHeight / FastEffectScaleFactor);
+		this.FastEffectsCache = createGraphics(floor(CanvasWidth / FastEffectScaleFactor), floor(CanvasHeight / FastEffectScaleFactor));
 
 		this.LayerEffects = [];
 
 
-		this.LayerEffects.push(new BlurEffect())
 		this.ForceEffectRefresh = true;
 		this.UseFastEffect = true;
+
+
+		// this.LayerEffects.push(new BlurEffect())
+		// this.LayerEffects.push(new ChromaKeyEffect())
 	}
 
 	DrawLayerIcon(holder, onClick)
@@ -105,7 +108,7 @@ class Layer
 		if (this.UseFastEffect)
 		{
 			this.FastEffectsCache.clear();
-			this.FastEffectsCache.image(this.LayerImage, 0, 0, CanvasWidth / FastEffectScaleFactor, CanvasHeight / FastEffectScaleFactor);
+			this.FastEffectsCache.image(this.LayerImage, 0, 0, this.FastEffectsCache.width, this.FastEffectsCache.height);
 			img = this.FastEffectsCache;
 		}
 		else

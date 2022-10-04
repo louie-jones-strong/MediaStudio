@@ -9,7 +9,6 @@ var CanvasHeight = null;
 
 function setup()
 {
-
 	//this disables the default right click behavior for this page
 	document.addEventListener('contextmenu', event => {
 		event.preventDefault();

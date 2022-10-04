@@ -55,7 +55,7 @@ class FloodFillTool extends Tool
 			var y = Math.round(mouseY);
 
 			Layers.CurrentImg.loadPixels();
-			this.StartingColor = Helpers.GetPixel(x, y);
+			this.StartingColor = Helpers.GetPixel(Layers.CurrentImg, x, y);
 			this.FillColor = ColorP.SelectedColor;
 
 			var startingColorHex = Helpers.GetColorLevelsHex(this.StartingColor);
@@ -82,7 +82,7 @@ class FloodFillTool extends Tool
 	{
 		this.FilledHashSet.Add([x, y]);
 
-		Helpers.SetPixel(x, y, this.FillColor);
+		Helpers.SetPixel(Layers.CurrentImg, x, y, this.FillColor);
 
 		if (x-1 >= 0 && this.CheckPixel(x-1, y))
 		{
@@ -122,7 +122,7 @@ class FloodFillTool extends Tool
 		}
 
 		//get color of pixel at coordinates (x, y)
-		var color = Helpers.GetPixel(x, y);
+		var color = Helpers.GetPixel(Layers.CurrentImg, x, y);
 
 		return this.IsColorInRange(color);
 	}
