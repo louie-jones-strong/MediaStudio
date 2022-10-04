@@ -94,6 +94,11 @@ class Layer
 
 	ApplyEffects()
 	{
+		if (this.LayerEffects.length == 0)
+		{
+			return this.LayerImage;
+		}
+
 		if (!this.ForceEffectRefresh)
 		{
 			if (this.UseFastEffect)
