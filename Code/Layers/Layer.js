@@ -28,7 +28,7 @@ class Layer
 		this.UseFastEffect = true;
 
 
-		this.LayerEffects.push(new BlurEffect())
+		// this.LayerEffects.push(new BlurEffect())
 		// this.LayerEffects.push(new ChromaKeyEffect())
 	}
 
@@ -37,7 +37,8 @@ class Layer
 		let layer = createDiv(`<div class="layerHeader"> <h3>${this.LayerName}</h3>
 		Show
 		<input type="checkbox" id="${this.LayerId}LayerShowToggle" checked></div>
-		<input type="checkbox" id="${this.LayerId}LayerMuteEffectsToggle">`);
+		`);
+
 		layer.mouseClicked(onClick);
 		layer.class("layer");
 		layer.parent(holder);
@@ -50,6 +51,29 @@ class Layer
 		this.Canvas.id(`${this.LayerId}LayerCanvas`);
 		this.Canvas.elt.classList.add("canvas")
 		this.Canvas.parent(layer);
+
+		layer.html(`<input type="checkbox" id="${this.LayerId}LayerEffectsToggle" checked>`, true);
+
+		let effectsHolder = createDiv();
+		effectsHolder.class("effectHolder")
+		effectsHolder.id(`${this.LayerId}LayerEffects`);
+		effectsHolder.parent(layer);
+
+		let button = createButton('+');
+		button.parent(layer);
+
+		var self = this;
+		button.mousePressed(function() {
+			let holder = select(`#${self.LayerId}LayerEffects`);
+
+			let effect = new LayerEffect();
+
+			let effectDiv = createDiv(`Effect`);
+			effectDiv.parent(holder)
+
+
+			self.LayerEffects.push(effect)
+		});
 	}
 
 	SetSelected(selected)
@@ -85,8 +109,8 @@ class Layer
 		let showCheckBox = document.getElementById(`${this.LayerId}LayerShowToggle`);
 		this.Show = showCheckBox.checked;
 
-		let muteEffectsCheckBox = document.getElementById(`${this.LayerId}LayerMuteEffectsToggle`);
-		this.MuteEffects = muteEffectsCheckBox.checked;
+		let muteEffectsCheckBox = document.getElementById(`${this.LayerId}LayerEffectsToggle`);
+		this.MuteEffects = !muteEffectsCheckBox.checked;
 
 		if (!this.Show)
 		{
