@@ -99,11 +99,14 @@ function handleFile(file)
 	console.log("handle file:", file);
 	if (file.type === 'image')
 	{
-		let img = createImg(file.data, '');
-		img.hide();
-
-		let layer = new Layer(Layers.Layers.length, file.name, img);
-		Layers.AddLayer(layer);
+		loadImage(
+			file.data,
+			img => {
+				let layer = new Layer(Layers.Layers.length, file.name, img);
+				Layers.AddLayer(layer);
+			},
+			() => print('Image Failed to Load: '+ file),
+		);
 	}
 }
 
