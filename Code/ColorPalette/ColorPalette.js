@@ -52,8 +52,8 @@ class ColorPalette
 			}
 
 			//set the selected color and fill and stroke
-			fill(this.SelectedColor);
-			stroke(this.SelectedColor);
+			Layers.CurrentImg.fill(this.SelectedColor);
+			Layers.CurrentImg.stroke(this.SelectedColor);
 		}
 	}
 
