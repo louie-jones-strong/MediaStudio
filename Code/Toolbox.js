@@ -31,8 +31,8 @@ class Toolbox
 
 	ToolbarItemClick()
 	{
-		var toolName = this.id().split("iconButton")[0];
-		ToolManager.SelectTool(toolName);
+		var toolId = this.id().split("iconButton")[0];
+		ToolManager.SelectTool(toolId);
 	}
 
 	//add a new tool icon to the html page
@@ -49,16 +49,16 @@ class Toolbox
 	AddTool(tool)
 	{
 		this.Tools.push(tool);
-		this.AddToolIcon(tool.Icon, tool.Name);
+		this.AddToolIcon(tool.Icon, tool.Id);
 		//if no tool is selected (ie. none have been added so far)
 		//make this tool the selected one.
 		if (this.SelectedTool == null)
 		{
-			this.SelectTool(tool.Name);
+			this.SelectTool(tool.Id);
 		}
 	}
 
-	SelectTool(toolName)
+	SelectTool(toolId)
 	{
 		var items = selectAll(".iconButton");
 
@@ -67,7 +67,7 @@ class Toolbox
 		{
 			//remove selected styling from all tools
 			items[i].class("iconButton");
-			if (this.Tools[i].Name == toolName)
+			if (this.Tools[i].Id == toolId)
 			{
 				if (this.SelectedTool != null)
 				{
@@ -76,7 +76,7 @@ class Toolbox
 
 				//select the tool and highlight it on the toolbar
 				this.SelectedTool = this.Tools[i];
-				select("#" + toolName + "iconButton").class("iconButton selected");
+				select("#" + toolId + "iconButton").class("iconButton selected");
 
 				this.SelectedTool.SelectTool();
 			}
@@ -87,6 +87,6 @@ class Toolbox
 
 	Reset()
 	{
-		this.SelectTool(this.Tools[0].Name);
+		this.SelectTool(this.Tools[0].Id);
 	}
 }

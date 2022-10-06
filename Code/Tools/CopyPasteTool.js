@@ -12,6 +12,7 @@ class CopyPasteTool extends Tool
 		super();
 		//set an icon and a name for the object
 		this.Name = "Copy Paste Tool";
+		this.Id = "Copy_Paste_Tool";
 		this.Icon = "assets/CopyPasteTool.png";
 		this.ShowStrokeSettings = false;
 

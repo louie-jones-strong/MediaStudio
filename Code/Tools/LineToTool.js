@@ -5,6 +5,7 @@ class LineToTool extends Tool
 		super();
 		//set an icon and a name for the object
 		this.Icon = "assets/lineTool.png";
+		this.Id = "Line_Tool";
 		this.Name = "Line Tool";
 
 		this.StartMouseX = -1;

@@ -6,6 +6,7 @@ class SprayCanTool extends Tool
 		super();
 		//set an icon and a name for the object
 		this.Name = "Spray Can Tool";
+		this.Id = "Spray_Can_Tool";
 		this.Icon = "assets/sprayCanTool.png";
 
 		this.Points =  5;

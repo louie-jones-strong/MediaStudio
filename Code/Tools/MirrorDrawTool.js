@@ -10,6 +10,7 @@ class MirrorDrawTool extends Tool
 	{
 		super();
 		this.Name = "Mirror Draw Tool";
+		this.Id = "Mirror_Draw_Tool";
 		this.Icon = "assets/mirrorDrawTool.png";
 
 		//which axis is being mirrored (x or y) x is default

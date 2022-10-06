@@ -1,4 +1,4 @@
-const FastEffectScaleFactor = 4;
+const FastEffectScaleFactor = 1;
 
 class Layer
 {
@@ -13,10 +13,10 @@ class Layer
 		this.Canvas = null;
 		this.P5 = new p5(s);
 
-		this.LayerImage = graphic;
+		this.LayerImage = createGraphics(CanvasWidth, CanvasHeight);
 
-		if (this.LayerImage == null)
-			this.LayerImage = createGraphics(CanvasWidth, CanvasHeight);
+		if (graphic != null)
+			this.LayerImage.image(graphic, 0, 0);
 
 		this.AffectEffectsCache = createGraphics(CanvasWidth, CanvasHeight);
 		this.FastEffectsCache = createGraphics(floor(CanvasWidth / FastEffectScaleFactor), floor(CanvasHeight / FastEffectScaleFactor));
@@ -36,27 +36,27 @@ class Layer
 	{
 		let layer = createDiv(`<div class="layerHeader"> <h3>${this.LayerName}</h3>
 		Show
-		<input type="checkbox" id="${this.LayerId}LayerShowToggle" checked></div>
+		<input type="checkbox" id="Layer${this.LayerId}ShowToggle" checked></div>
 		`);
 
 		layer.mouseClicked(onClick);
 		layer.class("layer");
 		layer.parent(holder);
-		layer.id(`${this.LayerId}Layer`);
+		layer.id(`Layer${this.LayerId}`);
 
 		let iconWidth = 150;
 		let iconHeight = height / (width / iconWidth);
 
 		this.Canvas = this.P5.createCanvas(iconWidth, iconHeight);
-		this.Canvas.id(`${this.LayerId}LayerCanvas`);
+		this.Canvas.id(`Layer${this.LayerId}Canvas`);
 		this.Canvas.elt.classList.add("canvas")
 		this.Canvas.parent(layer);
 
-		layer.html(`<input type="checkbox" id="${this.LayerId}LayerEffectsToggle" checked>`, true);
+		layer.html(`<input type="checkbox" id="Layer${this.LayerId}EffectsToggle" checked>`, true);
 
 		let effectsHolder = createDiv();
 		effectsHolder.class("effectHolder")
-		effectsHolder.id(`${this.LayerId}LayerEffects`);
+		effectsHolder.id(`Layer${this.LayerId}Effects`);
 		effectsHolder.parent(layer);
 
 		let button = createButton('+');
@@ -64,7 +64,7 @@ class Layer
 
 		var self = this;
 		button.mousePressed(function() {
-			let holder = select(`#${self.LayerId}LayerEffects`);
+			let holder = select(`#Layer${self.LayerId}Effects`);
 
 			let effect = new LayerEffect();
 
@@ -82,7 +82,7 @@ class Layer
 		this.UseFastEffect = selected;
 		this.ForceEffectRefresh = true;
 
-		let layer = select(`#${this.LayerId}Layer`)
+		let layer = select(`#Layer${this.LayerId}`)
 
 
 		if (selected)
@@ -106,10 +106,10 @@ class Layer
 
 	DrawLayer()
 	{
-		let showCheckBox = document.getElementById(`${this.LayerId}LayerShowToggle`);
+		let showCheckBox = document.getElementById(`Layer${this.LayerId}ShowToggle`);
 		this.Show = showCheckBox.checked;
 
-		let muteEffectsCheckBox = document.getElementById(`${this.LayerId}LayerEffectsToggle`);
+		let muteEffectsCheckBox = document.getElementById(`Layer${this.LayerId}EffectsToggle`);
 		this.MuteEffects = !muteEffectsCheckBox.checked;
 
 		if (!this.Show)

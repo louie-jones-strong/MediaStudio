@@ -5,6 +5,7 @@ class TextTool extends Tool
 		super();
 		//set an icon and a name for the object
 		this.Name = "Text Tool";
+		this.Id = "Text_Tool";
 		this.Icon = "assets/TextTool.png";
 		this.ShowStrokeSettings = false;
 

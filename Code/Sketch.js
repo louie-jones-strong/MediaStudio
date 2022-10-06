@@ -24,6 +24,7 @@ function setup()
 	canvas.id('canvas');
 	canvas.elt.classList.add("canvas")
 	canvas.parent("content");
+
 	// background(255);
 
 	//create helper functions and the color palette
@@ -95,22 +96,23 @@ function keyTyped()
 
 function handleFile(file)
 {
+	console.log("handle file:", file);
 	if (file.type === 'image')
 	{
-		img = createImg(file.data, '');
+		let img = createImg(file.data, '');
 		img.hide();
 
-		let graphic = createGraphics(CanvasWidth, CanvasHeight);
-		graphic.image(img, 0, 0);
-
-		let layer = new Layer(Layers.Layers.length, file.name, graphic);
+		let layer = new Layer(Layers.Layers.length, file.name, img);
 		Layers.AddLayer(layer);
 	}
 }
 
 function ScaleMousePos()
 {
-	let d = pixelDensity();
-	mousePosX = mouseX / d;
-	mousePosY = mouseY / d;
+	// as of the latest version we don't need to scale but pixel density
+	// let d = pixelDensity();
+
+
+	mousePosX = mouseX; // / d;
+	mousePosY = mouseY; // / d;
 }

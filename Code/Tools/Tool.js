@@ -6,6 +6,7 @@ class Tool
 	constructor()
 	{
 		this.Name = "BaseTool";
+		this.Id = "Base_Tool";
 		this.Icon = "";
 		this.ShowStrokeSettings = true;
 

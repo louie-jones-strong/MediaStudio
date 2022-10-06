@@ -5,6 +5,7 @@ class FloodFillTool extends Tool
 		super();
 		//set an icon and a name for the object
 		this.Name = "Flood Fill Tool";
+		this.Id = "Flood_Fill_Tool";
 		this.Icon = "assets/floodFillTool.png";
 		this.ShowStrokeSettings = false;
 

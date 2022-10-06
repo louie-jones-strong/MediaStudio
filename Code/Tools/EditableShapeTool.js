@@ -7,6 +7,7 @@ class EditableShapeTool extends Tool
 		super();
 		//set an icon and a name for the object
 		this.Name = "Editable Shape Tool";
+		this.Id = "Editable_Shape_Tool";
 		this.Icon = "assets/EditableShapeTool.png";
 		this.IsEditMode = false;
 		this.SelectedPoint = -1;

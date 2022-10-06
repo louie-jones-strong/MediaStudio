@@ -14,6 +14,7 @@ class ShapeTool extends Tool
 		super();
 		//set an icon and a name for the object
 		this.Name = "Shape Tool";
+		this.Id = "Shape_Tool";
 		this.Icon = "assets/shapeTool.png";
 		this.ShowStrokeSettings = false;
 

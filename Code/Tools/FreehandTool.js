@@ -6,6 +6,7 @@ class FreehandTool extends Tool
 		super();
 		//set an icon and a name for the object
 		this.Name = "Freehand Tool";
+		this.Id = "Freehand_Tool";
 		this.Icon = "assets/freehandTool.png";
 
 		//to smoothly draw we'll draw a line from the previous mouse location
