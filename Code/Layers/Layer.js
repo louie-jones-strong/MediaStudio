@@ -1,3 +1,4 @@
+var NumEffectsCreated = 0;
 const FastEffectScaleFactor = 4;
 
 const DefaultEffectDropDownSelected ='Select Effect';
@@ -92,8 +93,19 @@ class Layer
 
 
 			let effect = new EffectLookup[name]();
+			effect.Id = NumEffectsCreated;
+			NumEffectsCreated += 1;
 
 			let effectDiv = createDiv(effect.Name);
+			effectDiv.class("effect")
+			effectDiv.id(`effect${effect.Id}`)
+
+			let button = createButton('X');
+			button.parent(effectDiv);
+			button.mousePressed(function() {
+				self.RemoveEffect(effect.Id);
+			});
+
 			effectDiv.parent(holder)
 
 
@@ -101,6 +113,22 @@ class Layer
 
 			self.EffectDropDown.selected(DefaultEffectDropDownSelected);
 		});
+	}
+
+	RemoveEffect(id)
+	{
+		for (let index = 0; index < this.LayerEffects.length; index++)
+		{
+			const effect = this.LayerEffects[index];
+			if (effect.Id == id)
+			{
+				this.LayerEffects.splice(index, 1)
+				break;
+			}
+		}
+		let div = select(`#effect${id}`)
+		div.remove();
+
 	}
 
 	SetSelected(selected)

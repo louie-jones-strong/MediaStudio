@@ -192,3 +192,14 @@ footer{
 	border-radius: 1.5em;
 	border:dashed rgb(160, 0, 0) 2px;
 }
+
+
+.effect{
+	display: flex;
+	margin-block: 0.25em;
+}
+
+.effect > button{
+	margin: 0em;
+	margin-left: 0.5em;
+}
