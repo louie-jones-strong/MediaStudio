@@ -1,4 +1,10 @@
-const FastEffectScaleFactor = 1;
+const FastEffectScaleFactor = 4;
+
+const DefaultEffectDropDownSelected ='Select Effect';
+const EffectLookup = {}
+EffectLookup["Chroma Key"] = ChromaKeyEffect
+EffectLookup["Blur"] = BlurEffect
+
 
 class Layer
 {
@@ -18,10 +24,6 @@ class Layer
 		this.UseFastEffect = false;
 
 		this.Resize(CanvasWidth, CanvasHeight, graphic)
-
-
-		// this.LayerEffects.push(new BlurEffect())
-		// this.LayerEffects.push(new ChromaKeyEffect())
 	}
 
 	Resize(width, height, graphic)
@@ -65,20 +67,39 @@ class Layer
 		effectsHolder.id(`Layer${this.LayerId}Effects`);
 		effectsHolder.parent(layer);
 
-		let button = createButton('+');
-		button.parent(layer);
-
 		var self = this;
-		button.mousePressed(function() {
+
+		// add effect drop down
+		this.EffectDropDown = createSelect();
+		this.EffectDropDown.option(DefaultEffectDropDownSelected);
+		for (const key in EffectLookup)
+		{
+			this.EffectDropDown.option(key);
+		}
+		this.EffectDropDown.selected(DefaultEffectDropDownSelected);
+		this.EffectDropDown.parent(layer);
+
+
+		this.EffectDropDown.changed(function()
+		{
+			let name = self.EffectDropDown.value();
+			if (EffectLookup[name] == null)
+			{
+				return;
+			}
+
 			let holder = select(`#Layer${self.LayerId}Effects`);
 
-			let effect = new LayerEffect();
 
-			let effectDiv = createDiv(`Effect`);
+			let effect = new EffectLookup[name]();
+
+			let effectDiv = createDiv(effect.Name);
 			effectDiv.parent(holder)
 
 
 			self.LayerEffects.push(effect)
+
+			self.EffectDropDown.selected(DefaultEffectDropDownSelected);
 		});
 	}
 
