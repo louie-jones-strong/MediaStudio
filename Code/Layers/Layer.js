@@ -6,30 +6,36 @@ class Layer
 	{
 		this.LayerId = layerId;
 		this.LayerName = layerName;
-		this.Show = true;
-		this.MuteEffects = false;
-		this.Alpha = 1;
 
 		this.Canvas = null;
 		this.P5 = new p5(s);
 
-		this.LayerImage = createGraphics(CanvasWidth, CanvasHeight);
-
-		if (graphic != null)
-			this.LayerImage.image(graphic, 0, 0);
-
-		this.AffectEffectsCache = createGraphics(CanvasWidth, CanvasHeight);
-		this.FastEffectsCache = createGraphics(floor(CanvasWidth / FastEffectScaleFactor), floor(CanvasHeight / FastEffectScaleFactor));
+		this.Show = true;
+		this.Alpha = 1;
 
 		this.LayerEffects = [];
+		this.MuteEffects = false;
+		this.UseFastEffect = false;
 
-
-		this.ForceEffectRefresh = true;
-		this.UseFastEffect = true;
+		this.Resize(CanvasWidth, CanvasHeight, graphic)
 
 
 		// this.LayerEffects.push(new BlurEffect())
 		// this.LayerEffects.push(new ChromaKeyEffect())
+	}
+
+	Resize(width, height, graphic)
+	{
+		this.LayerImage = createGraphics(width, height);
+
+		if (graphic != null)
+		{
+			this.LayerImage.image(graphic, 0, 0);
+		}
+
+		this.AffectEffectsCache = createGraphics(width, height);
+		this.FastEffectsCache = createGraphics(floor(CanvasWidth / FastEffectScaleFactor), floor(height / FastEffectScaleFactor));
+		this.ForceEffectRefresh = true;
 	}
 
 	DrawLayerIcon(holder, onClick)

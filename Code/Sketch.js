@@ -18,12 +18,7 @@ function setup()
 	//create a canvas to fill the content div from index.html
 	var canvasContainer = select('#content');
 
-	CanvasWidth = canvasContainer.size().width - 10;
-	CanvasHeight = canvasContainer.size().height - 10;
-	var canvas = createCanvas(CanvasWidth, CanvasHeight);
-	canvas.id('canvas');
-	canvas.elt.classList.add("canvas")
-	canvas.parent("content");
+	Resize(canvasContainer.size().width - 10, canvasContainer.size().height - 10)
 
 	// background(255);
 
@@ -102,6 +97,7 @@ function handleFile(file)
 		loadImage(
 			file.data,
 			img => {
+				ResizeToFit(img.width, img.height)
 				let layer = new Layer(Layers.Layers.length, file.name, img);
 				Layers.AddLayer(layer);
 			},
@@ -118,4 +114,35 @@ function ScaleMousePos()
 
 	mousePosX = mouseX; // / d;
 	mousePosY = mouseY; // / d;
+}
+
+function ResizeToFit(contentWidth, contentHeight)
+{
+	let newWidth = Math.max(CanvasWidth, contentWidth);
+	let newHeight = Math.max(CanvasHeight, contentHeight);
+
+	if (newWidth > CanvasWidth ||
+		newHeight > CanvasHeight)
+	{
+		Resize(newWidth, newHeight)
+	}
+}
+
+function Resize(width, height)
+{
+	// set width and height
+	CanvasWidth = width;
+	CanvasHeight = height;
+
+	// create canvas
+	let canvas = createCanvas(CanvasWidth, CanvasHeight);
+	canvas.id('canvas');
+	canvas.elt.classList.add("canvas")
+	canvas.parent("content");
+
+	// resize layers
+	if (Layers != null)
+	{
+		Layers.Resize(width, height);
+	}
 }

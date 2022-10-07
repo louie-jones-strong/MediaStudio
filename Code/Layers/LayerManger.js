@@ -13,10 +13,18 @@ class LayerManger
 		this.SelectIndex(0)
 	}
 
+	Resize(width, height)
+	{
+		for (let i = 0; i < this.Layers.length; i++)
+		{
+			const layer = this.Layers[i];
+
+			layer.Resize(width, height, layer.LayerImage)
+		}
+	}
+
 	AddLayer(layer)
 	{
-
-
 		let holder = select('#layerListHolder');
 
 		var index = this.Layers.length;
