@@ -195,6 +195,7 @@ footer{
 
 
 .effect{
+	margin-left: 0.75em;
 	display: flex;
 	margin-block: 0.25em;
 }

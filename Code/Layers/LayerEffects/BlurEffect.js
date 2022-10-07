@@ -6,7 +6,7 @@ class BlurEffect extends LayerEffect
 		this.Name = "Blur";
 		this.Icon = "";
 
-		this.BlurAmount = 2;
+		this.BlurAmount = 8;
 	}
 
 	ApplyEffect(startImg)

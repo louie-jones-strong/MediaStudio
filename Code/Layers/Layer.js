@@ -61,7 +61,7 @@ class Layer
 		this.Canvas.elt.classList.add("canvas")
 		this.Canvas.parent(layer);
 
-		layer.html(`<input type="checkbox" id="Layer${this.LayerId}EffectsToggle" checked>`, true);
+		layer.html(`Effects<input type="checkbox" id="Layer${this.LayerId}EffectsToggle" checked>`, true);
 
 		let effectsHolder = createDiv();
 		effectsHolder.class("effectHolder")
