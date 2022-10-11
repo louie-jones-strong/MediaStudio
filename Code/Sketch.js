@@ -94,6 +94,7 @@ function handleFile(file)
 	console.log("handle file:", file);
 	if (file.type === 'image')
 	{
+		console.log("Load image");
 		loadImage(
 			file.data,
 			img => {
@@ -103,6 +104,31 @@ function handleFile(file)
 			},
 			() => print('Image Failed to Load: '+ file),
 		);
+	}
+	else if (file.type === 'application' && file.subtype === 'json')
+	{
+		console.log("Loading template");
+		LoadTemplate(file.data)
+	}
+}
+
+function LoadTemplate(data)
+{
+	Layers.ClearLayers();
+
+	for (const key in data.Layers)
+	{
+		const layerData = data.Layers[key];
+
+
+		let layer = new Layer(Layers.Layers.length, key, null);
+		Layers.AddLayer(layer);
+
+		for (let i = 0; i < layerData.Effects.length; i++)
+		{
+			const effectData = layerData.Effects[i];
+			layer.AddEffect(effectData.Type)
+		}
 	}
 }
 

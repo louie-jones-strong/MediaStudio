@@ -10,7 +10,7 @@ class LayerManger
 		let baseLayer = new Layer(0, "background", img);
 		this.AddLayer(baseLayer);
 
-		this.SelectIndex(0)
+
 	}
 
 	Resize(width, height)
@@ -21,6 +21,14 @@ class LayerManger
 
 			layer.Resize(width, height, layer.LayerImage)
 		}
+	}
+
+	ClearLayers()
+	{
+		this.Layers = [];
+		const container = document.getElementById('layerListHolder');
+
+		container.innerHTML = '';
 	}
 
 	AddLayer(layer)
@@ -34,6 +42,8 @@ class LayerManger
 
 		this.Layers.push(layer);
 		layer.UpdateIcon();
+
+		this.SelectIndex(this.Layers.length-1)
 	}
 
 	SelectIndex(index)

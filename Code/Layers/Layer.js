@@ -84,35 +84,39 @@ class Layer
 		this.EffectDropDown.changed(function()
 		{
 			let name = self.EffectDropDown.value();
-			if (EffectLookup[name] == null)
-			{
-				return;
-			}
-
-			let holder = select(`#Layer${self.LayerId}Effects`);
-
-
-			let effect = new EffectLookup[name]();
-			effect.Id = NumEffectsCreated;
-			NumEffectsCreated += 1;
-
-			let effectDiv = createDiv(effect.Name);
-			effectDiv.class("effect")
-			effectDiv.id(`effect${effect.Id}`)
-
-			let button = createButton('X');
-			button.parent(effectDiv);
-			button.mousePressed(function() {
-				self.RemoveEffect(effect.Id);
-			});
-
-			effectDiv.parent(holder)
-
-
-			self.LayerEffects.push(effect)
-
 			self.EffectDropDown.selected(DefaultEffectDropDownSelected);
+			self.AddEffect(name);
 		});
+	}
+
+	AddEffect(type)
+	{
+		if (EffectLookup[type] == null)
+		{
+			return;
+		}
+
+		let holder = select(`#Layer${this.LayerId}Effects`);
+
+
+		let effect = new EffectLookup[type]();
+		effect.Id = NumEffectsCreated;
+		NumEffectsCreated += 1;
+
+		let effectDiv = createDiv(effect.Name);
+		effectDiv.class("effect")
+		effectDiv.id(`effect${effect.Id}`)
+
+		let button = createButton('X');
+		button.parent(effectDiv);
+		button.mousePressed(function() {
+			this.RemoveEffect(effect.Id);
+		});
+
+		effectDiv.parent(holder)
+
+
+		this.LayerEffects.push(effect)
 	}
 
 	RemoveEffect(id)
