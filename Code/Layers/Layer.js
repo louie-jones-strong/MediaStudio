@@ -107,10 +107,12 @@ class Layer
 		effectDiv.class("effect")
 		effectDiv.id(`effect${effect.Id}`)
 
+		var self = this;
+
 		let button = createButton('X');
 		button.parent(effectDiv);
 		button.mousePressed(function() {
-			this.RemoveEffect(effect.Id);
+			self.RemoveEffect(effect.Id);
 		});
 
 		effectDiv.parent(holder)
