@@ -3,7 +3,7 @@ class TemplateManager
 	constructor()
 	{
 		this.Template = null;
-		this.Input = {};
+		this.Inputs = {};
 	}
 
 	LoadTemplate(data)
@@ -13,7 +13,7 @@ class TemplateManager
 		if (this.Template.Inputs == null ||
 			Object.keys(this.Template.Inputs).length == 0)
 		{
-			this.SetupLayers();
+			this.TrySetupLayers();
 		}
 		else
 		{
@@ -54,13 +54,49 @@ class TemplateManager
 
 	SubmitInputs()
 	{
-		ClosePopup();
 
-		this.SetupLayers();
+		for (const key in this.Template.Inputs)
+		{
+			let inputData = this.Template.Inputs[key];
+			let input = select(`#input_${key}`)
+
+			console.log("input", key, input);
+
+			if (inputData.Type == "image")
+			{
+				this.Inputs[key] = null;
+
+				let path = input.elt.files[0].Name
+				loadImage(
+					path,
+					img => {
+						Template.Input[key] = img;
+						Template.TrySetupLayers();
+
+					},
+					() => console.log('Image Failed to Load: ', input),
+					);
+			}
+			else
+			{
+				this.Inputs[key] = input.value
+			}
+		}
+
+		this.TrySetupLayers();
+		// ClosePopup();
 	}
 
-	SetupLayers()
+	TrySetupLayers()
 	{
+		for (const key in this.Inputs)
+		{
+			if (this.Inputs[key] == null)
+			{
+				return;
+			}
+		}
+
 		Layers.ClearLayers();
 
 		for (const key in this.Template.Layers)
@@ -86,4 +122,19 @@ class TemplateManager
 function SubmitInputs()
 {
 	Template.SubmitInputs()
+}
+
+function LoadInputImage(file)
+{
+	console.log("handle file:", file);
+	if (file.type === 'image')
+	{
+		console.log("Load image");
+		loadImage(
+			file.data,
+			img => {
+			},
+			() => print('Image Failed to Load: '+ file),
+		);
+	}
 }
