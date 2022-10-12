@@ -93,7 +93,9 @@ function HelperFunctions()
 
 	this.PosOnCanvas = function(x, y)
 	{
-		return x >= 0 && x <= CanvasWidth && y >= 0 && y <= CanvasHeight
+		return x >= 0 && x <= CanvasWidth &&
+			   y >= 0 && y <= CanvasHeight &&
+			   !PopupOpen;
 	}
 
 	this.GetColorHex = function(rgbaColor, withAlpha=true)

@@ -6,6 +6,8 @@ var Helpers = null;
 var Layers = null;
 var CanvasWidth = null;
 var CanvasHeight = null;
+var Template = null;
+var PopupOpen = false;
 
 function setup()
 {
@@ -25,6 +27,8 @@ function setup()
 	//create helper functions and the color palette
 	Helpers = new HelperFunctions();
 	ColorP = new ColorPalette();
+
+	Template = new TemplateManager();
 
 	Layers = new LayerManger();
 
@@ -46,8 +50,7 @@ function setup()
 
 	input.parent(select("#header"));
 
-
-
+	ClosePopup();
 }
 
 function draw()
@@ -108,27 +111,7 @@ function handleFile(file)
 	else if (file.type === 'application' && file.subtype === 'json')
 	{
 		console.log("Loading template");
-		LoadTemplate(file.data)
-	}
-}
-
-function LoadTemplate(data)
-{
-	Layers.ClearLayers();
-
-	for (const key in data.Layers)
-	{
-		const layerData = data.Layers[key];
-
-
-		let layer = new Layer(Layers.Layers.length, key, null);
-		Layers.AddLayer(layer);
-
-		for (let i = 0; i < layerData.Effects.length; i++)
-		{
-			const effectData = layerData.Effects[i];
-			layer.AddEffect(effectData.Type)
-		}
+		Template.LoadTemplate(file.data)
 	}
 }
 
@@ -171,4 +154,23 @@ function Resize(width, height)
 	{
 		Layers.Resize(width, height);
 	}
+}
+
+function OpenPopup(popupHtml="")
+{
+	PopupOpen = true;
+	let holder = select("#popupHolder");
+	holder.html(`<div class="popup">${popupHtml}</div>`);
+	holder.elt.classList.remove("hide");
+
+	return holder;
+}
+
+function ClosePopup()
+{
+	PopupOpen = false;
+	let holder = select("#popupHolder")
+	holder.elt.classList.add("hide");
+	holder.html("")
+	console.log(holder);
 }

@@ -100,6 +100,8 @@ header{
 
 #layerSideBar{
 	grid-area: layerSideBar;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 #layerListHolder{
@@ -203,4 +205,51 @@ footer{
 .effect > button{
 	margin: 0em;
 	margin-left: 0.5em;
+}
+
+
+#popupHolder{
+	z-index: 10;
+	display:flex;
+
+	justify-content: center;
+	align-items: center;
+	position:absolute;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	bottom: 0px;
+
+	background-color: rgba(0,0,0,0.5);
+}
+
+#popupHolder.hide{
+	display: none;
+}
+
+.popup{
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	width: max-content;
+	height: max-content;
+	border-radius: 2em;
+	border: rgb(160, 0, 0) 2px solid;
+	background-color: #444;
+
+	padding: 1em;
+}
+
+.popupButtonGroup{
+	display: flex;
+	justify-content: center;
+}
+
+.popup > input{
+	margin-bottom: 1em;
+}
+
+.center{
+	justify-content: center;
 }
