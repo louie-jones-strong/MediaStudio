@@ -21,6 +21,8 @@ class LayerManger
 
 			layer.Resize(width, height, layer.LayerImage)
 		}
+
+		this.SelectIndex(this.SelectedIndex);
 	}
 
 	ClearLayers()

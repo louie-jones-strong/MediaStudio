@@ -36,14 +36,18 @@ class Layer
 
 		if (graphic != null)
 		{
-			let x = floor(this.ResizePivotX * width);
-			let y = floor(this.ResizePivotY * height);
+			let x = floor((this.ResizePivotX * width) - (this.ResizePivotX * graphic.width));
+			let y = floor((this.ResizePivotY * height) - (this.ResizePivotY * graphic.height));
+
+			console.log(x, y);
 			this.LayerImage.image(graphic, x, y);
 		}
 
 		this.AffectEffectsCache = createGraphics(width, height);
 		this.FastEffectsCache = createGraphics(floor(CanvasWidth / FastEffectScaleFactor), floor(height / FastEffectScaleFactor));
 		this.ForceEffectRefresh = true;
+
+		this.UpdateIcon();
 	}
 
 	DrawLayerIcon(holder, onClick)
