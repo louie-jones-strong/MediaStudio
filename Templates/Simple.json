@@ -2,49 +2,48 @@
 	"Name": "Lynny Knits",
 	"Description": "Create images for social media posts",
 	"Inputs": {
-		"Background": {
-			"Description": "Background Image",
-			"Type": "image"
-		},
-		"Product": {
-			"Description": "Product Image",
-			"Type": "image"
-		},
-		"Price": {
-			"Description": "Product Price",
-			"Type": "text"
-		}
 	},
 	"Outputs": [
 		{
-			"OutputName": "",
+			"OutputName": "500x500",
 			"OutputFileType": "png",
 			"Width": 500,
 			"Height": 500
+		},
+		{
+			"OutputName": "250x500",
+			"OutputFileType": "png",
+			"Width": 250,
+			"Height": 500
+		},
+		{
+			"OutputName": "500x250",
+			"OutputFileType": "png",
+			"Width": 500,
+			"Height": 250
+		},
+		{
+			"OutputName": "250x250",
+			"OutputFileType": "png",
+			"Width": 250,
+			"Height": 250
 		}
 	],
 	"Layers": {
 		"Background": {
 			"Alpha": 1,
-			"Image": "Background",
+			"Image": null,
 			"Effects": [
 				{
 					"Type": "Blur"
 				}
 			]
 		},
-		"Product": {
-			"Alpha": 1,
-			"Image": "Product",
-			"Effects": [
-				{
-					"Type": "Chroma Key"
-				}
-			]
-		},
-		"Price": {
+		"cornerImage": {
 			"Alpha": 1,
 			"Image": null,
+			"ResizePivotX": 1,
+			"ResizePivotY": 1,
 			"Effects": [
 			]
 		},

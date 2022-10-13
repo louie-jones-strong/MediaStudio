@@ -6,10 +6,9 @@ const EffectLookup = {}
 EffectLookup["Chroma Key"] = ChromaKeyEffect
 EffectLookup["Blur"] = BlurEffect
 
-
 class Layer
 {
-	constructor(layerId, layerName, graphic)
+	constructor(layerId, layerName, graphic, resizePivotX=0, resizePivotY=0)
 	{
 		this.LayerId = layerId;
 		this.LayerName = layerName;
@@ -24,6 +23,10 @@ class Layer
 		this.MuteEffects = false;
 		this.UseFastEffect = false;
 
+		// resizing Style
+		this.ResizePivotX = resizePivotX;
+		this.ResizePivotY = resizePivotY;
+
 		this.Resize(CanvasWidth, CanvasHeight, graphic)
 	}
 
@@ -33,8 +36,9 @@ class Layer
 
 		if (graphic != null)
 		{
-			console.log("Has Graphic", graphic);
-			this.LayerImage.image(graphic, 0, 0);
+			let x = floor(this.ResizePivotX * width);
+			let y = floor(this.ResizePivotY * height);
+			this.LayerImage.image(graphic, x, y);
 		}
 
 		this.AffectEffectsCache = createGraphics(width, height);

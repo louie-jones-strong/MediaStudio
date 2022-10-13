@@ -51,7 +51,11 @@ function HelperFunctions()
 	//event handler for the save image button. saves the canvas to the
 	//local file system.
 	select("#saveImageButton").mouseClicked(function() {
-		saveCanvas()
+
+		if (!Template.TrySaveOutputs())
+		{
+			saveCanvas()
+		}
 	});
 
 
