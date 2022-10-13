@@ -142,7 +142,7 @@ class TemplateManager
 				resizePivotY = layerData.ResizePivotY;
 			}
 
-			let layer = new Layer(Layers.Layers.length, key, img, resizePivotX=0, resizePivotY=0);
+			let layer = new Layer(Layers.Layers.length, key, img, resizePivotX, resizePivotY);
 			Layers.AddLayer(layer);
 
 			for (let i = 0; i < layerData.Effects.length; i++)

@@ -34,9 +34,6 @@
 			"Alpha": 1,
 			"Image": null,
 			"Effects": [
-				{
-					"Type": "Blur"
-				}
 			]
 		},
 		"cornerImage": {
@@ -50,6 +47,8 @@
 		"WaterMark": {
 			"Alpha": 0.2,
 			"Image": null,
+			"ResizePivotX": 0.5,
+			"ResizePivotY": 0.5,
 			"Effects": [
 			]
 		}

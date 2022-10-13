@@ -39,7 +39,6 @@ class Layer
 			let x = floor((this.ResizePivotX * width) - (this.ResizePivotX * graphic.width));
 			let y = floor((this.ResizePivotY * height) - (this.ResizePivotY * graphic.height));
 
-			console.log(x, y);
 			this.LayerImage.image(graphic, x, y);
 		}
 
