@@ -33,6 +33,7 @@ class Layer
 
 		if (graphic != null)
 		{
+			console.log("Has Graphic", graphic);
 			this.LayerImage.image(graphic, 0, 0);
 		}
 

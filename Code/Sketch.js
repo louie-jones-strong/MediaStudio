@@ -160,10 +160,14 @@ function OpenPopup(popupHtml="")
 {
 	PopupOpen = true;
 	let holder = select("#popupHolder");
-	holder.html(`<div class="popup">${popupHtml}</div>`);
 	holder.elt.classList.remove("hide");
 
-	return holder;
+	let popup = createDiv();
+	popup.parent(holder);
+	popup.elt.classList.add("popup")
+	popup.html(popupHtml)
+
+	return popup;
 }
 
 function ClosePopup()
@@ -172,5 +176,4 @@ function ClosePopup()
 	let holder = select("#popupHolder")
 	holder.elt.classList.add("hide");
 	holder.html("")
-	console.log(holder);
 }

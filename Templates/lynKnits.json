@@ -1,0 +1,50 @@
+{
+	"Name": "Lynny Knits",
+	"Description": "Create images for social media posts",
+	"Inputs": {
+		"Background": {
+			"Description": "Background Image",
+			"Type": "image"
+		},
+		"Product": {
+			"Description": "Product Image",
+			"Type": "image"
+		},
+		"Price": {
+			"Description": "Product Price",
+			"Type": "text"
+		}
+	},
+	"Layers": {
+		"Background": {
+			"Alpha": 1,
+			"Image": "Background",
+			"Effects": [
+				{
+					"Type": "Blur"
+				}
+			]
+		},
+		"Product": {
+			"Alpha": 1,
+			"Image": "Product",
+			"Effects": [
+				{
+					"Type": "Chroma Key"
+				}
+			]
+		},
+		"Price": {
+			"Alpha": 1,
+			"Image": null,
+			"Effects": [
+			]
+		},
+		"WaterMark": {
+			"Alpha": 0.2,
+			"Image": null,
+			"Effects": [
+			]
+		}
+	}
+}

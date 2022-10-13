@@ -23,33 +23,48 @@ class TemplateManager
 
 	CollectInputs()
 	{
-		let html = "";
+		let popup = OpenPopup(`<h2 class="center">${this.Template.Name}</h2>
+								<p class="center">${this.Template.Description}</p> <br>`);
 
-		html += `<h2 class="center">${this.Template.Name}</h2>
-				<p class="center">${this.Template.Description}</p> <br>`;
+
+
 
 		for (const key in this.Template.Inputs)
 		{
+			this.Inputs[key] = null;
 			let input = this.Template.Inputs[key]
-			html += ` <label for="input_${key}">${input.Description}:</label>`
+			popup.html(`<label for="input_${key}">${input.Description}:</label>`, true);
 
 			if (input.Type == "image")
 			{
-				html += `<input type="file" accept="${input.Type}/*" id="input_${key}">`;
+				let imageInput = createFileInput(file => {
+					console.log("handle input file:", file);
+					if (file.type === 'image')
+					{
+						console.log("Load image");
+						loadImage(
+							file.data,
+							img => {
+								this.Inputs[key] = img;
+							},
+							() => print('Image Failed to Load: '+ file),
+						);
+					}
+				});
+				imageInput.parent(popup);
+				imageInput.id(`input_${key}`);
+				imageInput.elt.accept = `${input.Type}/*`
 			}
 			else
 			{
-				html += `<input type="${input.Type}" id="input_${key}">`;
+				popup.html(`<input type="${input.Type}" id="input_${key}">`, true);
 			}
 		}
 
-		html += `
-			<div class="popupButtonGroup">
-				<button onclick="ClosePopup()">Cancel</button>
-				<button onclick="SubmitInputs()">Submit</button>
-			</div>`
-
-		OpenPopup(html);
+		popup.html(`<div class="popupButtonGroup">
+						<button onclick="ClosePopup()">Cancel</button>
+						<button onclick="SubmitInputs()">Submit</button>
+					</div>`, true);
 	}
 
 	SubmitInputs()
@@ -60,22 +75,9 @@ class TemplateManager
 			let inputData = this.Template.Inputs[key];
 			let input = select(`#input_${key}`)
 
-			console.log("input", key, input);
-
 			if (inputData.Type == "image")
 			{
-				this.Inputs[key] = null;
 
-				let path = input.elt.files[0].Name
-				loadImage(
-					path,
-					img => {
-						Template.Input[key] = img;
-						Template.TrySetupLayers();
-
-					},
-					() => console.log('Image Failed to Load: ', input),
-					);
 			}
 			else
 			{
@@ -84,11 +86,12 @@ class TemplateManager
 		}
 
 		this.TrySetupLayers();
-		// ClosePopup();
+		ClosePopup();
 	}
 
 	TrySetupLayers()
 	{
+		console.log(this.Inputs);
 		for (const key in this.Inputs)
 		{
 			if (this.Inputs[key] == null)
@@ -103,8 +106,13 @@ class TemplateManager
 		{
 			const layerData = this.Template.Layers[key];
 
+			let img = null;
+			if (layerData.Image != null)
+			{
+				img = this.Inputs[layerData.Image]
+			}
 
-			let layer = new Layer(Layers.Layers.length, key, null);
+			let layer = new Layer(Layers.Layers.length, key, img);
 			Layers.AddLayer(layer);
 
 			for (let i = 0; i < layerData.Effects.length; i++)
@@ -122,19 +130,4 @@ class TemplateManager
 function SubmitInputs()
 {
 	Template.SubmitInputs()
-}
-
-function LoadInputImage(file)
-{
-	console.log("handle file:", file);
-	if (file.type === 'image')
-	{
-		console.log("Load image");
-		loadImage(
-			file.data,
-			img => {
-			},
-			() => print('Image Failed to Load: '+ file),
-		);
-	}
 }
