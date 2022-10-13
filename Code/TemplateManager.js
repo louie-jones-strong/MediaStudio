@@ -10,15 +10,15 @@ class TemplateManager
 	{
 		this.Template = data;
 
-		if (this.Template.Inputs == null ||
-			Object.keys(this.Template.Inputs).length == 0)
-		{
-			this.TrySetupLayers();
-		}
-		else
-		{
+		// if (this.Template.Inputs == null ||
+		// 	Object.keys(this.Template.Inputs).length == 0)
+		// {
+		// 	this.TrySetupLayers();
+		// }
+		// else
+		// {
 			this.CollectInputs();
-		}
+		// }
 	}
 
 	TrySaveOutputs()
@@ -47,7 +47,7 @@ class TemplateManager
 
 
 
-
+		// setup loading assets that are marked as user inputs
 		for (const key in this.Template.Inputs)
 		{
 			this.Inputs[key] = null;
@@ -84,6 +84,25 @@ class TemplateManager
 						<button onclick="ClosePopup()">Cancel</button>
 						<button onclick="SubmitInputs()">Submit</button>
 					</div>`, true);
+
+
+		// load assets that don't need user input
+		for (const key in this.Template.Layers)
+		{
+			const layerData = this.Template.Layers[key];
+
+			if (layerData.Image != null &&
+				!(layerData.Image in this.Inputs))
+			{
+				loadImage(
+					layerData.Image,
+					img => {
+						this.Inputs[layerData.Image] = img;
+					},
+					() => print('Image Failed to Load: '+ file),
+				);
+			}
+		}
 	}
 
 	SubmitInputs()
@@ -110,7 +129,6 @@ class TemplateManager
 
 	TrySetupLayers()
 	{
-		console.log(this.Inputs);
 		for (const key in this.Inputs)
 		{
 			if (this.Inputs[key] == null)

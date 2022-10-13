@@ -31,8 +31,8 @@
 	],
 	"Layers": {
 		"WaterMark": {
-			"Alpha": 0.2,
-			"Image": null,
+			"Alpha": 1,
+			"Image": "Templates/Louie_Watermark.png",
 			"ResizePivotX": 0.5,
 			"ResizePivotY": 0.5,
 			"Effects": [
