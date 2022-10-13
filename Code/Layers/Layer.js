@@ -170,7 +170,14 @@ class Layer
 
 		let afterEffectsImg = this.ApplyEffects();
 
+
+		this.P5.push();
+		if (this.Alpha < 1)
+		{
+			this.P5.tint(255, this.Alpha * 255);
+		}
 		this.P5.image(afterEffectsImg, 0, 0, this.P5.width, this.P5.height);
+		this.P5.pop();
 	}
 
 	DrawLayer()
@@ -187,7 +194,16 @@ class Layer
 		}
 
 		let afterEffectsImg = this.ApplyEffects();
+
+		push();
+		if (this.Alpha < 1)
+		{
+			tint(255, this.Alpha * 255);
+		}
+
 		image(afterEffectsImg, 0, 0, CanvasWidth, CanvasHeight);
+
+		pop();
 	}
 
 
