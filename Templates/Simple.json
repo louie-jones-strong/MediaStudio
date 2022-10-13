@@ -30,9 +30,11 @@
 		}
 	],
 	"Layers": {
-		"Background": {
-			"Alpha": 1,
+		"WaterMark": {
+			"Alpha": 0.2,
 			"Image": null,
+			"ResizePivotX": 0.5,
+			"ResizePivotY": 0.5,
 			"Effects": [
 			]
 		},
@@ -44,11 +46,9 @@
 			"Effects": [
 			]
 		},
-		"WaterMark": {
-			"Alpha": 0.2,
+		"Background": {
+			"Alpha": 1,
 			"Image": null,
-			"ResizePivotX": 0.5,
-			"ResizePivotY": 0.5,
 			"Effects": [
 			]
 		}

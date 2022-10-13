@@ -121,8 +121,10 @@ class TemplateManager
 
 		Layers.ClearLayers();
 
-		for (const key in this.Template.Layers)
+		let layerKeys = Object.keys(this.Template.Layers);
+		for (let k = layerKeys.length-1; k >= 0; k--)
 		{
+			const key = layerKeys[k]
 			const layerData = this.Template.Layers[key];
 
 			let img = null;
