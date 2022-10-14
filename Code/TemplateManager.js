@@ -10,15 +10,7 @@ class TemplateManager
 	{
 		this.Template = data;
 
-		// if (this.Template.Inputs == null ||
-		// 	Object.keys(this.Template.Inputs).length == 0)
-		// {
-		// 	this.TrySetupLayers();
-		// }
-		// else
-		// {
-			this.CollectInputs();
-		// }
+		this.CollectInputs();
 	}
 
 	TrySaveOutputs()
@@ -34,6 +26,9 @@ class TemplateManager
 		{
 			const output = this.Template.Outputs[i];
 			Resize(output.Width, output.Height)
+
+			RenderImage();
+
 			saveCanvas(output.OutputName, output.OutputFileType);
 
 		}

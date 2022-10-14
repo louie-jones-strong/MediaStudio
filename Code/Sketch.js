@@ -56,19 +56,22 @@ function setup()
 function draw()
 {
 	ScaleMousePos();
-	clear();
-
-
 	ColorP.UpdateColors();
+	//call the draw function on the selected tool
+	ToolManager.Draw();
+
+	RenderImage();
+}
+
+function RenderImage()
+{
+	clear();
 
 	// Draw Under Layers
 	Layers.DrawUnderLayers();
 
 	// Draw current layer
 	Layers.DrawSelectedLayer();
-
-	//call the draw function on the selected tool
-	ToolManager.Draw();
 
 	// Draw Over Layers
 	Layers.DrawOverLayers();
