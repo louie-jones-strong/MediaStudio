@@ -8,7 +8,7 @@ EffectLookup["Blur"] = BlurEffect
 
 class Layer
 {
-	constructor(layerId, layerName, graphic, resizePivotX=0, resizePivotY=0)
+	constructor(layerId, layerName, graphic, resizePivotX=0, resizePivotY=0, resizeWidth=-1, resizeHeight=-1)
 	{
 		this.LayerId = layerId;
 		this.LayerName = layerName;
@@ -26,6 +26,8 @@ class Layer
 		// resizing Style
 		this.ResizePivotX = resizePivotX;
 		this.ResizePivotY = resizePivotY;
+		this.ResizeWidth = resizeWidth;
+		this.ResizeHeight = resizeHeight;
 
 		this.Resize(CanvasWidth, CanvasHeight, graphic)
 	}
@@ -36,10 +38,18 @@ class Layer
 
 		if (graphic != null)
 		{
-			let x = floor((this.ResizePivotX * width) - (this.ResizePivotX * graphic.width));
-			let y = floor((this.ResizePivotY * height) - (this.ResizePivotY * graphic.height));
+			let imgWidth = graphic.width;
+			let imgHeight = graphic.height;
 
-			this.LayerImage.image(graphic, x, y);
+			if (this.ResizeWidth > 0)
+				imgWidth = floor(this.ResizeWidth * width)
+			if (this.ResizeHeight > 0)
+				imgHeight = floor(this.ResizeHeight * height)
+
+			let x = floor((this.ResizePivotX * width) - (this.ResizePivotX * imgWidth));
+			let y = floor((this.ResizePivotY * height) - (this.ResizePivotY * imgHeight));
+
+			this.LayerImage.image(graphic, x, y, imgWidth, imgHeight);
 		}
 
 		this.AffectEffectsCache = createGraphics(width, height);

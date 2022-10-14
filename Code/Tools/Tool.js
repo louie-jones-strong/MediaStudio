@@ -68,11 +68,11 @@ class Tool
 		return footerHtml;
 	}
 
-	KeyTyped()
+	KeyTyped(key, keyCode)
 	{
 	}
 
-	KeyPressed()
+	KeyPressed(key, keyCode)
 	{
 		if (keyCode === SHIFT)
 		{
@@ -80,7 +80,7 @@ class Tool
 		}
 	}
 
-	KeyReleased()
+	KeyReleased(key, keyCode)
 	{
 		if (keyCode === SHIFT)
 		{

@@ -83,18 +83,18 @@ class TextTool extends Tool
 		Layers.CurrentImg.pop();
 	}
 
-	KeyPressed()
+	KeyPressed(key, keyCode)
 	{
-		super.KeyPressed();
+		super.KeyPressed(key, keyCode);
 		if (keyCode == 8)
 		{
 			this.CurrentString = this.CurrentString.substring(0, this.CurrentString.length - 1);
 		}
 	}
 
-	KeyTyped()
+	KeyTyped(key, keyCode)
 	{
-		super.KeyTyped();
+		super.KeyTyped(key, keyCode);
 		this.CurrentString += key;
 	}
 

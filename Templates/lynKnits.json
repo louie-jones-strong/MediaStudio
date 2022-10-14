@@ -23,22 +23,39 @@
 		"Price": {
 			"Alpha": 1,
 			"Image": null,
+			"ResizePivotX": 1,
+			"ResizePivotY": 1,
+			"ResizeWidth": 0.1,
+			"ResizeHeight": 0.1,
+			"Effects": [
+			]
+		},
+		"BlackBoard": {
+			"Alpha": 1,
+			"Image": "Templates/LynnyKnits/BlackBoard.png",
+			"ResizePivotX": 1,
+			"ResizePivotY": 1,
+			"ResizeWidth": 0.1,
+			"ResizeHeight": 0.1,
 			"Effects": [
 			]
 		},
 		"WaterMark": {
 			"Alpha": 0.2,
-			"Image": null,
+			"Image": "Templates/Louie_Watermark.png",
+			"ResizePivotX": 0.5,
+			"ResizePivotY": 0.5,
+			"ResizeWidth": 1,
+			"ResizeHeight": 1,
 			"Effects": [
 			]
 		},
 		"Product": {
 			"Alpha": 1,
 			"Image": "Product",
+			"ResizePivotX": 0.5,
+			"ResizePivotY": 0.5,
 			"Effects": [
-				{
-					"Type": "Chroma Key"
-				}
 			]
 		}
 	}

@@ -84,19 +84,19 @@ function RenderImage()
 function keyPressed()
 {
 	ScaleMousePos();
-	ToolManager.KeyPressed();
+	ToolManager.KeyPressed(key, keyCode);
 }
 
 function keyReleased()
 {
 	ScaleMousePos();
-	ToolManager.KeyReleased();
+	ToolManager.KeyReleased(key, keyCode);
 }
 
 function keyTyped()
 {
 	ScaleMousePos();
-	ToolManager.KeyTyped();
+	ToolManager.KeyTyped(key, keyCode);
 }
 
 function handleFile(file)

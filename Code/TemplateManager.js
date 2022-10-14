@@ -142,22 +142,25 @@ class TemplateManager
 
 			let img = null;
 			if (layerData.Image != null)
-			{
 				img = this.Inputs[layerData.Image]
-			}
 
 			let resizePivotX = 0
 			if (layerData.ResizePivotX != null)
-			{
 				resizePivotX = layerData.ResizePivotX;
-			}
+
 			let resizePivotY = 0
 			if (layerData.ResizePivotY != null)
-			{
 				resizePivotY = layerData.ResizePivotY;
-			}
 
-			let layer = new Layer(Layers.Layers.length, key, img, resizePivotX, resizePivotY);
+			let resizeWidth = -1
+			if (layerData.ResizeWidth != null)
+				resizeWidth = layerData.ResizeWidth;
+
+			let resizeHeight = -1
+			if (layerData.ResizeHeight != null)
+				resizeHeight = layerData.ResizeHeight;
+
+			let layer = new Layer(Layers.Layers.length, key, img, resizePivotX, resizePivotY, resizeWidth, resizeHeight);
 			Layers.AddLayer(layer);
 
 			for (let i = 0; i < layerData.Effects.length; i++)

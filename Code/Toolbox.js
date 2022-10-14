@@ -13,19 +13,19 @@ class Toolbox
 		this.SelectedTool.Draw();
 	}
 
-	KeyPressed()
+	KeyPressed(key, keyCode)
 	{
-		this.SelectedTool.KeyPressed();
+		this.SelectedTool.KeyPressed(key, keyCode);
 	}
 
-	KeyReleased()
+	KeyReleased(key, keyCode)
 	{
-		this.SelectedTool.KeyReleased();
+		this.SelectedTool.KeyReleased(key, keyCode);
 	}
 
-	KeyTyped()
+	KeyTyped(key, keyCode)
 	{
-		this.SelectedTool.KeyTyped();
+		this.SelectedTool.KeyTyped(key, keyCode);
 	}
 
 
