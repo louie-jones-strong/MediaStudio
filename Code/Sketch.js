@@ -9,6 +9,8 @@ var CanvasHeight = null;
 var Template = null;
 var PopupOpen = false;
 
+var FileInput = null;
+
 function setup()
 {
 	ScaleMousePos();
@@ -48,9 +50,9 @@ function setup()
 	ToolManager.AddTool(new TextTool());
 	ToolManager.AddTool(new CopyPasteTool());
 
-	input = createFileInput(handleFile);
+	FileInput = createFileInput(handleFile);
 
-	input.parent(select("#header"));
+	FileInput.parent(select("#header"));
 
 	ClosePopup();
 }
@@ -118,6 +120,8 @@ function handleFile(file)
 		console.log("Loading template");
 		Template.LoadTemplate(file.data)
 	}
+
+	FileInput.elt.value = null
 }
 
 function ScaleMousePos()
