@@ -87,6 +87,11 @@ class Toolbox
 
 	Reset()
 	{
+		if(this.Tools.length == 0)
+		{
+			return
+		}
+
 		this.SelectTool(this.Tools[0].Id);
 	}
 }

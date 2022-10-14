@@ -20,6 +20,10 @@ function setup()
 	//create a canvas to fill the content div from index.html
 	var canvasContainer = select('#content');
 
+
+	//create a ToolManager for storing the tools
+	ToolManager = new Toolbox();
+
 	Resize(canvasContainer.size().width - 10, canvasContainer.size().height - 10)
 
 	// background(255);
@@ -32,8 +36,6 @@ function setup()
 
 	Layers = new LayerManger();
 
-	//create a ToolManager for storing the tools
-	ToolManager = new Toolbox();
 
 	//add the tools to the ToolManager.
 	ToolManager.AddTool(new FreehandTool());
@@ -143,8 +145,8 @@ function ResizeToFit(contentWidth, contentHeight)
 function Resize(width, height)
 {
 	// set width and height
-	CanvasWidth = width;
-	CanvasHeight = height;
+	CanvasWidth = floor(width);
+	CanvasHeight = floor(height);
 
 	// create canvas
 	let canvas = createCanvas(CanvasWidth, CanvasHeight);
@@ -157,6 +159,8 @@ function Resize(width, height)
 	{
 		Layers.Resize(width, height);
 	}
+
+	ToolManager.Reset()
 }
 
 function OpenPopup(popupHtml="")
