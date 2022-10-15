@@ -31,6 +31,7 @@ class LayerManger
 		const container = document.getElementById('layerListHolder');
 
 		container.innerHTML = '';
+		this.SelectedIndex = null
 	}
 
 	AddLayer(layer)

@@ -1,6 +1,8 @@
 {
 	"Name": "Simple Template",
 	"Description": "Creates a simple layer structure to test each part of the tools",
+	"StartingCanvasWidth": 500,
+	"StartingCanvasHeight": 500,
 	"Inputs": {
 	},
 	"Outputs": [

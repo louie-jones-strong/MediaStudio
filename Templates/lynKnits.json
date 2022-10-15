@@ -1,6 +1,8 @@
 {
 	"Name": "Lynny Knits",
 	"Description": "Create images for social media posts",
+	"StartingCanvasWidth": 500,
+	"StartingCanvasHeight": 500,
 	"Inputs": {
 		"Product": {
 			"Description": "Product Image",
@@ -13,10 +15,28 @@
 	},
 	"Outputs": [
 		{
-			"OutputName": "",
+			"OutputName": "500x500",
 			"OutputFileType": "png",
 			"Width": 500,
 			"Height": 500
+		},
+		{
+			"OutputName": "250x500",
+			"OutputFileType": "png",
+			"Width": 250,
+			"Height": 500
+		},
+		{
+			"OutputName": "500x250",
+			"OutputFileType": "png",
+			"Width": 500,
+			"Height": 250
+		},
+		{
+			"OutputName": "250x250",
+			"OutputFileType": "png",
+			"Width": 250,
+			"Height": 250
 		}
 	],
 	"Layers": {

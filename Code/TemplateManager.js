@@ -118,8 +118,8 @@ class TemplateManager
 			}
 		}
 
-		this.TrySetupLayers();
-		ClosePopup();
+		if (this.TrySetupLayers())
+			ClosePopup();
 	}
 
 	TrySetupLayers()
@@ -128,9 +128,11 @@ class TemplateManager
 		{
 			if (this.Inputs[key] == null)
 			{
-				return;
+				return false;
 			}
 		}
+
+		Resize(this.Template.StartingCanvasWidth, this.Template.StartingCanvasHeight)
 
 		Layers.ClearLayers();
 
@@ -171,6 +173,8 @@ class TemplateManager
 
 			layer.Alpha = layerData.Alpha
 		}
+
+		return true;
 	}
 }
 

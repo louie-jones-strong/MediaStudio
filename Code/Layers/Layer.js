@@ -216,7 +216,6 @@ class Layer
 		pop();
 	}
 
-
 	ApplyEffects()
 	{
 		if (this.LayerEffects.length == 0 ||
