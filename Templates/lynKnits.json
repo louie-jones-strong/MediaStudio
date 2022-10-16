@@ -48,6 +48,9 @@
 			"ResizeWidth": 0.1,
 			"ResizeHeight": 0.1,
 			"Effects": [
+				{
+					"Type": "Noise"
+				}
 			],
 			"Actions": [
 				{
@@ -58,7 +61,7 @@
 					"Type": "SetColour",
 					"ColourR": 255,
 					"ColourG": 255,
-					"ColourB": 0
+					"ColourB": 255
 				},
 				{
 					"Type": "MousePos",

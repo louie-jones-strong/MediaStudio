@@ -26,7 +26,7 @@ class ChromaKeyEffect extends LayerEffect
 
 				if (delta <= this.Threshold * this.Threshold)
 				{
-					Helpers.SetPixel(startImg, x, y, this.ReplaceColor);
+					Helpers.SetPixel(startImg, x, y, this.ReplaceColor.levels);
 				}
 			}
 		}

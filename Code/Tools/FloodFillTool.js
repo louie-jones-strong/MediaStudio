@@ -83,7 +83,7 @@ class FloodFillTool extends Tool
 	{
 		this.FilledHashSet.Add([x, y]);
 
-		Helpers.SetPixel(Layers.CurrentImg, x, y, this.FillColor);
+		Helpers.SetPixel(Layers.CurrentImg, x, y, this.FillColor.levels);
 
 		if (x-1 >= 0 && this.CheckPixel(x-1, y))
 		{

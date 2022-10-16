@@ -87,10 +87,10 @@ function HelperFunctions()
 			for (let j = 0; j < d; ++j)
 			{
 				let idx = 4 * ((y * d + j) * img.width * d + (x * d + i));
-				img.pixels[idx]   = color.levels[0];
-				img.pixels[idx+1] = color.levels[1];
-				img.pixels[idx+2] = color.levels[2];
-				img.pixels[idx+3] = color.levels[3];
+				img.pixels[idx]   = color[0];
+				img.pixels[idx+1] = color[1];
+				img.pixels[idx+2] = color[2];
+				img.pixels[idx+3] = color[3];
 			}
 		}
 	}

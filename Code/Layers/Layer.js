@@ -5,6 +5,7 @@ const DefaultEffectDropDownSelected ='Select Effect';
 const EffectLookup = {}
 EffectLookup["Chroma Key"] = ChromaKeyEffect
 EffectLookup["Blur"] = BlurEffect
+EffectLookup["Noise"] = NoiseEffect
 
 class Layer
 {
