@@ -34,6 +34,8 @@ function setup()
 	Helpers = new HelperFunctions();
 	ColorP = new ColorPalette();
 
+
+	Actions = new ActionsManger();
 	Template = new TemplateManager();
 
 	Layers = new LayerManger();

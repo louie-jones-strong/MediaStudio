@@ -48,6 +48,37 @@
 			"ResizeWidth": 0.1,
 			"ResizeHeight": 0.1,
 			"Effects": [
+			],
+			"Actions": [
+				{
+					"Type": "SelectTool",
+					"ToolId": "Text_Tool"
+				},
+				{
+					"Type": "SetColour",
+					"ColourR": 255,
+					"ColourG": 255,
+					"ColourB": 0
+				},
+				{
+					"Type": "MousePos",
+					"PixelsX": 450,
+					"PixelsY": 500
+				},
+				{
+					"Type": "MouseDown"
+				},
+				{
+					"Type": "MouseUp"
+				},
+				{
+					"Type": "Keys",
+					"KeysInput": "Price"
+				},
+				{
+					"Type": "SelectTool",
+					"ToolId": "Freehand_Tool"
+				}
 			]
 		},
 		"BlackBoard": {

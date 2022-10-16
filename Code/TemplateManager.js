@@ -35,6 +35,11 @@ class TemplateManager
 		return true;
 	}
 
+	GetInput(key)
+	{
+		return this.Inputs[key]
+	}
+
 	CollectInputs()
 	{
 		let popup = OpenPopup(`<h2 class="center">${this.Template.Name}</h2>
@@ -114,24 +119,24 @@ class TemplateManager
 			}
 			else
 			{
-				this.Inputs[key] = input.value
+				this.Inputs[key] = input.value()
 			}
 		}
 
-		if (this.TrySetupLayers())
-			ClosePopup();
-	}
-
-	TrySetupLayers()
-	{
 		for (const key in this.Inputs)
 		{
 			if (this.Inputs[key] == null)
 			{
-				return false;
+				return;
 			}
 		}
+		ClosePopup();
 
+		this.TrySetupLayers()
+	}
+
+	TrySetupLayers()
+	{
 		Resize(this.Template.StartingCanvasWidth, this.Template.StartingCanvasHeight)
 
 		Layers.ClearLayers();
@@ -171,10 +176,11 @@ class TemplateManager
 				layer.AddEffect(effectData.Type)
 			}
 
-			layer.Alpha = layerData.Alpha
-		}
+			layer.Alpha = layerData.Alpha;
 
-		return true;
+			if (layerData.Actions != null)
+				Actions.DoActions(layerData.Actions);
+		}
 	}
 }
 
