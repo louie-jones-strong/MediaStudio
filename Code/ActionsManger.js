@@ -93,6 +93,9 @@ class ActionsManger
 	{
 		let text = Template.GetInput(action.KeysInput)
 
+		if (text == null)
+			text = action.Keys;
+
 		for (let i = 0; i < text.length; i++)
 		{
 			const char = text[i];
