@@ -10,22 +10,34 @@ class Toolbox
 
 	Draw()
 	{
-		this.SelectedTool.Draw();
+		if (this.SelectedTool != null)
+		{
+			this.SelectedTool.Draw();
+		}
 	}
 
 	KeyPressed(key, keyCode)
 	{
-		this.SelectedTool.KeyPressed(key, keyCode);
+		if (this.SelectedTool != null)
+		{
+			this.SelectedTool.KeyPressed(key, keyCode);
+		}
 	}
 
 	KeyReleased(key, keyCode)
 	{
-		this.SelectedTool.KeyReleased(key, keyCode);
+		if (this.SelectedTool != null)
+		{
+			this.SelectedTool.KeyReleased(key, keyCode);
+		}
 	}
 
 	KeyTyped(key, keyCode)
 	{
-		this.SelectedTool.KeyTyped(key, keyCode);
+		if (this.SelectedTool != null)
+		{
+			this.SelectedTool.KeyTyped(key, keyCode);
+		}
 	}
 
 
@@ -60,6 +72,12 @@ class Toolbox
 
 	SelectTool(toolId)
 	{
+		if (this.SelectedTool != null)
+		{
+			this.SelectedTool.UnselectTool();
+			this.SelectedTool = null
+		}
+
 		var items = selectAll(".iconButton");
 
 		//search through the tools for one that's name matches toolName
@@ -69,11 +87,6 @@ class Toolbox
 			items[i].class("iconButton");
 			if (this.Tools[i].Id == toolId)
 			{
-				if (this.SelectedTool != null)
-				{
-					this.SelectedTool.UnselectTool();
-				}
-
 				//select the tool and highlight it on the toolbar
 				this.SelectedTool = this.Tools[i];
 				select("#" + toolId + "iconButton").class("iconButton selected");
