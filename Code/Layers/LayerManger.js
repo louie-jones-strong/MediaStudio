@@ -11,6 +11,7 @@ class LayerManger
 		this.AddLayer(baseLayer);
 
 
+		this.FastEffects = true;
 	}
 
 	Resize(width, height)
@@ -54,7 +55,11 @@ class LayerManger
 		if (this.SelectedIndex != null)
 		{
 			this.Layers[this.SelectedIndex].SetSelected(false);
+			this.Layers[this.SelectedIndex].UseFastEffect = false;
 		}
+
+
+
 
 
 		this.SelectedIndex = index;
@@ -62,6 +67,7 @@ class LayerManger
 
 
 		this.Layers[this.SelectedIndex].SetSelected(true);
+		this.Layers[this.SelectedIndex].UseFastEffect = this.FastEffects;
 	}
 
 

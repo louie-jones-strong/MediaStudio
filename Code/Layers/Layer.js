@@ -159,7 +159,6 @@ class Layer
 	SetSelected(selected)
 	{
 
-		this.UseFastEffect = selected;
 		this.ForceEffectRefresh = true;
 
 		let layer = select(`#Layer${this.LayerId}`)

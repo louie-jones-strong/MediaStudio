@@ -141,6 +141,9 @@ class TemplateManager
 
 		Layers.ClearLayers();
 
+		if (this.Template.FastEffects != null)
+			Layers.FastEffects = this.Template.FastEffects
+
 		let layerKeys = Object.keys(this.Template.Layers);
 		for (let k = layerKeys.length-1; k >= 0; k--)
 		{

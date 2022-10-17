@@ -3,6 +3,7 @@
 	"Description": "Create images for social media posts",
 	"StartingCanvasWidth": 500,
 	"StartingCanvasHeight": 500,
+	"FastEffects": false,
 	"Inputs": {
 		"Product": {
 			"Description": "Product Image",
