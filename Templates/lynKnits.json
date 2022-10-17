@@ -95,7 +95,7 @@
 			]
 		},
 		"WaterMark": {
-			"Alpha": 0.2,
+			"Alpha": 0.1,
 			"Image": "Templates/Louie_Watermark.png",
 			"ResizePivotX": 0.5,
 			"ResizePivotY": 0.5,
