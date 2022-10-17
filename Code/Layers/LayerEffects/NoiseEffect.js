@@ -22,7 +22,9 @@ class NoiseEffect extends LayerEffect
 
 				if (colours[3]  > 0)
 				{
-					let value = noise(x * this.NoiseScale, y * this.NoiseScale);
+					let scale = (startImg.width / CanvasWidth)
+
+					let value = noise(x * this.NoiseScale / scale, y * this.NoiseScale / scale);
 					value *= 255;
 
 					colours[3] = (colours[3] + value) / 2;
