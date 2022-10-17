@@ -35,6 +35,7 @@ class Tool
 		select(".ToolTitle").html("");
 		select(".ToolOptions").html("");
 		this.StrokeWeightSlider = null;
+		select("#footer").html("");
 	}
 
 	Draw()
