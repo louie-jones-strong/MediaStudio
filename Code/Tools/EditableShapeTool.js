@@ -35,14 +35,14 @@ class EditableShapeTool extends Tool
 	{
 		super.Draw();
 
-		if(mouseIsPressed && Helpers.PosOnCanvas(mousePosX, mousePosY))
+		if(MouseLeftOrRightPressed && Helpers.PosOnCanvas(MousePosX, MousePosY))
 		{
 			if (this.IsEditMode)
 			{
 				for (let i = 0; i < this.PointList.length; i++)
 				{
 					const point = this.PointList[i];
-					if (dist(mousePosX, mousePosY, point.x, point.y) <= EditGrabRadius)
+					if (dist(MousePosX, MousePosY, point.x, point.y) <= EditGrabRadius)
 					{
 						this.SelectedPoint = i;
 						break;
@@ -51,13 +51,13 @@ class EditableShapeTool extends Tool
 
 				if (this.SelectedPoint >= 0 && this.SelectedPoint < this.PointList.length)
 				{
-					this.PointList[this.SelectedPoint].x = mousePosX;
-					this.PointList[this.SelectedPoint].y = mousePosY;
+					this.PointList[this.SelectedPoint].x = MousePosX;
+					this.PointList[this.SelectedPoint].y = MousePosY;
 				}
 			}
 			else
 			{
-				this.PointList.push({x: mousePosX, y:mousePosY});
+				this.PointList.push({x: MousePosX, y:MousePosY});
 			}
 		}
 

@@ -30,8 +30,8 @@ class ActionsManger
 			}
 			case "MousePos":
 			{
-				mousePosX = action.PixelsX;
-				mousePosY = action.PixelsY;
+				MousePosX = action.PixelsX;
+				MousePosY = action.PixelsY;
 				break;
 			}
 			case "Keys":
@@ -41,12 +41,12 @@ class ActionsManger
 			}
 			case "MouseDown":
 			{
-				mouseIsPressed = true;
+				MouseLeftOrRightPressed = true;
 				break;
 			}
 			case "MouseUp":
 			{
-				mouseIsPressed = false;
+				MouseLeftOrRightPressed = false;
 				break;
 			}
 			default:

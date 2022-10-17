@@ -31,22 +31,22 @@ class FreehandTool extends Tool
 		super.Draw();
 
 		//if the mouse is pressed
-		if(mouseIsPressed)
+		if(MouseLeftOrRightPressed)
 		{
 			//check if they previousX and Y are -1. set them to the current
 			//mouse X and Y if they are.
 			if (this.PreviousMouseX == -1)
 			{
-				this.PreviousMouseX = mousePosX;
-				this.PreviousMouseY = mousePosY;
+				this.PreviousMouseX = MousePosX;
+				this.PreviousMouseY = MousePosY;
 			}
 			else
 			{
 				//if we already have values for previousX and Y we can draw a line from
 				//there to the current mouse location
-				Layers.CurrentImg.line(this.PreviousMouseX, this.PreviousMouseY, mousePosX, mousePosY);
-				this.PreviousMouseX = mousePosX;
-				this.PreviousMouseY = mousePosY;
+				Layers.CurrentImg.line(this.PreviousMouseX, this.PreviousMouseY, MousePosX, MousePosY);
+				this.PreviousMouseX = MousePosX;
+				this.PreviousMouseY = MousePosY;
 			}
 		}
 		else

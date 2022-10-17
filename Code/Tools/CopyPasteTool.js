@@ -81,13 +81,13 @@ class CopyPasteTool extends Tool
 
 	Selecting()
 	{
-		if(mouseIsPressed && Helpers.PosOnCanvas(mousePosX, mousePosY))
+		if(MouseLeftOrRightPressed && Helpers.PosOnCanvas(MousePosX, MousePosY))
 		{
 			if(this.State == eCopyPasteState.None)
 			{
 				//set start point of the line to current mouse position
-				this.SelectionStartX = mousePosX;
-				this.SelectionStartY = mousePosY;
+				this.SelectionStartX = MousePosX;
+				this.SelectionStartY = MousePosY;
 				this.SelectionWidth = 0;
 				this.SelectionHeight = 0;
 				this.SetState(eCopyPasteState.Selecting);
@@ -99,8 +99,8 @@ class CopyPasteTool extends Tool
 			else
 			{
 
-				this.SelectionWidth = mousePosX-this.SelectionStartX;
-				this.SelectionHeight = mousePosY-this.SelectionStartY;
+				this.SelectionWidth = MousePosX-this.SelectionStartX;
+				this.SelectionHeight = MousePosY-this.SelectionStartY;
 
 				if (this.NormalizeAspectRatio)
 				{
@@ -115,7 +115,7 @@ class CopyPasteTool extends Tool
 				this.DrawSelection();
 			}
 		}
-		else if(!mouseIsPressed && this.State == eCopyPasteState.Selecting) //if the user has released the mouse while drawing we reset the tool
+		else if(!MouseLeftOrRightPressed && this.State == eCopyPasteState.Selecting) //if the user has released the mouse while drawing we reset the tool
 		{
 			//reset canvas to last saved canvas
 			//this updates the pixels on the canvas from the pixel array
@@ -132,9 +132,9 @@ class CopyPasteTool extends Tool
 		//this updates the pixels on the canvas from the pixel array
 		Layers.CurrentImg.updatePixels();
 
-		Layers.CurrentImg.image(this.CopiedImage, mousePosX - this.SelectionWidth/2, mousePosY - this.SelectionHeight/2)
+		Layers.CurrentImg.image(this.CopiedImage, MousePosX - this.SelectionWidth/2, MousePosY - this.SelectionHeight/2)
 
-		if(mouseIsPressed && Helpers.PosOnCanvas(mousePosX, mousePosY))
+		if(MouseLeftOrRightPressed && Helpers.PosOnCanvas(MousePosX, MousePosY))
 		{
 			//save current canvas state
 			//this loads the pixels on the canvas in to the pixel array

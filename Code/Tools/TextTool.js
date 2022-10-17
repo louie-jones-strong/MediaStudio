@@ -42,12 +42,12 @@ class TextTool extends Tool
 		Layers.CurrentImg.textSize(this.TextSize);
 
 		Layers.CurrentImg.updatePixels();
-		if(mouseIsPressed && Helpers.PosOnCanvas(mousePosX, mousePosY))
+		if(MouseLeftOrRightPressed && Helpers.PosOnCanvas(MousePosX, MousePosY))
 		{
 			this.FinishCurrentText();
 
-			this.PosX = mousePosX;
-			this.PosY = mousePosY;
+			this.PosX = MousePosX;
+			this.PosY = MousePosY;
 		}
 
 		Layers.CurrentImg.loadPixels();
@@ -69,8 +69,8 @@ class TextTool extends Tool
 
 		if (this.LineShowing)
 		{
-			var x = mousePosX;
-			var y = mousePosY;
+			var x = MousePosX;
+			var y = MousePosY;
 			if(this.PosX >= 0)
 			{
 				var x = this.PosX;

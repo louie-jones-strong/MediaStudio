@@ -43,29 +43,29 @@ class MirrorDrawTool extends Tool
 		Layers.CurrentImg.updatePixels();
 
 		//do the drawing if the mouse is pressed
-		if (mouseIsPressed)
+		if (MouseLeftOrRightPressed)
 		{
 			//if the previous values are -1 set them to the current mouse location
 			//and mirrored positions
 			if (this.PreviousMouseX == -1)
 			{
-				this.PreviousMouseX = mousePosX;
-				this.PreviousMouseY = mousePosY;
-				this.PreviousOppositeMouseX = this.CalculateOpposite(mousePosX, eAxis.XAxis);
-				this.PreviousOppositeMouseY = this.CalculateOpposite(mousePosY, eAxis.YAxis);
+				this.PreviousMouseX = MousePosX;
+				this.PreviousMouseY = MousePosY;
+				this.PreviousOppositeMouseX = this.CalculateOpposite(MousePosX, eAxis.XAxis);
+				this.PreviousOppositeMouseY = this.CalculateOpposite(MousePosY, eAxis.YAxis);
 			}
 			else
 			{
 				//if there are values in the previous locations
 				//draw a line between them and the current positions
-				Layers.CurrentImg.line(this.PreviousMouseX, this.PreviousMouseY, mousePosX, mousePosY);
-				this.PreviousMouseX = mousePosX;
-				this.PreviousMouseY = mousePosY;
+				Layers.CurrentImg.line(this.PreviousMouseX, this.PreviousMouseY, MousePosX, MousePosY);
+				this.PreviousMouseX = MousePosX;
+				this.PreviousMouseY = MousePosY;
 
 				//these are for the mirrored drawing the other side of the
 				//line of symmetry
-				var oX = this.CalculateOpposite(mousePosX, eAxis.XAxis);
-				var oY = this.CalculateOpposite(mousePosY, eAxis.YAxis);
+				var oX = this.CalculateOpposite(MousePosX, eAxis.XAxis);
+				var oY = this.CalculateOpposite(MousePosY, eAxis.YAxis);
 				Layers.CurrentImg.line(this.PreviousOppositeMouseX, this.PreviousOppositeMouseY, oX, oY);
 				this.PreviousOppositeMouseX = oX;
 				this.PreviousOppositeMouseY = oY;

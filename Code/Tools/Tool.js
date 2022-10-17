@@ -61,8 +61,8 @@ class Tool
 
 	GetFooterHtml()
 	{
-		var canvasPosX = Math.round(mousePosX);
-		var canvasPosY = Math.round(mousePosY);
+		var canvasPosX = Math.round(MousePosX);
+		var canvasPosY = Math.round(MousePosY);
 		var footerHtml = "<p>Cursor Position: "+canvasPosX+", "+canvasPosY+"</p>";
 
 		return footerHtml;

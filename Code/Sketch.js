@@ -1,19 +1,29 @@
-//global variables that will store the ToolManager color palette
-//and the helper functions
 var ToolManager = null;
 var ColorP = null;
 var Helpers = null;
 var Layers = null;
+
+var MainCanvas = null;
 var CanvasWidth = null;
 var CanvasHeight = null;
+var Zoom = 1;
+var CTRLPressed = false;
+
 var Template = null;
 var PopupOpen = false;
 
 var FileInput = null;
 
+var MousePosX = 0;
+var MousePosY = 0;
+var MousePressed = false;
+var MousePressed = false;
+var MousePressed = false;
+var MousePressed = false;
+
 function setup()
 {
-	ScaleMousePos();
+	HandleMouse();
 	//this disables the default right click behavior for this page
 	document.addEventListener('contextmenu', event => {
 		event.preventDefault();
@@ -27,8 +37,6 @@ function setup()
 	ToolManager = new Toolbox();
 
 	Resize(canvasContainer.size().width - 10, canvasContainer.size().height - 10)
-
-	// background(255);
 
 	//create helper functions and the color palette
 	Helpers = new HelperFunctions();
@@ -61,7 +69,7 @@ function setup()
 
 function draw()
 {
-	ScaleMousePos();
+	HandleMouse();
 	ColorP.UpdateColors();
 	//call the draw function on the selected tool
 	ToolManager.Draw();
@@ -85,20 +93,46 @@ function RenderImage()
 
 function keyPressed()
 {
-	ScaleMousePos();
+	HandleMouse();
 	ToolManager.KeyPressed(key, keyCode);
+
+	if (keyCode === CONTROL)
+	{
+		CTRLPressed = true;
+	}
 }
 
 function keyReleased()
 {
-	ScaleMousePos();
+	HandleMouse();
 	ToolManager.KeyReleased(key, keyCode);
+
+	if (keyCode === CONTROL)
+	{
+		CTRLPressed = false;
+	}
 }
 
 function keyTyped()
 {
-	ScaleMousePos();
+	HandleMouse();
 	ToolManager.KeyTyped(key, keyCode);
+}
+
+function mouseWheel(event)
+{
+	if (CTRLPressed)
+	{
+		Zoom -= event.delta / 1000;
+		Zoom = Math.max(Zoom, 0.1)
+		Zoom = Math.min(Zoom, 40)
+
+		MainCanvas.elt.style.width = `${CanvasWidth * Zoom}px`
+		MainCanvas.elt.style.height = `${CanvasHeight * Zoom}px`
+
+		//block page scrolling
+		return false;
+	}
 }
 
 function handleFile(file)
@@ -126,14 +160,18 @@ function handleFile(file)
 	FileInput.elt.value = null
 }
 
-function ScaleMousePos()
+function HandleMouse()
 {
 	// as of the latest version we don't need to scale but pixel density
 	// let d = pixelDensity();
 
+	MousePosX = mouseX; // / d;
+	MousePosY = mouseY; // / d;
 
-	mousePosX = mouseX; // / d;
-	mousePosY = mouseY; // / d;
+	MouseLeftPressed = mouseIsPressed && mouseButton === LEFT;
+	MouseRightPressed = mouseIsPressed && mouseButton === RIGHT;
+	MouseCenterPressed = mouseIsPressed && mouseButton === CENTER;
+	MouseLeftOrRightPressed = MouseLeftPressed || MouseRightPressed;
 }
 
 function ResizeToFit(contentWidth, contentHeight)
@@ -155,10 +193,10 @@ function Resize(width, height)
 	CanvasHeight = floor(height);
 
 	// create canvas
-	let canvas = createCanvas(CanvasWidth, CanvasHeight);
-	canvas.id('canvas');
-	canvas.elt.classList.add("canvas")
-	canvas.parent("content");
+	MainCanvas = createCanvas(CanvasWidth, CanvasHeight);
+	MainCanvas.id('canvas');
+	MainCanvas.elt.classList.add("canvas")
+	MainCanvas.parent("content");
 
 	// resize layers
 	if (Layers != null)

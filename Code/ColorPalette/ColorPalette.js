@@ -29,23 +29,22 @@ class ColorPalette
 		this.RightClickColor.UpdateColor();
 
 		//update selectedColor based on what mouse button pressed
-		if (mouseIsPressed &&
-			(mouseButton === LEFT || mouseButton === RIGHT))
+		if (MouseLeftOrRightPressed)
 		{
-			if (mouseButton === LEFT)
+			if (MouseLeftPressed)
 			{
 				this.SelectedColor = this.LeftClickColor.RgbaColor;
 
-				if (Helpers.PosOnCanvas(mousePosX, mousePosY))
+				if (Helpers.PosOnCanvas(MousePosX, MousePosY))
 				{
 					this.LeftClickColor.UseColor();
 				}
 			}
-			else
+			else if (MouseRightPressed)
 			{
 				this.SelectedColor = this.RightClickColor.RgbaColor;
 
-				if (Helpers.PosOnCanvas(mousePosX, mousePosY))
+				if (Helpers.PosOnCanvas(MousePosX, MousePosY))
 				{
 					this.RightClickColor.UseColor();
 				}
