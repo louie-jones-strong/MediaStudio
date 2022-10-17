@@ -16,10 +16,10 @@ var FileInput = null;
 
 var MousePosX = 0;
 var MousePosY = 0;
-var MousePressed = false;
-var MousePressed = false;
-var MousePressed = false;
-var MousePressed = false;
+var MouseLeftPressed = false;
+var MouseRightPressed = false;
+var MouseCenterPressed = false;
+var MouseLeftOrRightPressed = false;
 
 function setup()
 {
