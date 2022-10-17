@@ -20,7 +20,7 @@ class TextTool extends Tool
 
 	GetFooterHtml()
 	{
-		var footerHtml = super.GetFooterHtml();
+		let footerHtml = super.GetFooterHtml();
 
 		if (this.PosX < 0)
 		{
@@ -69,12 +69,12 @@ class TextTool extends Tool
 
 		if (this.LineShowing)
 		{
-			var x = MousePosX;
-			var y = MousePosY;
+			let x = MousePosX;
+			let y = MousePosY;
 			if(this.PosX >= 0)
 			{
-				var x = this.PosX;
-				var y = this.PosY;
+				x = this.PosX;
+				y = this.PosY;
 			}
 
 			Layers.CurrentImg.rect(x, y, 1, -this.Slider.Value);

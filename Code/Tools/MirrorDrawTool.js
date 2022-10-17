@@ -28,7 +28,7 @@ class MirrorDrawTool extends Tool
 
 	GetFooterHtml()
 	{
-		var footerHtml = super.GetFooterHtml();
+		let footerHtml = super.GetFooterHtml();
 
 		footerHtml += "<p>Freehand tool, mirrored about the selected axis</p>";
 
@@ -64,8 +64,8 @@ class MirrorDrawTool extends Tool
 
 				//these are for the mirrored drawing the other side of the
 				//line of symmetry
-				var oX = this.CalculateOpposite(MousePosX, eAxis.XAxis);
-				var oY = this.CalculateOpposite(MousePosY, eAxis.YAxis);
+				let oX = this.CalculateOpposite(MousePosX, eAxis.XAxis);
+				let oY = this.CalculateOpposite(MousePosY, eAxis.YAxis);
 				Layers.CurrentImg.line(this.PreviousOppositeMouseX, this.PreviousOppositeMouseY, oX, oY);
 				this.PreviousOppositeMouseX = oX;
 				this.PreviousOppositeMouseY = oY;
@@ -120,7 +120,7 @@ class MirrorDrawTool extends Tool
 			return n;
 		}
 
-		var lineOfSymmetry = 0;
+		let lineOfSymmetry = 0;
 		switch (this.Axis)
 		{
 			case eAxis.XAxis:

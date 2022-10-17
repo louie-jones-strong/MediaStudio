@@ -17,7 +17,7 @@ class EditableShapeTool extends Tool
 
 	GetFooterHtml()
 	{
-		var footerHtml = super.GetFooterHtml();
+		let footerHtml = super.GetFooterHtml();
 
 		if (this.PointList.length < 3)
 		{
@@ -79,15 +79,15 @@ class EditableShapeTool extends Tool
 		Layers.CurrentImg.noFill();
 		Layers.CurrentImg.beginShape();
 
-		var lastPoint = 0;
+		let lastPoint = 0;
 		Layers.CurrentImg.vertex(this.PointList[lastPoint].x, this.PointList[lastPoint].y);
 
-		var loop = 1;
+		let loop = 1;
 		while (loop < this.PointList.length)
 		{
 			const point = this.PointList[loop];
 
-			var distanceToLastPoint = dist(this.PointList[lastPoint].x, this.PointList[lastPoint].y, point.x, point.y);
+			let distanceToLastPoint = dist(this.PointList[lastPoint].x, this.PointList[lastPoint].y, point.x, point.y);
 
 			if (distanceToLastPoint <= (EditGrabRadius / 2))
 			{
@@ -150,7 +150,7 @@ class EditableShapeTool extends Tool
 		var self = this;
 
 		//IsEditMode toggle
-		var editModeButton = createDiv("<img src='assets/Editable Shape/Edit.png''></img>");
+		let editModeButton = createDiv("<img src='assets/Editable Shape/Edit.png''></img>");
 		editModeButton.class('optionsBarItem')
 		editModeButton.id("IsEditModeOptions")
 		editModeButton.parent(select(".ToolOptions"));
@@ -160,7 +160,7 @@ class EditableShapeTool extends Tool
 		});
 
 		//Finish Shape button
-		var finishButton = createDiv("<img src='assets/Editable Shape/Finish.png'></img>");
+		let finishButton = createDiv("<img src='assets/Editable Shape/Finish.png'></img>");
 		finishButton.class('optionsBarItem')
 		finishButton.id("FinishShapeOptions")
 		finishButton.parent(select(".ToolOptions"));

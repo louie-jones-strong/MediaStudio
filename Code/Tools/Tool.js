@@ -17,7 +17,7 @@ class Tool
 
 	SelectTool()
 	{
-		var toolHeader = createDiv("<h2>"+this.Name+"</h2>");
+		let toolHeader = createDiv("<h2>"+this.Name+"</h2>");
 		toolHeader.class('ToolName');
 		toolHeader.parent(select(".ToolTitle"));
 
@@ -51,7 +51,7 @@ class Tool
 		});
 
 
-		var footerHtml = this.GetFooterHtml();
+		let footerHtml = this.GetFooterHtml();
 
 		if (Tool.CurrentFooterHtml != footerHtml)
 		{
@@ -62,9 +62,9 @@ class Tool
 
 	GetFooterHtml()
 	{
-		var canvasPosX = Math.round(MousePosX);
-		var canvasPosY = Math.round(MousePosY);
-		var footerHtml = "<p>Cursor Position: "+canvasPosX+", "+canvasPosY+"</p>";
+		let canvasPosX = Math.round(MousePosX);
+		let canvasPosY = Math.round(MousePosY);
+		let footerHtml = "<p>Cursor Position: "+canvasPosX+", "+canvasPosY+"</p>";
 
 		return footerHtml;
 	}
@@ -94,7 +94,7 @@ class Tool
 
 	AddToolOption(name, icon, onSelect)
 	{
-		var button = this.AddToolButton(name, icon);
+		let button = this.AddToolButton(name, icon);
 
 		var self = this;
 		button.mouseClicked(function()
@@ -106,13 +106,13 @@ class Tool
 
 	SelectToolOption(name)
 	{
-		var items = selectAll(".optionsBarItem");
-		for (var i = 0; i < items.length; i++)
+		let items = selectAll(".optionsBarItem");
+		for (let i = 0; i < items.length; i++)
 		{
 			//remove selected styling from all tools
 			this.SetToolOptionSelected(items[i], false)
 		}
-		var item = select("#" + name + "optionsBarItem");
+		let item = select("#" + name + "optionsBarItem");
 		this.SetToolOptionSelected(item, true)
 	}
 
@@ -142,7 +142,7 @@ class Tool
 
 	AddToolButton(name, icon)
 	{
-		var button = createDiv("<img src='" + icon + "'></img>");
+		let button = createDiv("<img src='" + icon + "'></img>");
 		button.class('optionsBarItem')
 		button.id(name + "optionsBarItem")
 		button.parent(select(".ToolOptions"));
@@ -152,7 +152,7 @@ class Tool
 
 	AddToolValueSlider(id, label, min, max, value)
 	{
-		var slider = new Slider(".ToolOptions", id, label, min, max, value);
+		let slider = new Slider(".ToolOptions", id, label, min, max, value);
 		this.Sliders.push(slider);
 		return slider;
 	}

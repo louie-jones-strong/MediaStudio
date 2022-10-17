@@ -22,7 +22,7 @@ class CopyPasteTool extends Tool
 
 	GetFooterHtml()
 	{
-		var footerHtml = super.GetFooterHtml();
+		let footerHtml = super.GetFooterHtml();
 
 		if (this.State == eCopyPasteState.None ||
 			this.State == eCopyPasteState.Selecting)
@@ -104,7 +104,7 @@ class CopyPasteTool extends Tool
 
 				if (this.NormalizeAspectRatio)
 				{
-					var minValue = Math.min(Math.abs(this.SelectionWidth), Math.abs(this.SelectionHeight));
+					let minValue = Math.min(Math.abs(this.SelectionWidth), Math.abs(this.SelectionHeight));
 					if (minValue != 0)
 					{
 						this.SelectionWidth = ( this.SelectionWidth / Math.abs(this.SelectionWidth) ) * minValue;

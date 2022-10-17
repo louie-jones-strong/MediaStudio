@@ -58,7 +58,7 @@ class ColorPalette
 
 	AddRecentColor(rgbaColor)
 	{
-		var colorHex = Helpers.GetColorHex(rgbaColor);
+		let colorHex = Helpers.GetColorHex(rgbaColor);
 
 		//check if color is already in recently used queue
 		if (this.RecentColorsHashSet.Contains(colorHex))
@@ -70,7 +70,7 @@ class ColorPalette
 
 		this.RecentColorsQueue.push(rgbaColor);
 
-		var hasRemovedColor = this.RecentColorsQueue.length > MaxRecentColors;
+		let hasRemovedColor = this.RecentColorsQueue.length > MaxRecentColors;
 
 		while (this.RecentColorsQueue.length > MaxRecentColors)
 		{
@@ -82,7 +82,7 @@ class ColorPalette
 			this.RecentColorsHashSet.Clear();
 			for (let index = 0; index < this.RecentColorsQueue.length; index++)
 			{
-				var colorHex = Helpers.GetColorHex(this.RecentColorsQueue[index]);
+				colorHex = Helpers.GetColorHex(this.RecentColorsQueue[index]);
 				this.RecentColorsHashSet.Add(colorHex)
 			}
 		}
@@ -97,13 +97,13 @@ class ColorPalette
 
 		for (let index = this.RecentColorsQueue.length-1; index >= 0; index--)
 		{
-			var color = this.RecentColorsQueue[index];
+			let color = this.RecentColorsQueue[index];
 
-			var colorHolder = createDiv()
+			let colorHolder = createDiv()
 			colorHolder.class("recentColorHolder");
 			colorHolder.parent(select(".recentColorsGrid"));
 
-			var colorBlock = createDiv()
+			let colorBlock = createDiv()
 			colorBlock.parent(colorHolder);
 			colorBlock.class("recentColor");
 			colorBlock.id("recentColor_" + index);
@@ -111,7 +111,7 @@ class ColorPalette
 
 			colorHolder.mousePressed(function(event)
 			{
-				var color = self.RecentColorsQueue[index];
+				let color = self.RecentColorsQueue[index];
 
 				if (event.button == 0) // Left
 				{

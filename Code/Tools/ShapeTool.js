@@ -50,7 +50,7 @@ class ShapeTool extends Tool
 				//this updates the pixels on the canvas from the pixel array
 				Layers.CurrentImg.updatePixels();
 
-				var size = this.GetWidthAndHeight();
+				let size = this.GetWidthAndHeight();
 
 
 				//draw shape on top of the last saved state of the canvas
@@ -107,12 +107,12 @@ class ShapeTool extends Tool
 		{
 			return [0, 0];
 		}
-		var width = MousePosX-this.StartMouseX;
-		var height = MousePosY-this.StartMouseY;
+		let width = MousePosX-this.StartMouseX;
+		let height = MousePosY-this.StartMouseY;
 
 		if (this.NormalizeAspectRatio)
 		{
-			var minValue = Math.min(Math.abs(width), Math.abs(height));
+			let minValue = Math.min(Math.abs(width), Math.abs(height));
 			if (minValue != 0)
 			{
 				width = ( width / Math.abs(width) ) * minValue;
@@ -125,9 +125,9 @@ class ShapeTool extends Tool
 
 	GetFooterHtml()
 	{
-		var footerHtml = super.GetFooterHtml();
+		let footerHtml = super.GetFooterHtml();
 
-		var size = this.GetWidthAndHeight();
+		let size = this.GetWidthAndHeight();
 
 		switch (this.Shape)
 		{
@@ -176,8 +176,8 @@ class ShapeTool extends Tool
 		Layers.CurrentImg.beginShape();
 		for (let i = 0; i < numSides; i++)
 		{
-			var pointX = width * cos(2 * Math.PI * i / numSides) + x;
-			var pointY = height * sin(2 * Math.PI * i / numSides) + y;
+			let pointX = width * cos(2 * Math.PI * i / numSides) + x;
+			let pointY = height * sin(2 * Math.PI * i / numSides) + y;
 
 			Layers.CurrentImg.vertex(pointX, pointY);
 		}

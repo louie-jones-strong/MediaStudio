@@ -43,14 +43,14 @@ class Toolbox
 
 	ToolbarItemClick()
 	{
-		var toolId = this.id().split("iconButton")[0];
+		let toolId = this.id().split("iconButton")[0];
 		ToolManager.SelectTool(toolId);
 	}
 
 	//add a new tool icon to the html page
 	AddToolIcon(icon, name)
 	{
-		var iconButton = createDiv("<img src='" + icon + "'></div>");
+		let iconButton = createDiv("<img src='" + icon + "'></div>");
 		iconButton.class('iconButton');
 		iconButton.id(name + "iconButton");
 		iconButton.parent('toolListHolder');
@@ -78,10 +78,10 @@ class Toolbox
 			this.SelectedTool = null
 		}
 
-		var items = selectAll(".iconButton");
+		let items = selectAll(".iconButton");
 
 		//search through the tools for one that's name matches toolName
-		for (var i = 0; i < this.Tools.length; i++)
+		for (let i = 0; i < this.Tools.length; i++)
 		{
 			//remove selected styling from all tools
 			items[i].class("iconButton");

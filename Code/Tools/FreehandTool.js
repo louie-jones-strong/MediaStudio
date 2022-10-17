@@ -19,7 +19,7 @@ class FreehandTool extends Tool
 
 	GetFooterHtml()
 	{
-		var footerHtml = super.GetFooterHtml();
+		let footerHtml = super.GetFooterHtml();
 
 		footerHtml += "<p>Click and drag on the canvas to draw</p>";
 

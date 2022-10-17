@@ -15,7 +15,7 @@ class LineToTool extends Tool
 
 	GetFooterHtml()
 	{
-		var footerHtml = super.GetFooterHtml();
+		let footerHtml = super.GetFooterHtml();
 
 		footerHtml += "<p>Click for first point, drag and release for end point</p>";
 		footerHtml += "<p>Shift key to constrain angle</p>";
@@ -47,18 +47,18 @@ class LineToTool extends Tool
 				//this updates the pixels on the canvas from the pixel array
 				Layers.CurrentImg.updatePixels();
 
-				var endX = MousePosX;
-				var endY = MousePosY;
+				let endX = MousePosX;
+				let endY = MousePosY;
 
 				if (this.NormalizeAspectRatio)
 				{
-					var deltaX = endX - this.StartMouseX;
-					var deltaY = endY - this.StartMouseY;
+					let deltaX = endX - this.StartMouseX;
+					let deltaY = endY - this.StartMouseY;
 
-					var maxDelta = Math.max(Math.abs(deltaX), Math.abs(deltaY));
-					var minDelta = Math.min(Math.abs(deltaX), Math.abs(deltaY));
-					var norDeltaX = Math.abs(deltaX) / maxDelta;
-					var norDeltaY = Math.abs(deltaY) / maxDelta;
+					let maxDelta = Math.max(Math.abs(deltaX), Math.abs(deltaY));
+					let minDelta = Math.min(Math.abs(deltaX), Math.abs(deltaY));
+					let norDeltaX = Math.abs(deltaX) / maxDelta;
+					let norDeltaY = Math.abs(deltaY) / maxDelta;
 
 
 					if (Math.abs(norDeltaY - norDeltaX) <= 0.5)

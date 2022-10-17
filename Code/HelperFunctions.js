@@ -109,7 +109,7 @@ function HelperFunctions()
 
 	this.GetColorLevelsHex = function(rgbaLevelsColor, withAlpha=true)
 	{
-		var hexString = "#";
+		let hexString = "#";
 		hexString += hex(rgbaLevelsColor[0], 2);
 		hexString += hex(rgbaLevelsColor[1], 2);
 		hexString += hex(rgbaLevelsColor[2], 2);

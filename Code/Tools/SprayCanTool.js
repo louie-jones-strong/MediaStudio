@@ -16,7 +16,7 @@ class SprayCanTool extends Tool
 
 	GetFooterHtml()
 	{
-		var footerHtml = super.GetFooterHtml();
+		let footerHtml = super.GetFooterHtml();
 
 		footerHtml += "<p>Click and drag on the canvas to spray</p>";
 
@@ -34,12 +34,12 @@ class SprayCanTool extends Tool
 		//points holds how many pixels of paint for each mouse press.
 		if(MouseLeftOrRightPressed && Helpers.PosOnCanvas(MousePosX, MousePosY))
 		{
-			for(var i = 0; i < this.Points; i++)
+			for(let i = 0; i < this.Points; i++)
 			{
-				var angle = random(0, Math.PI * 2);
-				var distance = random(0, this.Spread);
-				var x = MousePosX + Math.sin(angle) * distance;
-				var y = MousePosY + Math.cos(angle) * distance;
+				let angle = random(0, Math.PI * 2);
+				let distance = random(0, this.Spread);
+				let x = MousePosX + Math.sin(angle) * distance;
+				let y = MousePosY + Math.cos(angle) * distance;
 
 				Layers.CurrentImg.point(x, y);
 			}

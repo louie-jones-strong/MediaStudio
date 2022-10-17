@@ -25,11 +25,11 @@ class ColorPicker
 	UpdateColor()
 	{
 
-		var colorRgb = color(this.ColorRgbPicker.value());
+		let colorRgb = color(this.ColorRgbPicker.value());
 
-		var alpha = this.ColorAlphaSlider.value();
+		let alpha = this.ColorAlphaSlider.value();
 
-		var colorRgba = this.GetRgbaColor(colorRgb, alpha);
+		let colorRgba = this.GetRgbaColor(colorRgb, alpha);
 
 
 		this.SetColor(colorRgba);
@@ -37,8 +37,8 @@ class ColorPicker
 
 	SetColor(rgbaColor)
 	{
-		var currentColorHex = Helpers.GetColorHex(this.RgbaColor);
-		var newColorHex = Helpers.GetColorHex(rgbaColor);
+		let currentColorHex = Helpers.GetColorHex(this.RgbaColor);
+		let newColorHex = Helpers.GetColorHex(rgbaColor);
 
 		if (currentColorHex == newColorHex)
 		{
@@ -58,9 +58,9 @@ class ColorPicker
 	//construct the rgba color from rgb color + alphaValue
 	GetRgbaColor(colorRgb, alphaValue)
 	{
-		var r = colorRgb.levels[0];
-		var g = colorRgb.levels[1];
-		var b = colorRgb.levels[2];
+		let r = colorRgb.levels[0];
+		let g = colorRgb.levels[1];
+		let b = colorRgb.levels[2];
 
 		return color(r, g, b, alphaValue);
 	}

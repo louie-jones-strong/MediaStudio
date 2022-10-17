@@ -18,7 +18,7 @@ class FloodFillTool extends Tool
 
 	GetFooterHtml()
 	{
-		var footerHtml = super.GetFooterHtml();
+		let footerHtml = super.GetFooterHtml();
 
 		if (this.ToFill.length > 0)
 		{
@@ -38,13 +38,15 @@ class FloodFillTool extends Tool
 
 		if (this.ToFill.length > 0)
 		{
-			var frameStartTime = performance.now();
+			let frameStartTime = performance.now();
 
+
+			let timeNow = performance.now();
 			do
 			{
-				var co = this.ToFill.shift();
+				let co = this.ToFill.shift();
 				this.FillPixel(co[0], co[1]);
-				var timeNow = performance.now();
+				timeNow = performance.now();
 			}
 			while (timeNow - frameStartTime <= 30 && this.ToFill.length > 0);
 			Layers.CurrentImg.updatePixels();
@@ -52,15 +54,15 @@ class FloodFillTool extends Tool
 		}
 		else if (MouseLeftOrRightPressed && Helpers.PosOnCanvas(MousePosX, MousePosY))
 		{
-			var x = Math.round(MousePosX);
-			var y = Math.round(MousePosY);
+			let x = Math.round(MousePosX);
+			let y = Math.round(MousePosY);
 
 			Layers.CurrentImg.loadPixels();
 			this.StartingColor = Helpers.GetPixel(Layers.CurrentImg, x, y);
 			this.FillColor = ColorP.SelectedColor;
 
-			var startingColorHex = Helpers.GetColorLevelsHex(this.StartingColor);
-			var fillColor = Helpers.GetColorHex(this.FillColor);
+			let startingColorHex = Helpers.GetColorLevelsHex(this.StartingColor);
+			let fillColor = Helpers.GetColorHex(this.FillColor);
 			if (startingColorHex == fillColor)
 			{
 				return;
@@ -123,14 +125,14 @@ class FloodFillTool extends Tool
 		}
 
 		//get color of pixel at coordinates (x, y)
-		var color = Helpers.GetPixel(Layers.CurrentImg, x, y);
+		let color = Helpers.GetPixel(Layers.CurrentImg, x, y);
 
 		return this.IsColorInRange(color);
 	}
 
 	IsColorInRange(color2)
 	{
-		for (var i = 0; i < 4; i++)
+		for (let i = 0; i < 4; i++)
 		{
 			if (this.StartingColor[i] != color2[i])
 			{

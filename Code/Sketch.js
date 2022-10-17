@@ -30,7 +30,7 @@ function setup()
 	});
 
 	//create a canvas to fill the content div from index.html
-	var canvasContainer = select('#content');
+	let canvasContainer = select('#content');
 
 
 	//create a ToolManager for storing the tools

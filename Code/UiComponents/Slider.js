@@ -1,15 +1,15 @@
 class Slider
 {
-	constructor(parent, id, label, min, max, value)
+	constructor(parent, id, labelStr, min, max, value)
 	{
-		var holderDiv = createDiv();
+		let holderDiv = createDiv();
 		holderDiv.class('sliderHolder')
 		holderDiv.parent(select(parent));
 
-		var label = createDiv('<label for='+id+'>'+label+':</label>');
+		let label = createDiv('<label for='+id+'>'+labelStr+':</label>');
 		label.parent(holderDiv);
 
-		var inputs = createDiv(
+		let inputs = createDiv(
 			'<input type="range" id='+id+'Slider min='+min+' max='+max+' value='+value+'></input>' +
 			'<input class="SliderTextBox" type="number" id='+id+'TextBox min='+min+' max='+max+' value='+value+'></input>');
 		inputs.parent(holderDiv);
@@ -24,8 +24,8 @@ class Slider
 
 	Update()
 	{
-		var sliderValue = this.Slider.value();;
-		var inputFieldValue = int(this.InputField.value());
+		let sliderValue = this.Slider.value();;
+		let inputFieldValue = int(this.InputField.value());
 		if (isNaN(inputFieldValue))
 		{
 			inputFieldValue = 0;
