@@ -228,8 +228,3 @@ function ClosePopup()
 	holder.elt.classList.add("hide");
 	holder.html("")
 }
-
-function DeselectAll()
-{
-	ToolManager.SelectTool(null);
-}

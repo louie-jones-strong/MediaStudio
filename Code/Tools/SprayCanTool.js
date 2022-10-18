@@ -51,6 +51,6 @@ class SprayCanTool extends Tool
 	{
 		super.SelectTool();
 
-		this.SpreadSlider = this.AddToolValueSlider("Spread", "Spread", 10, 300, this.Spread);
+		this.SpreadSlider = this.AddValueSlider("Spread", "Spread", 10, 300, this.Spread);
 	}
 }

@@ -204,28 +204,28 @@ class CopyPasteTool extends Tool
 			case eCopyPasteState.None:
 			{
 				Layers.CurrentImg.updatePixels();
-				this.SetSelectedOptionselected(this.StartSelectionButton, true);
-				this.SetSelectedOptionselected(this.StampOptionButton, false);
+				this.SetSelectedOptionSelected(this.StartSelectionButton, true);
+				this.SetSelectedOptionSelected(this.StampOptionButton, false);
 
-				this.SetToolOptionDisabled(this.ClearOptionButton, true);
-				this.SetToolOptionDisabled(this.StampOptionButton, true);
+				this.SetOptionDisabled(this.ClearOptionButton, true);
+				this.SetOptionDisabled(this.StampOptionButton, true);
 			}
 			case eCopyPasteState.Selecting:
 			{
-				this.SetSelectedOptionselected(this.StartSelectionButton, true);
-				this.SetSelectedOptionselected(this.StampOptionButton, false);
+				this.SetSelectedOptionSelected(this.StartSelectionButton, true);
+				this.SetSelectedOptionSelected(this.StampOptionButton, false);
 
-				this.SetToolOptionDisabled(this.ClearOptionButton, true);
-				this.SetToolOptionDisabled(this.StampOptionButton, true);
+				this.SetOptionDisabled(this.ClearOptionButton, true);
+				this.SetOptionDisabled(this.StampOptionButton, true);
 				break;
 			}
 			case eCopyPasteState.Selected:
 			{
-				this.SetSelectedOptionselected(this.StartSelectionButton, false);
-				this.SetSelectedOptionselected(this.StampOptionButton, false);
+				this.SetSelectedOptionSelected(this.StartSelectionButton, false);
+				this.SetSelectedOptionSelected(this.StampOptionButton, false);
 
-				this.SetToolOptionDisabled(this.ClearOptionButton, false);
-				this.SetToolOptionDisabled(this.StampOptionButton, false);
+				this.SetOptionDisabled(this.ClearOptionButton, false);
+				this.SetOptionDisabled(this.StampOptionButton, false);
 				break;
 			}
 			case eCopyPasteState.Stamp:
@@ -234,11 +234,11 @@ class CopyPasteTool extends Tool
 				{
 					return;
 				}
-				this.SetSelectedOptionselected(this.StartSelectionButton, false);
-				this.SetSelectedOptionselected(this.StampOptionButton, true);
+				this.SetSelectedOptionSelected(this.StartSelectionButton, false);
+				this.SetSelectedOptionSelected(this.StampOptionButton, true);
 
-				this.SetToolOptionDisabled(this.ClearOptionButton, true);
-				this.SetToolOptionDisabled(this.StampOptionButton, false);
+				this.SetOptionDisabled(this.ClearOptionButton, true);
+				this.SetOptionDisabled(this.StampOptionButton, false);
 				break;
 			}
 			default:
@@ -257,20 +257,20 @@ class CopyPasteTool extends Tool
 
 		var self = this;
 
-		this.StartSelectionButton = this.AddToolButton("StartSelection", "assets/CopyPaste/Select.png")
+		this.StartSelectionButton = this.AddButton("StartSelection", "assets/CopyPaste/Select.png")
 		this.StartSelectionButton.mouseClicked(function(){self.SetState(eCopyPasteState.None);});
 
-		this.ClearOptionButton = this.AddToolButton("ClearOption", "assets/CopyPaste/Clear.png")
+		this.ClearOptionButton = this.AddButton("ClearOption", "assets/CopyPaste/Clear.png")
 		this.ClearOptionButton.mouseClicked(function(){self.Clear();});
 
-		this.StampOptionButton = this.AddToolButton("StampOption", "assets/CopyPaste/Stamp.png")
+		this.StampOptionButton = this.AddButton("StampOption", "assets/CopyPaste/Stamp.png")
 		this.StampOptionButton.mouseClicked(function(){self.SetState(eCopyPasteState.Stamp)});
 
-		this.SetSelectedOptionselected(this.StartSelectionButton, true);
-		this.SetSelectedOptionselected(this.StampOptionButton, false);
+		this.SetSelectedOptionSelected(this.StartSelectionButton, true);
+		this.SetSelectedOptionSelected(this.StampOptionButton, false);
 
-		this.SetToolOptionDisabled(this.ClearOptionButton, true);
-		this.SetToolOptionDisabled(this.StampOptionButton, true);
+		this.SetOptionDisabled(this.ClearOptionButton, true);
+		this.SetOptionDisabled(this.StampOptionButton, true);
 	}
 
 	UnselectTool()

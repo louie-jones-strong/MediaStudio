@@ -121,6 +121,6 @@ class TextTool extends Tool
 	{
 		super.SelectTool();
 
-		this.Slider = this.AddToolValueSlider("Text_Size", "Text Size", 5, 1000, this.TextSize);
+		this.Slider = this.AddValueSlider("Text_Size", "Text Size", 5, 1000, this.TextSize);
 	}
 }

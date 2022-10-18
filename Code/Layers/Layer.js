@@ -128,10 +128,16 @@ class Layer
 
 		var self = this;
 
-		let button = createButton('X');
-		button.parent(effectDiv);
-		button.mousePressed(function() {
+		let removeButton = createButton('X');
+		removeButton.parent(effectDiv);
+		removeButton.mousePressed(function() {
 			self.RemoveEffect(effect.Id);
+		});
+
+		let editButton = createButton(`<span class="material-icons">edit</span>`);
+		editButton.parent(effectDiv);
+		editButton.mousePressed(function() {
+			self.EditEffect(effect.Id);
 		});
 
 		effectDiv.parent(holder)
@@ -154,6 +160,19 @@ class Layer
 		let div = select(`#effect${id}`)
 		div.remove();
 
+	}
+
+	EditEffect(id)
+	{
+		for (let index = 0; index < this.LayerEffects.length; index++)
+		{
+			const effect = this.LayerEffects[index];
+			if (effect.Id == id)
+			{
+				effect.SetSelected(true);
+				break;
+			}
+		}
 	}
 
 	SetSelected(selected)
@@ -214,6 +233,12 @@ class Layer
 		image(afterEffectsImg, 0, 0, CanvasWidth, CanvasHeight);
 
 		pop();
+
+		for (let i = 0; i < this.LayerEffects.length; i++)
+		{
+			const effect = this.LayerEffects[i];
+			effect.Draw();
+		}
 	}
 
 	ApplyEffects()

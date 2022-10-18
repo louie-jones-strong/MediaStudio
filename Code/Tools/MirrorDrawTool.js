@@ -160,7 +160,7 @@ class MirrorDrawTool extends Tool
 		{
 			this.AddToolOption(key, "assets/MirrorAxis/"+key+".png", function(){self.Axis = eAxis[key];})
 		}
-		this.SelectToolOption(Object.keys(eAxis)[this.Axis]);
+		this.SelectOption(Object.keys(eAxis)[this.Axis]);
 	}
 
 	UnselectTool()

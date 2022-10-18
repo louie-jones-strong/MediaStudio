@@ -1,29 +1,26 @@
-class Tool
+class Tool extends Selectable
 {
 	static StrokeWeight = 2;
-	static CurrentFooterHtml = "";
 
 	constructor()
 	{
+		super();
 		this.Name = "BaseTool";
 		this.Id = "Base_Tool";
 		this.Icon = "";
 		this.ShowStrokeSettings = true;
 
 		this.StrokeWeightSlider = null;
-		this.Sliders = [];
 		this.NormalizeAspectRatio = false;
 	}
 
 	SelectTool()
 	{
-		let toolHeader = createDiv("<h2>"+this.Name+"</h2>");
-		toolHeader.class('ToolName');
-		toolHeader.parent(select(".SelectedTitle"));
+		super.SetSelected(true);
 
 		if (this.ShowStrokeSettings)
 		{
-			this.StrokeWeightSlider = this.AddToolValueSlider("StrokeWeight", "Stroke Weight", 1, 100, Tool.StrokeWeight);
+			this.StrokeWeightSlider = this.AddValueSlider("StrokeWeight", "Stroke Weight", 1, 100, Tool.StrokeWeight);
 		}
 	}
 
@@ -31,42 +28,18 @@ class Tool
 	//hide any overlays. Also clear SelectedOptions
 	UnselectTool()
 	{
-		//clear SelectedOptions
-		select(".SelectedTitle").html("");
-		select(".SelectedOptions").html("");
+		super.SetSelected(false);
 		this.StrokeWeightSlider = null;
-		select("#footer").html("");
 	}
 
 	Draw()
 	{
+		super.Draw();
 		if (this.ShowStrokeSettings)
 		{
 			Tool.StrokeWeight = this.StrokeWeightSlider.Value;
 			Layers.CurrentImg.strokeWeight(Tool.StrokeWeight);
 		}
-
-		this.Sliders.forEach(item => {
-			item.Update();
-		});
-
-
-		let footerHtml = this.GetFooterHtml();
-
-		if (Tool.CurrentFooterHtml != footerHtml)
-		{
-			select("#footer").html(footerHtml);
-			Tool.CurrentFooterHtml = footerHtml;
-		}
-	}
-
-	GetFooterHtml()
-	{
-		let canvasPosX = Math.round(MousePosX);
-		let canvasPosY = Math.round(MousePosY);
-		let footerHtml = "<p>Cursor Position: "+canvasPosX+", "+canvasPosY+"</p>";
-
-		return footerHtml;
 	}
 
 	KeyTyped(key, keyCode)
@@ -87,73 +60,5 @@ class Tool
 		{
 			this.NormalizeAspectRatio = false;
 		}
-	}
-
-
-// option buttons
-
-	AddToolOption(name, icon, onSelect)
-	{
-		let button = this.AddToolButton(name, icon);
-
-		var self = this;
-		button.mouseClicked(function()
-		{
-			self.SelectToolOption(name);
-			onSelect();
-		});
-	}
-
-	SelectToolOption(name)
-	{
-		let items = selectAll(".optionsBarItem");
-		for (let i = 0; i < items.length; i++)
-		{
-			//remove selected styling from all tools
-			this.SetSelectedOptionselected(items[i], false)
-		}
-		let item = select("#" + name + "optionsBarItem");
-		this.SetSelectedOptionselected(item, true)
-	}
-
-	SetSelectedOptionselected(option, selected)
-	{
-		if (selected)
-		{
-			option.elt.classList.add("selected");
-		}
-		else
-		{
-			option.elt.classList.remove("selected");
-		}
-	}
-
-	SetToolOptionDisabled(option, disabled)
-	{
-		if (disabled)
-		{
-			option.elt.classList.add("disabled");
-		}
-		else
-		{
-			option.elt.classList.remove("disabled");
-		}
-	}
-
-	AddToolButton(name, icon)
-	{
-		let button = createDiv("<img src='" + icon + "'></img>");
-		button.class('optionsBarItem')
-		button.id(name + "optionsBarItem")
-		button.parent(select(".SelectedOptions"));
-
-		return button;
-	}
-
-	AddToolValueSlider(id, label, min, max, value)
-	{
-		let slider = new Slider(".SelectedOptions", id, label, min, max, value);
-		this.Sliders.push(slider);
-		return slider;
 	}
 }

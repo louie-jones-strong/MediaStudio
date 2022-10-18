@@ -1,9 +1,9 @@
-class LayerEffect
+class LayerEffect extends Selectable
 {
 	constructor()
 	{
+		super();
 		this.Name = "Base Effect";
-		this.Icon = "";
 	}
 
 	ApplyEffect(startImg)
@@ -11,4 +11,14 @@ class LayerEffect
 
 		return startImg;
 	}
+
+	SetSelected(selected)
+	{
+		if (selected)
+		{
+			ToolManager.SelectTool(null);
+		}
+		super.SetSelected(selected)
+	}
+
 }

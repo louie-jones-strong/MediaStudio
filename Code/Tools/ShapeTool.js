@@ -168,7 +168,7 @@ class ShapeTool extends Tool
 		{
 			this.AddToolOption(key, "assets/Shapes/"+key+".png", function(){self.Shape = eShape[key];});
 		}
-		this.SelectToolOption(Object.keys(eShape)[this.Shape]);
+		this.SelectOption(Object.keys(eShape)[this.Shape]);
 	}
 
 	DrawVariableSidedShape(numSides, x, y, width, height)
