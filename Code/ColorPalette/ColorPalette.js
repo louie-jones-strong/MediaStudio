@@ -15,8 +15,8 @@ class ColorPalette
 		this.AddRecentColor(color(0, 255, 0, 255)); // add green
 		this.AddRecentColor(color(0, 0, 255, 255)); // add blue
 
-		this.LeftClickColor =  new ColorPicker(this, "color1", color(0, 0, 0, 255));
-		this.RightClickColor = new ColorPicker(this, "color2", color(255, 255, 255, 255));
+		this.LeftClickColor =  new ColorPicker(this, "color1");
+		this.RightClickColor = new ColorPicker(this, "color2");
 
 		this.UpdateColors();
 		this.UpdateRecentColors();

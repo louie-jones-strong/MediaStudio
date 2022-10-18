@@ -1,19 +1,19 @@
 class ColorPicker
 {
-	constructor(colorPalette, htmlIdName, rgbaColor)
+	constructor(colorPalette, htmlIdName)
 	{
 		this.ColorPalette = colorPalette;
 
 		this.ColorRgbPicker = select("#" + htmlIdName + "_color");
 		this.ColorAlphaSlider = select("#" + htmlIdName + "_alpha");
 
-		this.RgbaColor = rgbaColor;
+		this.RgbaColor = color(0, 0, 0, 255);
 		this.UseColor();
 	}
 
 	UseColor()
 	{
-		if (this.HasBeenUsed == true)
+		if (this.ColorPalette == null || this.HasBeenUsed == true)
 		{
 			return;
 		}
@@ -33,6 +33,7 @@ class ColorPicker
 
 
 		this.SetColor(colorRgba);
+		return this.RgbaColor;
 	}
 
 	SetColor(rgbaColor)

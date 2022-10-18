@@ -11,6 +11,8 @@ class ChromaKeyEffect extends LayerEffect
 		this.Threshold = 0.1;
 
 		this.ThresholdSlider = null;
+		this.SelectedColourPicker = null;
+		this.ReplaceColorPicker = null;
 	}
 
 	Draw()
@@ -19,6 +21,9 @@ class ChromaKeyEffect extends LayerEffect
 		if (this.ThresholdSlider != null)
 		{
 			this.Threshold = this.ThresholdSlider.Value;
+			this.SelectedColour = this.SelectedColourPicker.UpdateColor()
+			this.ReplaceColor = this.ReplaceColorPicker.UpdateColor()
+
 		}
 	}
 
@@ -28,10 +33,14 @@ class ChromaKeyEffect extends LayerEffect
 		if (selected)
 		{
 			this.ThresholdSlider = this.AddValueSlider("Threshold", "Threshold", 0, 400, this.Threshold);
+			this.SelectedColourPicker = this.AddColourPicker("SelectedColour", "Target Colour", "#00ff00", 255);
+			this.ReplaceColorPicker = this.AddColourPicker("ReplaceColor", "Replace Colour", "#000000", 0);
 		}
 		else
 		{
 			this.ThresholdSlider = null;
+			this.SelectedColourPicker = null;
+			this.ReplaceColorPicker = null;
 		}
 	}
 

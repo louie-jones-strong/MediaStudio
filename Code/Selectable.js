@@ -115,4 +115,18 @@ class Selectable
 		Selectable.Sliders.push(slider);
 		return slider;
 	}
+
+	AddColourPicker(id, label, rgbHex="#ffffff", alphaValue=255)
+	{
+		let optionsHolder = select(".SelectedOptions")
+		optionsHolder.html(
+			`<div class="RGBAPicker">
+			<h3 class="center">${label}</h3>
+			<input class="colorPicker" id="${id}_color" type="color" value="${rgbHex}">
+			<input class="alphaSlider" id="${id}_alpha" type="range" min="0" max="255" value="${alphaValue}"></input>
+			</div>`, true)
+
+		let colorPicker = new ColorPicker(null, id);
+		return colorPicker;
+	}
 }
