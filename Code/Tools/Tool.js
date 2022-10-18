@@ -19,7 +19,7 @@ class Tool
 	{
 		let toolHeader = createDiv("<h2>"+this.Name+"</h2>");
 		toolHeader.class('ToolName');
-		toolHeader.parent(select(".ToolTitle"));
+		toolHeader.parent(select(".SelectedTitle"));
 
 		if (this.ShowStrokeSettings)
 		{
@@ -28,12 +28,12 @@ class Tool
 	}
 
 	//when the tool is deselected update the pixels to just show the drawing and
-	//hide any overlays. Also clear ToolOptions
+	//hide any overlays. Also clear SelectedOptions
 	UnselectTool()
 	{
-		//clear ToolOptions
-		select(".ToolTitle").html("");
-		select(".ToolOptions").html("");
+		//clear SelectedOptions
+		select(".SelectedTitle").html("");
+		select(".SelectedOptions").html("");
 		this.StrokeWeightSlider = null;
 		select("#footer").html("");
 	}
@@ -110,13 +110,13 @@ class Tool
 		for (let i = 0; i < items.length; i++)
 		{
 			//remove selected styling from all tools
-			this.SetToolOptionSelected(items[i], false)
+			this.SetSelectedOptionselected(items[i], false)
 		}
 		let item = select("#" + name + "optionsBarItem");
-		this.SetToolOptionSelected(item, true)
+		this.SetSelectedOptionselected(item, true)
 	}
 
-	SetToolOptionSelected(option, selected)
+	SetSelectedOptionselected(option, selected)
 	{
 		if (selected)
 		{
@@ -145,14 +145,14 @@ class Tool
 		let button = createDiv("<img src='" + icon + "'></img>");
 		button.class('optionsBarItem')
 		button.id(name + "optionsBarItem")
-		button.parent(select(".ToolOptions"));
+		button.parent(select(".SelectedOptions"));
 
 		return button;
 	}
 
 	AddToolValueSlider(id, label, min, max, value)
 	{
-		let slider = new Slider(".ToolOptions", id, label, min, max, value);
+		let slider = new Slider(".SelectedOptions", id, label, min, max, value);
 		this.Sliders.push(slider);
 		return slider;
 	}

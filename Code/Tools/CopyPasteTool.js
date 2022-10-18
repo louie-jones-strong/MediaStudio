@@ -204,16 +204,16 @@ class CopyPasteTool extends Tool
 			case eCopyPasteState.None:
 			{
 				Layers.CurrentImg.updatePixels();
-				this.SetToolOptionSelected(this.StartSelectionButton, true);
-				this.SetToolOptionSelected(this.StampOptionButton, false);
+				this.SetSelectedOptionselected(this.StartSelectionButton, true);
+				this.SetSelectedOptionselected(this.StampOptionButton, false);
 
 				this.SetToolOptionDisabled(this.ClearOptionButton, true);
 				this.SetToolOptionDisabled(this.StampOptionButton, true);
 			}
 			case eCopyPasteState.Selecting:
 			{
-				this.SetToolOptionSelected(this.StartSelectionButton, true);
-				this.SetToolOptionSelected(this.StampOptionButton, false);
+				this.SetSelectedOptionselected(this.StartSelectionButton, true);
+				this.SetSelectedOptionselected(this.StampOptionButton, false);
 
 				this.SetToolOptionDisabled(this.ClearOptionButton, true);
 				this.SetToolOptionDisabled(this.StampOptionButton, true);
@@ -221,8 +221,8 @@ class CopyPasteTool extends Tool
 			}
 			case eCopyPasteState.Selected:
 			{
-				this.SetToolOptionSelected(this.StartSelectionButton, false);
-				this.SetToolOptionSelected(this.StampOptionButton, false);
+				this.SetSelectedOptionselected(this.StartSelectionButton, false);
+				this.SetSelectedOptionselected(this.StampOptionButton, false);
 
 				this.SetToolOptionDisabled(this.ClearOptionButton, false);
 				this.SetToolOptionDisabled(this.StampOptionButton, false);
@@ -234,8 +234,8 @@ class CopyPasteTool extends Tool
 				{
 					return;
 				}
-				this.SetToolOptionSelected(this.StartSelectionButton, false);
-				this.SetToolOptionSelected(this.StampOptionButton, true);
+				this.SetSelectedOptionselected(this.StartSelectionButton, false);
+				this.SetSelectedOptionselected(this.StampOptionButton, true);
 
 				this.SetToolOptionDisabled(this.ClearOptionButton, true);
 				this.SetToolOptionDisabled(this.StampOptionButton, false);
@@ -266,8 +266,8 @@ class CopyPasteTool extends Tool
 		this.StampOptionButton = this.AddToolButton("StampOption", "assets/CopyPaste/Stamp.png")
 		this.StampOptionButton.mouseClicked(function(){self.SetState(eCopyPasteState.Stamp)});
 
-		this.SetToolOptionSelected(this.StartSelectionButton, true);
-		this.SetToolOptionSelected(this.StampOptionButton, false);
+		this.SetSelectedOptionselected(this.StartSelectionButton, true);
+		this.SetSelectedOptionselected(this.StampOptionButton, false);
 
 		this.SetToolOptionDisabled(this.ClearOptionButton, true);
 		this.SetToolOptionDisabled(this.StampOptionButton, true);

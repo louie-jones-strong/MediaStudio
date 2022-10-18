@@ -153,7 +153,7 @@ class EditableShapeTool extends Tool
 		let editModeButton = createDiv("<img src='assets/Editable Shape/Edit.png''></img>");
 		editModeButton.class('optionsBarItem')
 		editModeButton.id("IsEditModeOptions")
-		editModeButton.parent(select(".ToolOptions"));
+		editModeButton.parent(select(".SelectedOptions"));
 		editModeButton.mouseClicked(function()
 		{
 			self.SetEditMode(!self.IsEditMode);
@@ -163,7 +163,7 @@ class EditableShapeTool extends Tool
 		let finishButton = createDiv("<img src='assets/Editable Shape/Finish.png'></img>");
 		finishButton.class('optionsBarItem')
 		finishButton.id("FinishShapeOptions")
-		finishButton.parent(select(".ToolOptions"));
+		finishButton.parent(select(".SelectedOptions"));
 		finishButton.mouseClicked(function()
 		{
 			self.FinishShape();

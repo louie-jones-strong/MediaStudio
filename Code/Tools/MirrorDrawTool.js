@@ -148,7 +148,7 @@ class MirrorDrawTool extends Tool
 		}
 	}
 
-	//adds a button and click handler to the ToolOptions area. When clicked
+	//adds a button and click handler to the SelectedOptions area. When clicked
 	//toggle the line of symmetry between horizontal to vertical
 	SelectTool()
 	{

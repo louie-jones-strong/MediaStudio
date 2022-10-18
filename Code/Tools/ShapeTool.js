@@ -157,7 +157,7 @@ class ShapeTool extends Tool
 		return footerHtml;
 	}
 
-	//adds a button and click handler to the ToolOptions area.
+	//adds a button and click handler to the SelectedOptions area.
 	SelectTool()
 	{
 		super.SelectTool();

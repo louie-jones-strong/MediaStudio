@@ -38,7 +38,7 @@
 			"Image": null,
 			"ResizePivotX": 1,
 			"ResizePivotY": 1,
-			"ResizeWidth": 0.1,
+			"ResizeWidth": 0.2,
 			"ResizeHeight": 0.1,
 			"Effects": [
 				{
@@ -58,8 +58,8 @@
 				},
 				{
 					"Type": "MousePos",
-					"PixelsX": 450,
-					"PixelsY": 500
+					"PixelsX": 370,
+					"PixelsY": 495
 				},
 				{
 					"Type": "MouseDown"
@@ -82,8 +82,8 @@
 			"Image": "Templates/LynnyKnits/BlackBoard.png",
 			"ResizePivotX": 1,
 			"ResizePivotY": 1,
-			"ResizeWidth": 0.1,
-			"ResizeHeight": 0.1,
+			"ResizeWidth": 0.3,
+			"ResizeHeight": 0.115,
 			"Effects": [
 			]
 		},

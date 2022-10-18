@@ -131,7 +131,7 @@ footer{
 	margin-inline: 0.5em;
 }
 
-.ToolOptions{
+.SelectedOptions{
 	display: grid;
 	grid-template-rows: 75px 75px;
 	grid-template-columns: max-content max-content max-content max-content;

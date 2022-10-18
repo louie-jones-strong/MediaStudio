@@ -116,7 +116,7 @@ class TextTool extends Tool
 		Layers.CurrentImg.pop();
 	}
 
-	//adds a button and click handler to the ToolOptions area.
+	//adds a button and click handler to the SelectedOptions area.
 	SelectTool()
 	{
 		super.SelectTool();
