@@ -7,6 +7,29 @@ class NoiseEffect extends LayerEffect
 		this.Icon = "";
 
 		this.NoiseScale = 0.1;
+		this.ScaleSlider = null;
+	}
+
+	Draw()
+	{
+		super.Draw();
+		if (this.ScaleSlider != null)
+		{
+			this.NoiseScale = this.ScaleSlider.Value;
+		}
+	}
+
+	SetSelected(selected)
+	{
+		super.SetSelected(selected)
+		if (selected)
+		{
+			this.ScaleSlider = this.AddValueSlider("NoiseScale", "Noise Scale", 0, 400, this.NoiseScale);
+		}
+		else
+		{
+			this.ScaleSlider = null;
+		}
 	}
 
 	ApplyEffect(startImg)

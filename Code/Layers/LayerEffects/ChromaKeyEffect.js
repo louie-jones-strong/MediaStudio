@@ -9,7 +9,33 @@ class ChromaKeyEffect extends LayerEffect
 		this.SelectedColour = color(0, 255, 0, 255);
 		this.ReplaceColor = color(0, 0, 0, 0)
 		this.Threshold = 0.1;
+
+		this.ThresholdSlider = null;
 	}
+
+	Draw()
+	{
+		super.Draw();
+		if (this.ThresholdSlider != null)
+		{
+			this.Threshold = this.ThresholdSlider.Value;
+		}
+	}
+
+	SetSelected(selected)
+	{
+		super.SetSelected(selected)
+		if (selected)
+		{
+			this.ThresholdSlider = this.AddValueSlider("Threshold", "Threshold", 0, 400, this.Threshold);
+		}
+		else
+		{
+			this.ThresholdSlider = null;
+		}
+	}
+
+
 
 	ApplyEffect(startImg)
 	{

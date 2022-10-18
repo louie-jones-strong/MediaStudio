@@ -9,9 +9,10 @@ class Slider
 		let label = createDiv('<label for='+id+'>'+labelStr+':</label>');
 		label.parent(holderDiv);
 
+		let step = 0.1;
 		let inputs = createDiv(
-			'<input type="range" id='+id+'Slider min='+min+' max='+max+' value='+value+'></input>' +
-			'<input class="SliderTextBox" type="number" id='+id+'TextBox min='+min+' max='+max+' value='+value+'></input>');
+			'<input type="range" id='+id+'Slider min='+min+' max='+max+' step='+step+' value='+value+'></input>' +
+			'<input class="SliderTextBox" type="number" id='+id+'TextBox min='+min+' max='+max+' step='+step+' value='+value+'></input>');
 		inputs.parent(holderDiv);
 
 		this.Slider = select('#'+id+'Slider');
