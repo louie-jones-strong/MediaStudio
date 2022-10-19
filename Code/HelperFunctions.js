@@ -99,7 +99,7 @@ function HelperFunctions()
 	{
 		return x >= 0 && x <= CanvasWidth &&
 			   y >= 0 && y <= CanvasHeight &&
-			   !PopupOpen;
+			   !OverlayShowing;
 	}
 
 	this.GetColorHex = function(rgbaColor, withAlpha=true)

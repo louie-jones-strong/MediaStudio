@@ -208,7 +208,7 @@ footer{
 }
 
 
-#popupHolder{
+#overlayHolder{
 	z-index: 10;
 	display:flex;
 
@@ -219,11 +219,15 @@ footer{
 	right: 0px;
 	top: 0px;
 	bottom: 0px;
+	background-color: rgba(0,0,0,0);
+	transition: background-color 5s;
+}
 
+#overlayHolder.show{
 	background-color: rgba(0,0,0,0.5);
 }
 
-#popupHolder.hide{
+#overlayHolder.hide{
 	display: none;
 }
 

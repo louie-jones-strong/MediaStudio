@@ -81,7 +81,7 @@ class TemplateManager
 		}
 
 		popup.html(`<div class="popupButtonGroup">
-						<button onclick="ClosePopup()">Cancel</button>
+						<button onclick="CloseOverlay()">Cancel</button>
 						<button onclick="SubmitInputs()">Submit</button>
 					</div>`, true);
 
@@ -130,7 +130,7 @@ class TemplateManager
 				return;
 			}
 		}
-		ClosePopup();
+		CloseOverlay();
 
 		this.TrySetupLayers()
 	}

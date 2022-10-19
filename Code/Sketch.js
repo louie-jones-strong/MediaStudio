@@ -10,7 +10,7 @@ var Zoom = 1;
 var CTRLPressed = false;
 
 var Template = null;
-var PopupOpen = false;
+var OverlayShowing = false;
 
 var FileInput = null;
 
@@ -64,7 +64,7 @@ function setup()
 
 	FileInput.parent(select("#header"));
 
-	ClosePopup();
+	CloseOverlay();
 }
 
 function draw()
@@ -209,9 +209,7 @@ function Resize(width, height)
 
 function OpenPopup(popupHtml="")
 {
-	PopupOpen = true;
-	let holder = select("#popupHolder");
-	holder.elt.classList.remove("hide");
+	holder = ShowOverlay("")
 
 	let popup = createDiv();
 	popup.parent(holder);
@@ -221,10 +219,27 @@ function OpenPopup(popupHtml="")
 	return popup;
 }
 
-function ClosePopup()
+function ShowOverlay(overlayHtml="", fadeTimeSecs=-1)
 {
-	PopupOpen = false;
-	let holder = select("#popupHolder")
+	OverlayShowing = true;
+	let holder = select("#overlayHolder");
+	holder.elt.classList.remove("hide");
+	holder.elt.classList.add("show");
+	holder.html(overlayHtml)
+
+	if (fadeTimeSecs > 0)
+	{
+		setTimeout(CloseOverlay, fadeTimeSecs * 1000);
+	}
+
+	return holder;
+}
+
+function CloseOverlay()
+{
+	OverlayShowing = false;
+	let holder = select("#overlayHolder")
 	holder.elt.classList.add("hide");
+	holder.elt.classList.remove("show");
 	holder.html("")
 }

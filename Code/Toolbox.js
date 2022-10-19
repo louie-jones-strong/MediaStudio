@@ -5,6 +5,24 @@ class Toolbox
 	{
 		this.Tools = [];
 		this.SelectedTool = null;
+		this.CanUseTools = true;
+	}
+
+	SetCanUseTools(canUseTools)
+	{
+		if (canUseTools)
+		{
+			if (this.CanUseTools == false)
+			{
+				this.SelectTool(this.Tools[0].Id);
+			}
+		}
+		else
+		{
+			this.SelectTool(null);
+		}
+
+		this.CanUseTools = canUseTools
 	}
 
 
@@ -43,8 +61,15 @@ class Toolbox
 
 	ToolbarItemClick()
 	{
-		let toolId = this.id().split("iconButton")[0];
-		ToolManager.SelectTool(toolId);
+		if (ToolManager.CanUseTools)
+		{
+			let toolId = this.id().split("iconButton")[0];
+			ToolManager.SelectTool(toolId);
+		}
+		else
+		{
+			ShowOverlay("<h1>You need to select a layer that can be drawn on</h1>", 2.5)
+		}
 	}
 
 	//add a new tool icon to the html page

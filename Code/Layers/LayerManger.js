@@ -68,6 +68,9 @@ class LayerManger
 
 		this.Layers[this.SelectedIndex].SetSelected(true);
 		this.Layers[this.SelectedIndex].UseFastEffect = this.FastEffects;
+
+		let canUseTools = this.Layers[this.SelectedIndex].DisplaySource == DisplaySource.Drawing;
+		ToolManager.SetCanUseTools(canUseTools);
 	}
 
 
