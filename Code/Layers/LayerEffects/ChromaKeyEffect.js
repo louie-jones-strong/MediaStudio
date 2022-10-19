@@ -4,7 +4,6 @@ class ChromaKeyEffect extends LayerEffect
 	{
 		super();
 		this.Name = "Chroma Key";
-		this.Icon = "";
 
 		this.SelectedColour = color(0, 255, 0, 255);
 		this.ReplaceColor = color(0, 0, 0, 0)

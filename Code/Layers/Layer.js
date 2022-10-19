@@ -6,6 +6,7 @@ const EffectLookup = {};
 EffectLookup["Chroma Key"] = ChromaKeyEffect;
 EffectLookup["Blur"] = BlurEffect;
 EffectLookup["Noise"] = NoiseEffect;
+EffectLookup["Flip"] = FlipEffect;
 
 const DisplaySource = {
 	Drawing: 0,

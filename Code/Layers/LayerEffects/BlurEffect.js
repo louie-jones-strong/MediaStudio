@@ -4,7 +4,6 @@ class BlurEffect extends LayerEffect
 	{
 		super();
 		this.Name = "Blur";
-		this.Icon = "";
 
 		this.BlurAmount = 8;
 

@@ -4,7 +4,6 @@ class NoiseEffect extends LayerEffect
 	{
 		super();
 		this.Name = "Noise";
-		this.Icon = "";
 
 		this.NoiseScale = 0.1;
 		this.ScaleSlider = null;
