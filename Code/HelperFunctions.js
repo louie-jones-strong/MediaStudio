@@ -11,6 +11,9 @@ function HelperFunctions()
 
 		if (Layers.Layers.length > 1)
 		{
+			let layerToRemove = Layers.Layers[Layers.SelectedIndex]
+			select(`#Layer${layerToRemove.LayerId}`).remove();
+
 			Layers.Layers.splice(Layers.SelectedIndex, 1);
 
 			let newIndex = Layers.SelectedIndex - 1;
@@ -18,6 +21,10 @@ function HelperFunctions()
 			{
 				newIndex = Layers.Layers.length - 1
 			}
+
+			Layers.SelectedIndex = null;
+
+
 			Layers.SelectIndex(newIndex);
 		}
 	});
