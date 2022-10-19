@@ -33,8 +33,14 @@ class ChromaKeyEffect extends LayerEffect
 		if (selected)
 		{
 			this.ThresholdSlider = this.AddValueSlider("Threshold", "Threshold", 0, 400, this.Threshold);
-			this.SelectedColourPicker = this.AddColourPicker("SelectedColour", "Target Colour", "#00ff00", 255);
-			this.ReplaceColorPicker = this.AddColourPicker("ReplaceColor", "Replace Colour", "#000000", 0);
+
+			let selectedRgbHex = Helpers.GetColorHex(this.SelectedColour, false);
+			let selectedA = this.SelectedColour.levels[3];
+			this.SelectedColourPicker = this.AddColourPicker("SelectedColour", "Target Colour", selectedRgbHex, selectedA);
+
+			let replaceRgbHex = Helpers.GetColorHex(this.ReplaceColor, false);
+			let replaceA = this.ReplaceColor.levels[3];
+			this.ReplaceColorPicker = this.AddColourPicker("ReplaceColor", "Replace Colour", replaceRgbHex, replaceA);
 		}
 		else
 		{
