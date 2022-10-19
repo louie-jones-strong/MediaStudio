@@ -40,7 +40,7 @@ class LayerManger
 		let holder = select('#layerListHolder');
 
 		var index = this.Layers.length;
-		layer.DrawLayerIcon(holder, function() {
+		layer.AddLayerUiHtml(holder, function() {
 			Layers.SelectIndex(index);
 		});
 

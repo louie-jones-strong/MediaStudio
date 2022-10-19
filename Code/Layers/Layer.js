@@ -2,14 +2,22 @@ var NumEffectsCreated = 0;
 const FastEffectScaleFactor = 4;
 
 const DefaultEffectDropDownSelected ='Select Effect';
-const EffectLookup = {}
-EffectLookup["Chroma Key"] = ChromaKeyEffect
-EffectLookup["Blur"] = BlurEffect
-EffectLookup["Noise"] = NoiseEffect
+const EffectLookup = {};
+EffectLookup["Chroma Key"] = ChromaKeyEffect;
+EffectLookup["Blur"] = BlurEffect;
+EffectLookup["Noise"] = NoiseEffect;
+
+const DisplaySource = {
+	Drawing: 0,
+	Graphic: 1,
+	Webcam: 2,
+  };
 
 class Layer
 {
-	constructor(layerId, layerName, graphic, resizePivotX=0, resizePivotY=0, resizeWidth=-1, resizeHeight=-1)
+	constructor(layerId, layerName, graphic,
+		resizePivotX=0, resizePivotY=0, resizeWidth=-1, resizeHeight=-1,
+		displaySource=DisplaySource.Drawing)
 	{
 		this.LayerId = layerId;
 		this.LayerName = layerName;
@@ -29,6 +37,8 @@ class Layer
 		this.ResizePivotY = resizePivotY;
 		this.ResizeWidth = resizeWidth;
 		this.ResizeHeight = resizeHeight;
+
+		this.DisplaySource = displaySource;
 
 		this.Resize(CanvasWidth, CanvasHeight, graphic)
 	}
@@ -60,7 +70,7 @@ class Layer
 		this.UpdateIcon();
 	}
 
-	DrawLayerIcon(holder, onClick)
+	AddLayerUiHtml(holder, onClick)
 	{
 		let layer = createDiv(`<div class="layerHeader"> <h3>${this.LayerName}</h3>
 		Show
@@ -108,6 +118,7 @@ class Layer
 		});
 	}
 
+//#region Effects
 	AddEffect(type)
 	{
 		if (EffectLookup[type] == null)
@@ -174,6 +185,7 @@ class Layer
 			}
 		}
 	}
+//#endregion
 
 	SetSelected(selected)
 	{
@@ -241,8 +253,39 @@ class Layer
 		}
 	}
 
+	UpdateLayerImage()
+	{
+		switch (this.DisplaySource)
+		{
+			case DisplaySource.Drawing:
+			case DisplaySource.Graphic:
+			{
+				break;
+			}
+			case DisplaySource.Webcam:
+			{
+				if (this.Video == null)
+				{
+					this.Video = createCapture(VIDEO);
+					this.Video.hide();
+				}
+
+				this.LayerImage.image(this.Video, 0, 0, this.LayerImage.width, this.LayerImage.height);
+
+				break;
+			}
+			default:
+			{
+				console.log("unknown source: " + this.DisplaySource);
+				break;
+			}
+		}
+	}
+
 	ApplyEffects()
 	{
+		this.UpdateLayerImage();
+
 		if (this.LayerEffects.length == 0 ||
 			this.MuteEffects)
 		{
