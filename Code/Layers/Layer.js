@@ -274,7 +274,7 @@ class Layer extends Selectable
 		image(afterEffectsImg, 0, 0, CanvasWidth, CanvasHeight);
 		pop();
 
-
+		this.P5.clear()
 		this.P5.image(afterEffectsImg, 0, 0, this.P5.width, this.P5.height);
 
 		for (let i = 0; i < this.LayerEffects.length; i++)
