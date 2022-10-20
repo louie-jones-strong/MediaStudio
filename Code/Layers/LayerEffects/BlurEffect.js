@@ -24,7 +24,7 @@ class BlurEffect extends LayerEffect
 		super.SetSelected(selected)
 		if (selected)
 		{
-			this.BlurSlider = this.AddValueSlider("Blur", "Blur Amount", 1, 100, this.BlurAmount);
+			this.BlurSlider = this.AddValueSlider("Blur", "Blur Amount", 1, 100, this.BlurAmount, 0.1);
 		}
 		else
 		{

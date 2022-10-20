@@ -80,7 +80,7 @@ class LayerManger
 		{
 			const layer = this.Layers[i];
 
-			layer.DrawLayer()
+			layer.Draw()
 		}
 	}
 
@@ -88,7 +88,7 @@ class LayerManger
 	{
 		let layer = this.Layers[this.SelectedIndex];
 		layer.ForceEffectRefresh = true;
-		layer.DrawLayer()
+		layer.Draw()
 	}
 
 	DrawOverLayers()
@@ -97,7 +97,7 @@ class LayerManger
 		{
 			const layer = this.Layers[i];
 
-			layer.DrawLayer()
+			layer.Draw()
 
 		}
 	}

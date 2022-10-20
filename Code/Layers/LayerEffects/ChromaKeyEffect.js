@@ -31,7 +31,7 @@ class ChromaKeyEffect extends LayerEffect
 		super.SetSelected(selected)
 		if (selected)
 		{
-			this.ThresholdSlider = this.AddValueSlider("Threshold", "Threshold", 0, 400, this.Threshold);
+			this.ThresholdSlider = this.AddValueSlider("Threshold", "Threshold", 0, 400, this.Threshold, 0.1);
 
 			let selectedRgbHex = Helpers.GetColorHex(this.SelectedColour, false);
 			let selectedA = this.SelectedColour.levels[3];

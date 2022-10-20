@@ -157,10 +157,13 @@ class Layer extends Selectable
 				let name = self.DisplaySourceDropDown.value();
 				self.DisplaySource = DisplaySourceLookup[name];
 			});
+
+			this.AlphaSlider = this.AddValueSlider("Alpha", "Alpha", 0, 1, this.Alpha, 0.01);
 		}
 		else
 		{
 			this.DisplaySourceDropDown = null;
+			this.AlphaSlider = null;
 		}
 	}
 
@@ -251,13 +254,17 @@ class Layer extends Selectable
 		}
 	}
 
-	DrawLayer()
+	Draw()
 	{
+		super.Draw();
 		let showCheckBox = document.getElementById(`Layer${this.LayerId}ShowToggle`);
 		this.Show = showCheckBox.checked;
 
 		let muteEffectsCheckBox = document.getElementById(`Layer${this.LayerId}EffectsToggle`);
 		this.MuteEffects = !muteEffectsCheckBox.checked;
+
+		if (this.AlphaSlider != null)
+			this.Alpha = this.AlphaSlider.Value;
 
 		if (!this.Show)
 		{

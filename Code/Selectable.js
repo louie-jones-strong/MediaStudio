@@ -141,9 +141,9 @@ class Selectable
 		return button;
 	}
 
-	AddValueSlider(id, label, min, max, value)
+	AddValueSlider(id, label, min, max, value, step=1)
 	{
-		let slider = new Slider(".SelectedOptions", id, label, min, max, value);
+		let slider = new Slider(".SelectedOptions", id, label, min, max, value, step);
 		Selectable.Sliders.push(slider);
 		return slider;
 	}

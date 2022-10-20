@@ -1,6 +1,6 @@
 class Slider
 {
-	constructor(parent, id, labelStr, min, max, value)
+	constructor(parent, id, labelStr, min, max, value, step=1)
 	{
 		let holderDiv = createDiv();
 		holderDiv.class('sliderHolder')
@@ -9,7 +9,6 @@ class Slider
 		let label = createDiv('<label for='+id+'>'+labelStr+':</label>');
 		label.parent(holderDiv);
 
-		let step = 0.1;
 		let inputs = createDiv(
 			'<input type="range" id='+id+'Slider min='+min+' max='+max+' step='+step+' value='+value+'></input>' +
 			'<input class="SliderTextBox" type="number" id='+id+'TextBox min='+min+' max='+max+' step='+step+' value='+value+'></input>');
