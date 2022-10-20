@@ -72,6 +72,7 @@ class Selectable
 		}
 		dropDown.selected(options[selectedIndex]);
 		dropDown.parent(select(".SelectedOptions"));
+		dropDown.style("height: max-content;")
 
 
 		dropDown.changed(function()
