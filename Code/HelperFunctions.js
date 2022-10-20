@@ -67,9 +67,11 @@ function HelperFunctions()
 
 
 	//faster function to get the color of pixels
-	this.GetPixel = function(img, x, y)
+	this.GetPixel = function(img, x, y, d=null)
 	{
-		let d = pixelDensity();
+		if (d == null)
+			d = img.pixelDensity();
+
 		let color = [];
 		for (let i = 0; i < d; ++i)
 		{
@@ -86,9 +88,11 @@ function HelperFunctions()
 	}
 
 	//faster function to set the color of pixels
-	this.SetPixel = function(img, x, y, color)
+	this.SetPixel = function(img, x, y, color, d=null)
 	{
-		let d = pixelDensity();
+		if (d == null)
+			d = img.pixelDensity();
+
 		for (let i = 0; i < d; ++i)
 		{
 			for (let j = 0; j < d; ++j)

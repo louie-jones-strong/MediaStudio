@@ -56,11 +56,13 @@ class ChromaKeyEffect extends LayerEffect
 		startImg = super.ApplyEffect(startImg);
 
 		startImg.loadPixels();
+		let d = startImg.pixelDensity();
+
 		for (let x = 0; x < startImg.width; x += 1)
 		{
 			for (let y = 0; y < startImg.height; y += 1)
 			{
-				let colours = Helpers.GetPixel(startImg, x, y);
+				let colours = Helpers.GetPixel(startImg, x, y, d);
 
 				let delta = DistSquared(colours[0], colours[1], colours[2], this.SelectedColour.levels[0], this.SelectedColour.levels[1], this.SelectedColour.levels[2]);
 
