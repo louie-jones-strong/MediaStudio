@@ -50,10 +50,11 @@ class Layer
 
 		if (graphic != null)
 		{
-			let imgWidth = graphic.width;
-			let imgHeight = graphic.height;
-			imgWidth = CanvasWidth;
-			imgHeight = CanvasHeight;
+			let ratio = Math.min(width / graphic.width, height / graphic.height)
+
+			let imgWidth = ratio * graphic.width;
+			let imgHeight = ratio * graphic.height;
+
 
 			if (this.ResizeWidth > 0)
 				imgWidth = floor(this.ResizeWidth * width)
@@ -215,14 +216,7 @@ class Layer
 
 		let afterEffectsImg = this.ApplyEffects();
 
-
-		this.P5.push();
-		if (this.Alpha < 1)
-		{
-			this.P5.tint(255, this.Alpha * 255);
-		}
 		this.P5.image(afterEffectsImg, 0, 0, this.P5.width, this.P5.height);
-		this.P5.pop();
 	}
 
 	DrawLayer()
