@@ -14,6 +14,13 @@ const DisplaySource = {
 	Webcam: 2,
 };
 
+const DisplaySourceLookup = {};
+DisplaySourceLookup["Drawing"] = DisplaySource.Drawing;
+DisplaySourceLookup["Graphic"] = DisplaySource.Graphic;
+DisplaySourceLookup["Webcam"] = DisplaySource.Webcam;
+
+
+
 class Layer extends Selectable
 {
 	constructor(layerId, layerName, graphic,
@@ -137,6 +144,24 @@ class Layer extends Selectable
 			self.EffectDropDown.selected(DefaultEffectDropDownSelected);
 			self.AddEffect(name);
 		});
+	}
+
+	SetSelected(selected)
+	{
+		super.SetSelected(selected)
+		if (selected)
+		{
+			var self = this;
+			this.DisplaySourceDropDown = this.AddDropDownOption(DisplaySourceLookup, 0, function()
+			{
+				let name = self.DisplaySourceDropDown.value();
+				self.DisplaySource = DisplaySourceLookup[name];
+			});
+		}
+		else
+		{
+			this.DisplaySourceDropDown = null;
+		}
 	}
 
 //#region Effects

@@ -60,6 +60,28 @@ class Selectable
 	}
 
 // option buttons
+	AddDropDownOption(options, selectedIndex, onChange)
+	{
+		var self = this;
+
+		let dropDown = createSelect();
+		dropDown.option(options[selectedIndex]);
+		for (const key in options)
+		{
+			dropDown.option(key);
+		}
+		dropDown.selected(options[selectedIndex]);
+		dropDown.parent(select(".SelectedOptions"));
+
+
+		dropDown.changed(function()
+		{
+			onChange();
+		});
+
+		return dropDown;
+	}
+
 	AddToolOption(name, icon, onSelect)
 	{
 		let button = this.AddButton(name, icon);
