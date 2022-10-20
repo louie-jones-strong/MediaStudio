@@ -170,7 +170,7 @@ class TemplateManager
 			if (layerData.ResizeHeight != null)
 				resizeHeight = layerData.ResizeHeight;
 
-			let layer = new Layer(Layers.Layers.length, key, img, resizePivotX, resizePivotY, resizeWidth, resizeHeight);
+			let layer = new Layer(Layers.Layers.length, key, img, resizePivotX, resizePivotY, resizeWidth, resizeHeight, DisplaySource.Graphic);
 			Layers.AddLayer(layer);
 
 			for (let i = 0; i < layerData.Effects.length; i++)
@@ -183,6 +183,8 @@ class TemplateManager
 
 			if (layerData.Actions != null)
 				Actions.DoActions(layerData.Actions);
+
+			Layers.SelectIndex(Layers.Layers.length-1)
 		}
 	}
 }

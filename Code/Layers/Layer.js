@@ -12,7 +12,7 @@ const DisplaySource = {
 	Drawing: 0,
 	Graphic: 1,
 	Webcam: 2,
-  };
+};
 
 class Layer
 {
@@ -52,11 +52,14 @@ class Layer
 		{
 			let imgWidth = graphic.width;
 			let imgHeight = graphic.height;
+			imgWidth = CanvasWidth;
+			imgHeight = CanvasHeight;
 
 			if (this.ResizeWidth > 0)
 				imgWidth = floor(this.ResizeWidth * width)
 			if (this.ResizeHeight > 0)
 				imgHeight = floor(this.ResizeHeight * height)
+
 
 			let x = floor((this.ResizePivotX * width) - (this.ResizePivotX * imgWidth));
 			let y = floor((this.ResizePivotY * height) - (this.ResizePivotY * imgHeight));
@@ -65,7 +68,7 @@ class Layer
 		}
 
 		this.AffectEffectsCache = createGraphics(width, height);
-		this.FastEffectsCache = createGraphics(floor(CanvasWidth / FastEffectScaleFactor), floor(height / FastEffectScaleFactor));
+		this.FastEffectsCache = createGraphics(floor(width / FastEffectScaleFactor), floor(height / FastEffectScaleFactor));
 		this.ForceEffectRefresh = true;
 
 		this.UpdateIcon();
