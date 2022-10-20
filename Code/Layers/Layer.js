@@ -14,14 +14,16 @@ const DisplaySource = {
 	Webcam: 2,
 };
 
-class Layer
+class Layer extends Selectable
 {
 	constructor(layerId, layerName, graphic,
 		resizePivotX=0, resizePivotY=0, resizeWidth=-1, resizeHeight=-1,
 		displaySource=DisplaySource.Drawing)
 	{
+		super();
 		this.LayerId = layerId;
 		this.LayerName = layerName;
+		this.Name = `Layer: ${this.LayerName}`;
 
 		this.Canvas = null;
 		this.P5 = new p5(s);
@@ -71,16 +73,28 @@ class Layer
 		this.AffectEffectsCache = createGraphics(width, height);
 		this.FastEffectsCache = createGraphics(floor(width / FastEffectScaleFactor), floor(height / FastEffectScaleFactor));
 		this.ForceEffectRefresh = true;
-
-		this.UpdateIcon();
 	}
 
 	AddLayerUiHtml(holder, onClick)
 	{
-		let layer = createDiv(`<div class="layerHeader"> <h3>${this.LayerName}</h3>
-		Show
-		<input type="checkbox" id="Layer${this.LayerId}ShowToggle" checked></div>
-		`);
+		let layer = createDiv(``);
+
+		// layer header
+		let layerHeader = createDiv(`<h3>${this.LayerName }</h3>Show
+			<input type="checkbox" id="Layer${this.LayerId}ShowToggle" checked>`);
+
+		layerHeader.parent(layer);
+		layerHeader.class("layerHeader");
+
+		var self = this;
+
+		let editButton = createButton(`<span class="material-icons">edit</span>`);
+		editButton.parent(layerHeader);
+		editButton.mousePressed(function() {
+			ToolManager.SelectTool(null);
+			self.SetSelected(true);
+		});
+
 
 		layer.mouseClicked(onClick);
 		layer.class("layer");
@@ -102,7 +116,9 @@ class Layer
 		effectsHolder.id(`Layer${this.LayerId}Effects`);
 		effectsHolder.parent(layer);
 
-		var self = this;
+
+
+
 
 		// add effect drop down
 		this.EffectDropDown = createSelect();
@@ -192,7 +208,7 @@ class Layer
 	}
 //#endregion
 
-	SetSelected(selected)
+	SetCurrentLayer(selected)
 	{
 
 		this.ForceEffectRefresh = true;
@@ -208,15 +224,6 @@ class Layer
 		{
 			layer.elt.classList.remove("selected");
 		}
-	}
-
-	UpdateIcon()
-	{
-		this.P5.clear();
-
-		let afterEffectsImg = this.ApplyEffects();
-
-		this.P5.image(afterEffectsImg, 0, 0, this.P5.width, this.P5.height);
 	}
 
 	DrawLayer()
@@ -239,10 +246,11 @@ class Layer
 		{
 			tint(255, this.Alpha * 255);
 		}
-
 		image(afterEffectsImg, 0, 0, CanvasWidth, CanvasHeight);
-
 		pop();
+
+
+		this.P5.image(afterEffectsImg, 0, 0, this.P5.width, this.P5.height);
 
 		for (let i = 0; i < this.LayerEffects.length; i++)
 		{

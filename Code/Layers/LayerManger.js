@@ -45,7 +45,6 @@ class LayerManger
 		});
 
 		this.Layers.push(layer);
-		layer.UpdateIcon();
 
 		this.SelectIndex(this.Layers.length-1)
 	}
@@ -54,7 +53,7 @@ class LayerManger
 	{
 		if (this.SelectedIndex != null)
 		{
-			this.Layers[this.SelectedIndex].SetSelected(false);
+			this.Layers[this.SelectedIndex].SetCurrentLayer(false);
 			this.Layers[this.SelectedIndex].UseFastEffect = false;
 		}
 
@@ -66,7 +65,7 @@ class LayerManger
 		this.CurrentImg = this.Layers[this.SelectedIndex].LayerImage;
 
 
-		this.Layers[this.SelectedIndex].SetSelected(true);
+		this.Layers[this.SelectedIndex].SetCurrentLayer(true);
 		this.Layers[this.SelectedIndex].UseFastEffect = this.FastEffects;
 
 		let canUseTools = this.Layers[this.SelectedIndex].DisplaySource == DisplaySource.Drawing;
@@ -90,7 +89,6 @@ class LayerManger
 		let layer = this.Layers[this.SelectedIndex];
 		layer.ForceEffectRefresh = true;
 		layer.DrawLayer()
-		layer.UpdateIcon();
 	}
 
 	DrawOverLayers()

@@ -2,10 +2,16 @@ class Selectable
 {
 	static CurrentFooterHtml = "";
 	static Sliders = [];
+	static CurrentSelection = null;
 
 	constructor()
 	{
-		this.Selected = false;
+		this.Name = "Default Selectable";
+	}
+
+	IsSelected()
+	{
+		return this != Selectable.CurrentSelection
 	}
 
 	SetSelected(selected)
@@ -15,16 +21,19 @@ class Selectable
 			select(".SelectedTitle").html("<h2>"+this.Name+"</h2>")
 			select(".SelectedOptions").html("");
 			select("#footer").html("");
+			Selectable.CurrentSelection = this;
 		}
 		else
 		{
-			//clear SelectedOptions
-			select(".SelectedTitle").html("");
-			select(".SelectedOptions").html("");
-			select("#footer").html("");
+			if (Selectable.CurrentSelection == this)
+			{
+				//clear SelectedOptions
+				select(".SelectedTitle").html("");
+				select(".SelectedOptions").html("");
+				select("#footer").html("");
+				Selectable.CurrentSelection = null;
+			}
 		}
-
-		this.Selected = selected;
 	}
 
 	Draw()
