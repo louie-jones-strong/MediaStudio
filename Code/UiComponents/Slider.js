@@ -25,8 +25,8 @@ class Slider
 
 	Update()
 	{
-		let sliderValue = this.Slider.value();;
-		let inputFieldValue = int(this.InputField.value());
+		let sliderValue = this.Slider.value();
+		let inputFieldValue = parseFloat(this.InputField.value());
 		if (isNaN(inputFieldValue))
 		{
 			inputFieldValue = 0;
