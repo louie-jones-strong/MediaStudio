@@ -1,4 +1,3 @@
-var NumEffectsCreated = 0;
 const FastEffectScaleFactor = 4;
 
 const DefaultEffectDropDownSelected ='Select Effect';
@@ -23,6 +22,7 @@ DisplaySourceLookup["Webcam"] = DisplaySource.Webcam;
 
 class Layer extends Selectable
 {
+	static NumEffectsCreated = 0;
 	constructor(layerId, layerName, graphic,
 		resizePivotX=0, resizePivotY=0, resizeWidth=-1, resizeHeight=-1,
 		displaySource=DisplaySource.Drawing)
@@ -176,8 +176,8 @@ class Layer extends Selectable
 
 
 		let effect = new EffectLookup[type]();
-		effect.Id = NumEffectsCreated;
-		NumEffectsCreated += 1;
+		effect.Id = Layer.NumEffectsCreated;
+		Layer.NumEffectsCreated += 1;
 
 		let effectDiv = createDiv(effect.Name);
 		effectDiv.class("effect")
