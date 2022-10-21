@@ -160,8 +160,8 @@ class Layer extends Selectable
 
 			this.AlphaSlider = this.AddValueSlider("Alpha", "Alpha", 0, 1, this.Alpha, 0.01);
 
-			let x = this.ResizePivotX * CanvasWidth
-			let y = this.ResizePivotY * CanvasHeight
+			let x = this.ResizePivotX * CanvasWidth - (CanvasWidth * this.ResizeWidth) / 2
+			let y = this.ResizePivotY * CanvasHeight - (CanvasHeight * this.ResizeHeight) / 2
 			this.ResizeSquare = new ResizeableSquare(x, y, CanvasWidth * this.ResizeWidth, CanvasHeight * this.ResizeHeight)
 		}
 		else
