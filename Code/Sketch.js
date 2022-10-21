@@ -71,6 +71,7 @@ function draw()
 {
 	HandleMouse();
 	ColorP.UpdateColors();
+	Draggable.Update();
 	//call the draw function on the selected tool
 	ToolManager.Draw();
 

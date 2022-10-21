@@ -64,7 +64,7 @@ class ChromaKeyEffect extends LayerEffect
 			{
 				let colours = Helpers.GetPixel(startImg, x, y, d);
 
-				let delta = DistSquared(colours[0], colours[1], colours[2], this.SelectedColour.levels[0], this.SelectedColour.levels[1], this.SelectedColour.levels[2]);
+				let delta = DistSquared(colours, this.SelectedColour.levels);
 
 				if (delta <= this.Threshold * this.Threshold)
 				{
@@ -78,7 +78,13 @@ class ChromaKeyEffect extends LayerEffect
 	}
 }
 
-function DistSquared(x1, y1, z1, x2, y2, z2)
+function DistSquared(a, b)
 {
-	return (x2-x1)*(x2-x1) + (y2-y1)*(y2-y1) + (z2-z1)*(z2-z1);
+	let dist = 0;
+	let channels =  Math.min(a.length, b.length)
+	for (let i = 0; i < channels; i++)
+	{
+		dist += (b[i]-a[i])*(b[i]-a[i])
+	}
+	return (dist / channels) / 255;
 }

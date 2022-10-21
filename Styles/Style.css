@@ -71,6 +71,7 @@ header{
 }
 
 #content{
+	position: relative;
 	grid-area: content;
 	overflow: auto;
 	background-color: #222;
@@ -256,4 +257,18 @@ footer{
 
 .center{
 	justify-content: center;
+}
+
+
+#canvas{
+	position: relative;
+}
+
+.layerHandle{
+	position: absolute;
+	border-radius: 50%;
+	border: red solid 5px;
+
+	padding: 20px;
+	cursor: move;
 }

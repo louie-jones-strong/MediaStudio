@@ -51,6 +51,36 @@ class Layer extends Selectable
 		this.DisplaySource = displaySource;
 
 		this.Resize(CanvasWidth, CanvasHeight, graphic)
+
+
+		let canvas = select("#content")
+
+		let layerHandle_TopLeft = createDiv()
+		layerHandle_TopLeft.elt.classList.add("layerHandle")
+		layerHandle_TopLeft.id("layerHandle_TopLeft")
+		layerHandle_TopLeft.parent(canvas);
+
+		let layerHandle_TopRight = createDiv()
+		layerHandle_TopRight.elt.classList.add("layerHandle")
+		layerHandle_TopRight.id("layerHandle_TopRight")
+		layerHandle_TopRight.parent(canvas);
+
+		let layerHandle_BottomLeft = createDiv()
+		layerHandle_BottomLeft.elt.classList.add("layerHandle")
+		layerHandle_BottomLeft.id("layerHandle_BottomLeft")
+		layerHandle_BottomLeft.parent(canvas);
+
+		let layerHandle_BottomRight = createDiv()
+		layerHandle_BottomRight.elt.classList.add("layerHandle")
+		layerHandle_BottomRight.id("layerHandle_BottomRight")
+		layerHandle_BottomRight.parent(canvas);
+
+
+
+		new Draggable(layerHandle_TopLeft, 0, 0)
+		new Draggable(layerHandle_TopRight, CanvasWidth, 0)
+		new Draggable(layerHandle_BottomLeft, 0, CanvasHeight)
+		new Draggable(layerHandle_BottomRight, CanvasWidth, CanvasHeight)
 	}
 
 	Resize(width, height, graphic)
