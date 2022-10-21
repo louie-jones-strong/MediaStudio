@@ -11,7 +11,7 @@ class Selectable
 
 	IsSelected()
 	{
-		return this != Selectable.CurrentSelection
+		return this == Selectable.CurrentSelection
 	}
 
 	SetSelected(selected)

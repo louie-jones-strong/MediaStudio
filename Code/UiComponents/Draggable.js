@@ -14,6 +14,12 @@ class Draggable
 		this.StartDragRange = 50;
 	}
 
+	Remove()
+	{
+		this.Element.remove();
+		// remove from Items array
+	}
+
 	static Update()
 	{
 		if (!Draggable.LastMouseDown && MouseLeftPressed)
@@ -38,7 +44,7 @@ class Draggable
 		else if (!MouseLeftPressed)
 		{
 			// mouse released
-			// Draggable.Selected = null;
+			Draggable.Selected = null;
 		}
 		else if (Draggable.Selected != null)
 		{
