@@ -5,9 +5,11 @@ class Draggable
 	static LastMouseDown = false;
 	static Selected = null;
 
-	constructor(element, x, y)
+	constructor(element, x, y, holderId="content")
 	{
+		this.Holder = select(`#${holderId}`)
 		this.Element = element
+		this.Element.parent(this.Holder);
 
 		Draggable.Items.push(this);
 		this.SetPos(x, y)
@@ -66,7 +68,17 @@ class Draggable
 		// CanvasWidth * Zoom
 		this.X = x;
 		this.Y = y;
-		this.Element.elt.style.left = `${this.X * Zoom - 25}px`;
-		this.Element.elt.style.top = `${this.Y * Zoom - 25}px`;
+
+		let holderWidth = this.Holder.size().width;
+		let holderHeight = this.Holder.size().height;
+
+		let offsetX = (holderWidth - CanvasWidth * Zoom) / 2;
+		let offsetY = (holderHeight - CanvasHeight * Zoom) / 2;
+
+		console.log(offsetX, offsetY);
+
+
+		this.Element.elt.style.left = `${this.X * Zoom + offsetX - 25}px`;
+		this.Element.elt.style.top = `${this.Y * Zoom + offsetY - 25}px`;
 	}
 }

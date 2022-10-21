@@ -7,27 +7,21 @@ class ResizeableSquare
 		this.Width = width;
 		this.Height = height;
 
-		let canvas = select("#content")
-
 		let topLeft = createDiv()
 		topLeft.elt.classList.add("layerHandle")
 		topLeft.id("topLeft")
-		topLeft.parent(canvas);
 
 		let topRight = createDiv()
 		topRight.elt.classList.add("layerHandle")
 		topRight.id("topRight")
-		topRight.parent(canvas);
 
 		let bottomLeft = createDiv()
 		bottomLeft.elt.classList.add("layerHandle")
 		bottomLeft.id("bottomLeft")
-		bottomLeft.parent(canvas);
 
 		let bottomRight = createDiv()
 		bottomRight.elt.classList.add("layerHandle")
 		bottomRight.id("bottomRight")
-		bottomRight.parent(canvas);
 
 
 
