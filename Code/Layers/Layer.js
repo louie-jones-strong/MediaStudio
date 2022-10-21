@@ -276,8 +276,6 @@ class Layer extends Selectable
 
 
 			this.Alpha = this.AlphaSlider.Value;
-
-			console.log(this.ResizeWidth, this.ResizeHeight);
 		}
 
 
