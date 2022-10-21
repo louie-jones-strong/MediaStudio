@@ -18,10 +18,18 @@ class Selectable
 	{
 		if (selected)
 		{
-			select(".SelectedTitle").html("<h2>"+this.Name+"</h2>")
-			select(".SelectedOptions").html("");
-			select("#footer").html("");
-			Selectable.CurrentSelection = this;
+			if (Selectable.CurrentSelection != this)
+			{
+				select(".SelectedTitle").html("<h2>"+this.Name+"</h2>")
+				select(".SelectedOptions").html("");
+				select("#footer").html("");
+
+				if (Selectable.CurrentSelection != null)
+				{
+					Selectable.CurrentSelection.SetSelected(false);
+				}
+				Selectable.CurrentSelection = this;
+			}
 		}
 		else
 		{
