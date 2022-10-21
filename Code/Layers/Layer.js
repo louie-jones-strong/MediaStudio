@@ -24,7 +24,7 @@ class Layer extends Selectable
 {
 	static NumEffectsCreated = 0;
 	constructor(layerId, layerName, graphic,
-		resizePivotX=0, resizePivotY=0, resizeWidth=-1, resizeHeight=-1,
+		resizePivotX=0, resizePivotY=0, resizeWidth=1, resizeHeight=1,
 		displaySource=DisplaySource.Drawing)
 	{
 		super();
@@ -159,7 +159,10 @@ class Layer extends Selectable
 			});
 
 			this.AlphaSlider = this.AddValueSlider("Alpha", "Alpha", 0, 1, this.Alpha, 0.01);
-			this.ResizeSquare = new ResizeableSquare(0,0, CanvasWidth, CanvasHeight)
+
+			let x = this.ResizePivotX * CanvasWidth
+			let y = this.ResizePivotY * CanvasHeight
+			this.ResizeSquare = new ResizeableSquare(x, y, CanvasWidth * this.ResizeWidth, CanvasHeight * this.ResizeHeight)
 		}
 		else
 		{
@@ -265,6 +268,11 @@ class Layer extends Selectable
 		if (this.IsSelected())
 		{
 			this.ResizeSquare.Update()
+
+			let x = this.ResizePivotX * CanvasWidth
+			let y = this.ResizePivotY * CanvasHeight
+			this.ResizeWidth = this.ResizeSquare.Width / CanvasWidth
+			this.ResizeHeight = this.ResizeSquare.Height / CanvasHeight
 		}
 
 
