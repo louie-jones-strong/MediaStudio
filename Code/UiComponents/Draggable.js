@@ -75,9 +75,6 @@ class Draggable
 		let offsetX = (holderWidth - CanvasWidth * Zoom) / 2;
 		let offsetY = (holderHeight - CanvasHeight * Zoom) / 2;
 
-		console.log(offsetX, offsetY);
-
-
 		this.Element.elt.style.left = `${this.X * Zoom + offsetX - 25}px`;
 		this.Element.elt.style.top = `${this.Y * Zoom + offsetY - 25}px`;
 	}
