@@ -53,13 +53,20 @@ class Draggable
 		}
 
 		Draggable.LastMouseDown = MouseLeftPressed;
+
+		for (let i = 0; i < Draggable.Items.length; i++)
+		{
+			const item = Draggable.Items[i];
+			item.SetPos(item.X, item.Y)
+		}
 	}
 
 	SetPos(x, y)
 	{
+		// CanvasWidth * Zoom
 		this.X = x;
 		this.Y = y;
-		this.Element.elt.style.left = `${this.X - 20}px`;
-		this.Element.elt.style.top = `${this.Y + 30}px`;
+		this.Element.elt.style.left = `${this.X * Zoom - 25}px`;
+		this.Element.elt.style.top = `${this.Y * Zoom - 25}px`;
 	}
 }
