@@ -162,11 +162,11 @@ class TemplateManager
 			if (layerData.ResizePivotY != null)
 				resizePivotY = layerData.ResizePivotY;
 
-			let resizeWidth = -1
+			let resizeWidth = 1
 			if (layerData.ResizeWidth != null)
 				resizeWidth = layerData.ResizeWidth;
 
-			let resizeHeight = -1
+			let resizeHeight = 1
 			if (layerData.ResizeHeight != null)
 				resizeHeight = layerData.ResizeHeight;
 

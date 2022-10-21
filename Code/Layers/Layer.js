@@ -59,22 +59,22 @@ class Layer extends Selectable
 
 		if (graphic != null)
 		{
-			let ratio = Math.min(width / graphic.width, height / graphic.height)
+		// 	let ratio = Math.min(width / graphic.width, height / graphic.height)
 
-			let imgWidth = ratio * graphic.width;
-			let imgHeight = ratio * graphic.height;
-
-
-			if (this.ResizeWidth > 0)
-				imgWidth = floor(this.ResizeWidth * width)
-			if (this.ResizeHeight > 0)
-				imgHeight = floor(this.ResizeHeight * height)
+		// 	let imgWidth = ratio * graphic.width;
+		// 	let imgHeight = ratio * graphic.height;
 
 
-			let x = floor((this.ResizePivotX * width) - (this.ResizePivotX * imgWidth));
-			let y = floor((this.ResizePivotY * height) - (this.ResizePivotY * imgHeight));
+		// 	if (this.ResizeWidth > 0)
+		// 		imgWidth = floor(this.ResizeWidth * width)
+		// 	if (this.ResizeHeight > 0)
+		// 		imgHeight = floor(this.ResizeHeight * height)
 
-			this.LayerImage.image(graphic, x, y, imgWidth, imgHeight);
+
+		// 	let x = floor((this.ResizePivotX * width) - (this.ResizePivotX * imgWidth));
+		// 	let y = floor((this.ResizePivotY * height) - (this.ResizePivotY * imgHeight));
+
+			this.LayerImage.image(graphic, 0, 0, CanvasWidth, CanvasHeight);
 		}
 
 		this.AffectEffectsCache = createGraphics(width, height);
@@ -273,6 +273,11 @@ class Layer extends Selectable
 			let y = this.ResizePivotY * CanvasHeight
 			this.ResizeWidth = this.ResizeSquare.Width / CanvasWidth
 			this.ResizeHeight = this.ResizeSquare.Height / CanvasHeight
+
+
+			this.Alpha = this.AlphaSlider.Value;
+
+			console.log(this.ResizeWidth, this.ResizeHeight);
 		}
 
 
@@ -282,8 +287,6 @@ class Layer extends Selectable
 		let muteEffectsCheckBox = document.getElementById(`Layer${this.LayerId}EffectsToggle`);
 		this.MuteEffects = !muteEffectsCheckBox.checked;
 
-		if (this.AlphaSlider != null)
-			this.Alpha = this.AlphaSlider.Value;
 
 		if (!this.Show)
 		{
@@ -297,11 +300,18 @@ class Layer extends Selectable
 		{
 			tint(255, this.Alpha * 255);
 		}
-		image(afterEffectsImg, 0, 0, CanvasWidth, CanvasHeight);
+
+
+		let x = floor((this.ResizePivotX * CanvasWidth) - (this.ResizePivotX * (CanvasWidth * this.ResizeWidth)));
+		let y = floor((this.ResizePivotY * CanvasHeight) - (this.ResizePivotY * (CanvasHeight * this.ResizeHeight)));
+		image(afterEffectsImg, x, y, CanvasWidth * this.ResizeWidth, CanvasHeight * this.ResizeHeight);
 		pop();
 
 		this.P5.clear()
-		this.P5.image(afterEffectsImg, 0, 0, this.P5.width, this.P5.height);
+		x = floor((this.ResizePivotX * this.P5.width) - (this.ResizePivotX * (this.P5.width * this.ResizeWidth)));
+		y = floor((this.ResizePivotY * this.P5.height) - (this.ResizePivotY * (this.P5.height * this.ResizeHeight)));
+		this.P5.image(afterEffectsImg, x, y, this.P5.width * this.ResizeWidth, this.P5.height * this.ResizeHeight);
+
 
 		for (let i = 0; i < this.LayerEffects.length; i++)
 		{

@@ -54,8 +54,8 @@ class ResizeableSquare
 		this.X = this.TopLeftDrag.X;
 		this.Y = this.TopLeftDrag.Y;
 
-		this.Width = this.BottomRightDrag - this.X;
-		this.Height = this.BottomRightDrag - this.Y;
+		this.Width = this.BottomRightDrag.X - this.X;
+		this.Height = this.BottomRightDrag.Y - this.Y;
 	}
 
 	UpdateList(list, lockedX, lockedY)
