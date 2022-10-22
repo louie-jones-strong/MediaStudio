@@ -11,7 +11,6 @@ class Tool extends Selectable
 		this.ShowStrokeSettings = true;
 
 		this.StrokeWeightSlider = null;
-		this.NormalizeAspectRatio = false;
 	}
 
 	SelectTool()
@@ -48,17 +47,9 @@ class Tool extends Selectable
 
 	KeyPressed(key, keyCode)
 	{
-		if (keyCode === SHIFT)
-		{
-			this.NormalizeAspectRatio = true;
-		}
 	}
 
 	KeyReleased(key, keyCode)
 	{
-		if (keyCode === SHIFT)
-		{
-			this.NormalizeAspectRatio = false;
-		}
 	}
 }

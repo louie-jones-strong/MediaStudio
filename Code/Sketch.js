@@ -21,6 +21,8 @@ var MouseRightPressed = false;
 var MouseCenterPressed = false;
 var MouseLeftOrRightPressed = false;
 
+var NormalizeAspectRatio = false;
+
 function setup()
 {
 	HandleMouse();
@@ -101,6 +103,11 @@ function keyPressed()
 	{
 		CTRLPressed = true;
 	}
+
+	if (keyCode === SHIFT)
+	{
+		NormalizeAspectRatio = true;
+	}
 }
 
 function keyReleased()
@@ -111,6 +118,11 @@ function keyReleased()
 	if (keyCode === CONTROL)
 	{
 		CTRLPressed = false;
+	}
+
+	if (keyCode === SHIFT)
+	{
+		NormalizeAspectRatio = false;
 	}
 }
 

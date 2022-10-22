@@ -110,7 +110,7 @@ class ShapeTool extends Tool
 		let width = MousePosX-this.StartMouseX;
 		let height = MousePosY-this.StartMouseY;
 
-		if (this.NormalizeAspectRatio)
+		if (NormalizeAspectRatio)
 		{
 			let minValue = Math.min(Math.abs(width), Math.abs(height));
 			if (minValue != 0)

@@ -102,7 +102,7 @@ class CopyPasteTool extends Tool
 				this.SelectionWidth = MousePosX-this.SelectionStartX;
 				this.SelectionHeight = MousePosY-this.SelectionStartY;
 
-				if (this.NormalizeAspectRatio)
+				if (NormalizeAspectRatio)
 				{
 					let minValue = Math.min(Math.abs(this.SelectionWidth), Math.abs(this.SelectionHeight));
 					if (minValue != 0)

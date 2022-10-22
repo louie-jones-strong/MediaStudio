@@ -6,6 +6,8 @@ class ResizeableSquare
 		this.Y = y;
 		this.Width = width;
 		this.Height = height;
+		this.AspectRatio = width/height;
+
 
 		let topLeft = createDiv()
 		topLeft.elt.classList.add("layerHandle")

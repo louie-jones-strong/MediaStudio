@@ -50,7 +50,7 @@ class LineToTool extends Tool
 				let endX = MousePosX;
 				let endY = MousePosY;
 
-				if (this.NormalizeAspectRatio)
+				if (NormalizeAspectRatio)
 				{
 					let deltaX = endX - this.StartMouseX;
 					let deltaY = endY - this.StartMouseY;
