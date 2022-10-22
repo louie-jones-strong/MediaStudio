@@ -24,7 +24,7 @@ class Layer extends Selectable
 {
 	static NumEffectsCreated = 0;
 	constructor(layerId, layerName, graphic,
-		resizePivotX=0, resizePivotY=0, resizeWidth=1, resizeHeight=1,
+		resizeAnchorX=0, resizeAnchorY=0, resizeWidth=-1, resizeHeight=-1,
 		displaySource=DisplaySource.Drawing)
 	{
 		super();
@@ -43,10 +43,14 @@ class Layer extends Selectable
 		this.UseFastEffect = false;
 
 		// resizing Style
-		this.ResizePivotX = resizePivotX;
-		this.ResizePivotY = resizePivotY;
+		this.ResizeAnchorX = resizeAnchorX;
+		this.ResizeAnchorY = resizeAnchorY;
+		this.ResizePivotX = this.ResizeAnchorX;
+		this.ResizePivotY = this.ResizeAnchorY;
 		this.ResizeWidth = resizeWidth;
 		this.ResizeHeight = resizeHeight;
+		this.XOffset = 0;
+		this.YOffset = 0;
 
 		this.DisplaySource = displaySource;
 
@@ -59,10 +63,13 @@ class Layer extends Selectable
 
 		if (graphic != null)
 		{
-		// 	let ratio = Math.min(width / graphic.width, height / graphic.height)
+			if (this.ResizeWidth < 0 && this.ResizeHeight < 0)
+			{
+				let ratio = Math.min(width / graphic.width, height / graphic.height)
 
-		// 	let imgWidth = ratio * graphic.width;
-		// 	let imgHeight = ratio * graphic.height;
+				this.ResizeWidth = ratio * graphic.width / width;
+				this.ResizeHeight = ratio * graphic.height / height;
+			}
 
 
 		// 	if (this.ResizeWidth > 0)
@@ -71,8 +78,8 @@ class Layer extends Selectable
 		// 		imgHeight = floor(this.ResizeHeight * height)
 
 
-		// 	let x = floor((this.ResizePivotX * width) - (this.ResizePivotX * imgWidth));
-		// 	let y = floor((this.ResizePivotY * height) - (this.ResizePivotY * imgHeight));
+		// 	let x = floor((this.ResizeAnchorX * width) - (this.ResizeAnchorX * imgWidth));
+		// 	let y = floor((this.ResizeAnchorY * height) - (this.ResizeAnchorY * imgHeight));
 
 			this.LayerImage.image(graphic, 0, 0, CanvasWidth, CanvasHeight);
 		}
@@ -160,8 +167,8 @@ class Layer extends Selectable
 
 			this.AlphaSlider = this.AddValueSlider("Alpha", "Alpha", 0, 1, this.Alpha, 0.01);
 
-			let x = this.ResizePivotX * CanvasWidth - (CanvasWidth * this.ResizeWidth) / 2
-			let y = this.ResizePivotY * CanvasHeight - (CanvasHeight * this.ResizeHeight) / 2
+			let x = this.ResizeAnchorX * CanvasWidth - (CanvasWidth * this.ResizeWidth) / 2
+			let y = this.ResizeAnchorY * CanvasHeight - (CanvasHeight * this.ResizeHeight) / 2
 			this.ResizeSquare = new ResizeableSquare(x, y, CanvasWidth * this.ResizeWidth, CanvasHeight * this.ResizeHeight)
 		}
 		else
@@ -269,8 +276,12 @@ class Layer extends Selectable
 		{
 			this.ResizeSquare.Update()
 
-			let x = this.ResizePivotX * CanvasWidth
-			let y = this.ResizePivotY * CanvasHeight
+			this.XOffset = this.ResizeSquare.X
+			this.YOffset = this.ResizeSquare.Y
+			this.ResizeAnchorX = 0;
+			this.ResizeAnchorY = 0;
+			this.ResizePivotX = 0;
+			this.ResizePivotY = 0;
 			this.ResizeWidth = this.ResizeSquare.Width / CanvasWidth
 			this.ResizeHeight = this.ResizeSquare.Height / CanvasHeight
 
@@ -300,14 +311,14 @@ class Layer extends Selectable
 		}
 
 
-		let x = floor((this.ResizePivotX * CanvasWidth) - (this.ResizePivotX * (CanvasWidth * this.ResizeWidth)));
-		let y = floor((this.ResizePivotY * CanvasHeight) - (this.ResizePivotY * (CanvasHeight * this.ResizeHeight)));
+		let x = (this.ResizeAnchorX * CanvasWidth) - ((this.ResizePivotX * CanvasWidth ) * this.ResizeWidth)+ this.XOffset;
+		let y = (this.ResizeAnchorY * CanvasHeight) - ((this.ResizePivotY * CanvasHeight ) * this.ResizeHeight) + this.YOffset;
 		image(afterEffectsImg, x, y, CanvasWidth * this.ResizeWidth, CanvasHeight * this.ResizeHeight);
 		pop();
 
 		this.P5.clear()
-		x = floor((this.ResizePivotX * this.P5.width) - (this.ResizePivotX * (this.P5.width * this.ResizeWidth)));
-		y = floor((this.ResizePivotY * this.P5.height) - (this.ResizePivotY * (this.P5.height * this.ResizeHeight)));
+		x = (this.ResizeAnchorX * this.P5.width) - ((this.ResizePivotX * this.P5.width ) * this.ResizeWidth)+ this.XOffset;
+		y = (this.ResizeAnchorY * this.P5.height) - ((this.ResizePivotY * this.P5.height ) * this.ResizeHeight) + this.YOffset;
 		this.P5.image(afterEffectsImg, x, y, this.P5.width * this.ResizeWidth, this.P5.height * this.ResizeHeight);
 
 
