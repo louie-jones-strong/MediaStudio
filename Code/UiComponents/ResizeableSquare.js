@@ -6,7 +6,8 @@ class ResizeableSquare
 		this.Y = y;
 		this.Width = width;
 		this.Height = height;
-		this.AspectRatio = width/height;
+		this.OgWidth = this.Width
+		this.OgHeight = this.Height;
 
 
 		let topLeft = createDiv()
@@ -58,28 +59,46 @@ class ResizeableSquare
 
 		this.Width = this.BottomRightDrag.X - this.X;
 		this.Height = this.BottomRightDrag.Y - this.Y;
+
+		if (NormalizeAspectRatio)
+		{
+			let ratio = Math.min(this.Width / this.OgWidth, this.Height / this.OgHeight)
+
+			this.Width = ratio * this.OgWidth;
+			this.Height = ratio * this.OgHeight;
+
+
+			this.UpdateList(this.RightList, false, true, this.Width + this.X, this.Height + this.Y);
+			this.UpdateList(this.BottomList, true, false, this.Width + this.X, this.Height + this.Y);
+		}
 	}
 
-	UpdateList(list, lockedX, lockedY)
+	UpdateList(list, lockedX, lockedY, forcedX=-1, forcedY=-1)
 	{
-		let selectedItem = null;
-		for (let i = 0; i < list.length; i++)
+		let newX = forcedX;
+		let newY = forcedY;
+
+		if ( forcedX < 0 && forcedY < 0)
 		{
-			const item = list[i];
-			if (item == Draggable.Selected)
+			let selectedItem = null;
+			for (let i = 0; i < list.length; i++)
 			{
-				selectedItem = item;
-				break;
+				const item = list[i];
+				if (item == Draggable.Selected)
+				{
+					selectedItem = item;
+					break;
+				}
 			}
-		}
 
-		if (selectedItem == null)
-		{
-			return;
-		}
+			if (selectedItem == null)
+			{
+				return;
+			}
 
-		let newX = selectedItem.X;
-		let newY = selectedItem.Y;
+			newX = selectedItem.X;
+			newY = selectedItem.Y;
+		}
 
 		for (let i = 0; i < list.length; i++)
 		{
