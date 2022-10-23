@@ -67,37 +67,43 @@ class ResizeableSquare
 			this.Width = ratio * this.OgWidth;
 			this.Height = ratio * this.OgHeight;
 
+			this.UpdateList(this.LeftList, false, true, this.X, this.Y);
+			this.UpdateList(this.TopList, true, false, this.X, this.Y);
 
 			this.UpdateList(this.RightList, false, true, this.Width + this.X, this.Height + this.Y);
 			this.UpdateList(this.BottomList, true, false, this.Width + this.X, this.Height + this.Y);
 		}
 	}
 
-	UpdateList(list, lockedX, lockedY, forcedX=-1, forcedY=-1)
+	UpdateList(list, lockedX, lockedY, forcedX=null, forcedY=null)
 	{
-		let newX = forcedX;
-		let newY = forcedY;
-
-		if ( forcedX < 0 && forcedY < 0)
+		let selectedItem = null;
+		for (let i = 0; i < list.length; i++)
 		{
-			let selectedItem = null;
-			for (let i = 0; i < list.length; i++)
+			const item = list[i];
+			if (item == Draggable.Selected)
 			{
-				const item = list[i];
-				if (item == Draggable.Selected)
-				{
-					selectedItem = item;
-					break;
-				}
+				selectedItem = item;
+				break;
 			}
+		}
 
-			if (selectedItem == null)
-			{
-				return;
-			}
+		if (selectedItem == null)
+		{
+			return;
+		}
 
-			newX = selectedItem.X;
-			newY = selectedItem.Y;
+		let newX = selectedItem.X;
+		let newY = selectedItem.Y;
+
+		if ( forcedX != null)
+		{
+			newX = forcedX;
+		}
+
+		if (forcedY != null)
+		{
+			newY = forcedY;
 		}
 
 		for (let i = 0; i < list.length; i++)
