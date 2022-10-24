@@ -65,7 +65,7 @@ class Layer extends Selectable
 		{
 			if (this.ResizeWidth < 0 && this.ResizeHeight < 0)
 			{
-				let ratio = Math.min(width / graphic.width, height / graphic.height)
+				let ratio = Math.max(width / graphic.width, height / graphic.height)
 
 				this.ResizeWidth = ratio * graphic.width / width;
 				this.ResizeHeight = ratio * graphic.height / height;
