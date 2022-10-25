@@ -16,14 +16,13 @@ html, body{
 button{
 	transition-duration: 0.5s;
 	border: none;
-	margin: 3px;
+	margin: 5px;
 	background-color: white;
 	color: black;
 	border-radius: 0.25em;
 	box-shadow:	0.125em 0.125em 0.25em 0 rgba(0,0,0,50%);
 	display: flex;
 	align-items: center;
-	margin: 1em;
 
 	transition: transform 0.2s;
 	transform: scale(1);
@@ -272,4 +271,11 @@ footer{
 
 	padding: calc(20px * var(--canvasZoom));
 	cursor: move;
+}
+
+#setupHolder{
+	display: flex;
+}
+#setupHolder > *{
+	width: 15em;
 }

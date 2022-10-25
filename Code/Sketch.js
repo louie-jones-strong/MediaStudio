@@ -81,9 +81,14 @@ function OpenNewProject()
 	Layers.SetBasicLayers();
 	Layers.CurrentImg.loadPixels();
 
-	let popup = OpenPopup(`<h1>Media Studio</h1>`);
-	let templateHolder = createDiv(`<h3>Templates</h3>`)
-	templateHolder.parent(popup);
+	let popup = OpenPopup(`<h1 class="center">Media Studio</h1>`);
+	let setupHolder = createDiv()
+	setupHolder.id("setupHolder")
+	setupHolder.parent(popup);
+
+	let templateHolder = createDiv(`<h3 class="center">Templates</h3>`)
+	templateHolder.id("templatesHolder")
+	templateHolder.parent(setupHolder);
 
 	let loadTemplateButton = createButton(`Social Media Selling`);
 	loadTemplateButton.parent(templateHolder);
@@ -102,6 +107,27 @@ function OpenNewProject()
 	let uploadTemplate = createFileInput(handleFile);
 	uploadTemplate.elt.accept = "application/JSON"
 	uploadTemplate.parent(templateHolder);
+
+
+
+	let blankCanvasHolder = createDiv(`<h3 class="center">Blank Canvas</h3>
+		<input id="canvasX" type="number" min=${1} max=${100000} step=1 value=${canvasContainer.size().width - 10}></input>
+		<input id="canvasY" type="number" min=${1} max=${100000} step=1 value=${canvasContainer.size().height - 10}></input>`)
+	blankCanvasHolder.id("blankCanvasHolder")
+	blankCanvasHolder.parent(setupHolder);
+
+	let createBlankCanvasButton = createButton(`Create Blank Canvas`);
+	createBlankCanvasButton.parent(blankCanvasHolder);
+	createBlankCanvasButton.mousePressed(function(event)
+	{
+		let x = select("#canvasX").elt.value
+		let y = select("#canvasY").elt.value
+		Zoom = 1
+		Resize(x, y)
+		CloseOverlay()
+	});
+
+
 }
 
 
