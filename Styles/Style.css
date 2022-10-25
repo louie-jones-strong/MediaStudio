@@ -9,6 +9,7 @@ html, body{
 	-khtml-user-select: none; /* Konqueror HTML */
 	-moz-user-select: none; /* Firefox */
 	-ms-user-select: none; /* Internet Explorer/Edge */
+
 }
 
 /* Buttons */
@@ -267,8 +268,8 @@ footer{
 .layerHandle{
 	position: absolute;
 	border-radius: 50%;
-	border: red solid 5px;
+	border: red solid calc(5px * var(--canvasZoom));
 
-	padding: 20px;
+	padding: calc(20px * var(--canvasZoom));
 	cursor: move;
 }

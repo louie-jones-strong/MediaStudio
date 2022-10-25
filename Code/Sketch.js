@@ -67,6 +67,8 @@ function setup()
 	FileInput.parent(select("#header"));
 
 	CloseOverlay();
+
+	SetZoom(Zoom)
 }
 
 function draw()
@@ -137,15 +139,20 @@ function mouseWheel(event)
 	if (CTRLPressed)
 	{
 		Zoom -= event.delta / 1000;
-		Zoom = Math.max(Zoom, 0.1)
-		Zoom = Math.min(Zoom, 40)
-
-		MainCanvas.elt.style.width = `${CanvasWidth * Zoom}px`
-		MainCanvas.elt.style.height = `${CanvasHeight * Zoom}px`
+		SetZoom(Zoom)
 
 		//block page scrolling
 		return false;
 	}
+}
+
+function SetZoom(zoom)
+{
+	zoom = Math.max(zoom, 0.1)
+	Zoom = Math.min(zoom, 40)
+	MainCanvas.elt.style.width = `${CanvasWidth * Zoom}px`
+	MainCanvas.elt.style.height = `${CanvasHeight * Zoom}px`
+	document.documentElement.style.setProperty('--canvasZoom', Zoom);
 }
 
 function handleFile(file)
