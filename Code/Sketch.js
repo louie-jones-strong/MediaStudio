@@ -31,13 +31,13 @@ function setup()
 		event.preventDefault();
 	});
 
-	//create a canvas to fill the content div from index.html
-	let canvasContainer = select('#content');
 
 
 	//create a ToolManager for storing the tools
 	ToolManager = new Toolbox();
 
+	//create a canvas to fill the content div from index.html
+	let canvasContainer = select('#content');
 	Resize(canvasContainer.size().width - 10, canvasContainer.size().height - 10)
 
 	//create helper functions and the color palette
@@ -63,13 +63,47 @@ function setup()
 	ToolManager.AddTool(new CopyPasteTool());
 
 	FileInput = createFileInput(handleFile);
-
 	FileInput.parent(select("#header"));
 
-	CloseOverlay();
+
+	OpenNewProject();
 
 	SetZoom(Zoom)
 }
+
+function OpenNewProject()
+{
+	//create a canvas to fill the content div from index.html
+	let canvasContainer = select('#content');
+	Resize(canvasContainer.size().width - 10, canvasContainer.size().height - 10)
+
+	ToolManager.Reset();
+	Layers.SetBasicLayers();
+	Layers.CurrentImg.loadPixels();
+
+	let popup = OpenPopup(`<h1>Media Studio</h1>`);
+	let templateHolder = createDiv(`<h3>Templates</h3>`)
+	templateHolder.parent(popup);
+
+	let loadTemplateButton = createButton(`Social Media Selling`);
+	loadTemplateButton.parent(templateHolder);
+	loadTemplateButton.mousePressed(function(event)
+	{
+		loadJSON(
+			"Templates/lynKnits_Quick.json",
+			text => {
+				console.log(text);
+				Template.LoadTemplate(text)
+			},
+			() => print('Failed to Load: '+ file),
+		)
+	});
+
+	let uploadTemplate = createFileInput(handleFile);
+	uploadTemplate.elt.accept = "application/JSON"
+	uploadTemplate.parent(templateHolder);
+}
+
 
 function draw()
 {

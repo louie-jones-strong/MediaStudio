@@ -2,7 +2,12 @@ class LayerManger
 {
 	constructor()
 	{
-		this.Layers = [];
+		this.SetBasicLayers()
+	}
+
+	SetBasicLayers()
+	{
+		this.ClearLayers()
 
 		let img = createGraphics(CanvasWidth, CanvasHeight);
 		img.background(255);
