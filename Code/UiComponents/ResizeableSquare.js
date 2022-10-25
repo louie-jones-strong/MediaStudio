@@ -26,12 +26,17 @@ class ResizeableSquare
 		bottomRight.elt.classList.add("layerHandle")
 		bottomRight.id("bottomRight")
 
+		let moveHandle = createDiv()
+		moveHandle.elt.classList.add("layerHandle")
+		moveHandle.id("middle")
+
 
 
 		this.TopLeftDrag = new Draggable(topLeft, this.X, this.Y)
 		this.TopRightDrag = new Draggable(topRight, this.X + this.Width, this.Y)
 		this.BottomLeftDrag = new Draggable(bottomLeft, this.X, this.Y + this.Height)
 		this.BottomRightDrag = new Draggable(bottomRight, this.X + this.Width, this.Y + this.Height)
+		this.MiddleMoveDrag = new Draggable(moveHandle, this.X + this.Width/2, this.Y + this.Height/2)
 
 		this.LeftList = [this.TopLeftDrag, this.BottomLeftDrag]
 		this.RightList = [this.TopRightDrag, this.BottomRightDrag]
@@ -49,6 +54,10 @@ class ResizeableSquare
 
 	Update()
 	{
+		if (this.MiddleMoveDrag == Draggable.Selected)
+		{
+		}
+
 		this.UpdateList(this.LeftList, false, true);
 		this.UpdateList(this.RightList, false, true);
 		this.UpdateList(this.TopList, true, false);

@@ -1,7 +1,6 @@
 class Draggable
 {
 	static Items = [];
-	static LastPos = null;
 	static LastMouseDown = false;
 	static Selected = null;
 
