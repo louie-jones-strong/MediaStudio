@@ -276,8 +276,8 @@ class Layer extends Selectable
 		{
 			this.ResizeSquare.Update()
 
-			this.XOffset = this.ResizeSquare.X
-			this.YOffset = this.ResizeSquare.Y
+			this.XOffset = this.ResizeSquare.X / CanvasWidth
+			this.YOffset = this.ResizeSquare.Y / CanvasHeight
 			this.ResizeAnchorX = 0;
 			this.ResizeAnchorY = 0;
 			this.ResizePivotX = 0;
@@ -311,14 +311,14 @@ class Layer extends Selectable
 		}
 
 
-		let x = (this.ResizeAnchorX * CanvasWidth) - ((this.ResizePivotX * CanvasWidth ) * this.ResizeWidth)+ this.XOffset;
-		let y = (this.ResizeAnchorY * CanvasHeight) - ((this.ResizePivotY * CanvasHeight ) * this.ResizeHeight) + this.YOffset;
+		let x = (this.ResizeAnchorX * CanvasWidth) - ((this.ResizePivotX * CanvasWidth ) * this.ResizeWidth)+ this.XOffset * CanvasWidth;
+		let y = (this.ResizeAnchorY * CanvasHeight) - ((this.ResizePivotY * CanvasHeight ) * this.ResizeHeight) + this.YOffset * CanvasHeight;
 		image(afterEffectsImg, x, y, CanvasWidth * this.ResizeWidth, CanvasHeight * this.ResizeHeight);
 		pop();
 
 		this.P5.clear()
-		x = (this.ResizeAnchorX * this.P5.width) - ((this.ResizePivotX * this.P5.width ) * this.ResizeWidth)+ this.XOffset;
-		y = (this.ResizeAnchorY * this.P5.height) - ((this.ResizePivotY * this.P5.height ) * this.ResizeHeight) + this.YOffset;
+		x = (this.ResizeAnchorX * this.P5.width) - ((this.ResizePivotX * this.P5.width ) * this.ResizeWidth)+ this.XOffset * this.P5.width;
+		y = (this.ResizeAnchorY * this.P5.height) - ((this.ResizePivotY * this.P5.height ) * this.ResizeHeight) + this.YOffset * this.P5.height;
 		this.P5.image(afterEffectsImg, x, y, this.P5.width * this.ResizeWidth, this.P5.height * this.ResizeHeight);
 
 
