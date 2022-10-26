@@ -5,6 +5,14 @@
 	"StartingCanvasHeight": 500,
 	"FastEffects": false,
 	"Inputs": {
+		"Product": {
+			"Description": "Product Image",
+			"Type": "image"
+		},
+		"Price": {
+			"Description": "Product Price",
+			"Type": "text"
+		}
 	},
 	"Outputs": [
 		{
@@ -69,7 +77,7 @@
 				},
 				{
 					"Type": "Keys",
-					"Keys": "£5.35"
+					"KeysInput": "Price"
 				},
 				{
 					"Type": "SelectTool",
@@ -99,7 +107,7 @@
 		},
 		"Product": {
 			"Alpha": 1,
-			"Image": "Templates/product_example.jpg",
+			"Image": "Product",
 			"ResizeAnchorX": 0.5,
 			"ResizeAnchorY": 0.5,
 			"Effects": [

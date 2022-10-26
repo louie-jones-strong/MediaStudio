@@ -91,7 +91,7 @@ function OpenNewProject()
 	templateHolder.parent(setupHolder);
 
 	let templateDict = {}
-	templateDict["Social Media Selling"] = "Templates/SocialMediaSelling_Quick.json"
+	templateDict["Social Media Selling"] = "Templates/SocialMediaSelling.json"
 	templateDict["Webcam Overlay"] = "Templates/WebcamOverlay.json"
 	for (const key in templateDict)
 	{
