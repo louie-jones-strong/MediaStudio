@@ -6,6 +6,7 @@ EffectLookup["Chroma Key"] = ChromaKeyEffect;
 EffectLookup["Blur"] = BlurEffect;
 EffectLookup["Noise"] = NoiseEffect;
 EffectLookup["Flip"] = FlipEffect;
+EffectLookup["Vignette"] = VignetteEffect;
 
 const DisplaySource = {
 	Drawing: 0,
