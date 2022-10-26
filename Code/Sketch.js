@@ -125,7 +125,11 @@ function OpenNewProject()
 		let x = select("#canvasX").elt.value
 		let y = select("#canvasY").elt.value
 		Zoom = 1
-		Resize(x, y)
+
+		if (x != CanvasWidth || y != CanvasHeight)
+		{
+			Resize(x, y)
+		}
 		CloseOverlay()
 	});
 
