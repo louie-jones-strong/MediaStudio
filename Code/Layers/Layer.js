@@ -94,7 +94,7 @@ class Layer extends Selectable
 		let layer = createDiv(``);
 
 		// layer header
-		let layerHeader = createDiv(`<h3>${this.LayerName }</h3>Show
+		let layerHeader = createDiv(`<h3>${this.LayerName }</h3>
 			<input type="checkbox" id="Layer${this.LayerId}ShowToggle" checked>`);
 
 		layerHeader.parent(layer);

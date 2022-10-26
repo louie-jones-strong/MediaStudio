@@ -95,7 +95,7 @@ function OpenNewProject()
 	loadTemplateButton.mousePressed(function(event)
 	{
 		loadJSON(
-			"Templates/lynKnits_Quick.json",
+			"Templates/SocialMediaSelling_Quick.json",
 			text => {
 				console.log(text);
 				Template.LoadTemplate(text)
