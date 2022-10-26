@@ -113,6 +113,7 @@ function OpenNewProject()
 	let blankCanvasHolder = createDiv(`<h3 class="">Blank Canvas</h3>
 		<label for="canvasX">X:</label>
 		<input id="canvasX" type="number" min=${1} max=${100000} step=1 value=${canvasContainer.size().width - 10}></input>
+		<br>
 		<label for="canvasY">Y:</label>
 		<input id="canvasY" type="number" min=${1} max=${100000} step=1 value=${canvasContainer.size().height - 10}></input>`)
 	blankCanvasHolder.id("blankCanvasHolder")
@@ -131,6 +132,7 @@ function OpenNewProject()
 			Resize(x, y)
 		}
 		CloseOverlay()
+		ToolManager.SelectTool(ToolManager.Tools[0].Id);
 	});
 
 
