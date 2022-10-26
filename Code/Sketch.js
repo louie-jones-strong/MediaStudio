@@ -86,7 +86,7 @@ function OpenNewProject()
 	setupHolder.id("setupHolder")
 	setupHolder.parent(popup);
 
-	let templateHolder = createDiv(`<h3 class="center">Templates</h3>`)
+	let templateHolder = createDiv(`<h3 class="">Templates</h3>`)
 	templateHolder.id("templatesHolder")
 	templateHolder.parent(setupHolder);
 
@@ -110,7 +110,7 @@ function OpenNewProject()
 
 
 
-	let blankCanvasHolder = createDiv(`<h3 class="center">Blank Canvas</h3>
+	let blankCanvasHolder = createDiv(`<h3 class="">Blank Canvas</h3>
 		<label for="canvasX">X:</label>
 		<input id="canvasX" type="number" min=${1} max=${100000} step=1 value=${canvasContainer.size().width - 10}></input>
 		<label for="canvasY">Y:</label>
@@ -140,10 +140,13 @@ function OpenNewProject()
 function draw()
 {
 	HandleMouse();
-	ColorP.UpdateColors();
-	Draggable.Update();
-	//call the draw function on the selected tool
-	ToolManager.Draw();
+	if (!OverlayShowing)
+	{
+		ColorP.UpdateColors();
+		Draggable.Update();
+		//call the draw function on the selected tool
+		ToolManager.Draw();
+	}
 
 	RenderImage();
 }
@@ -295,7 +298,7 @@ function Resize(width, height)
 
 function OpenPopup(popupHtml="")
 {
-	holder = ShowOverlay("")
+	let holder = ShowOverlay("")
 
 	let popup = createDiv();
 	popup.parent(holder);
@@ -307,6 +310,7 @@ function OpenPopup(popupHtml="")
 
 function ShowOverlay(overlayHtml="", fadeTimeSecs=-1)
 {
+	ToolManager.SelectTool(null)
 	OverlayShowing = true;
 	let holder = select("#overlayHolder");
 	holder.elt.classList.remove("hide");
