@@ -9,6 +9,8 @@ class ResizeableSquare
 		this.OgWidth = this.Width
 		this.OgHeight = this.Height;
 
+		this.Holder = select(`#content`);
+
 
 		let topLeft = createDiv()
 		topLeft.elt.classList.add("layerHandle")
@@ -29,6 +31,10 @@ class ResizeableSquare
 		let moveHandle = createDiv()
 		moveHandle.elt.classList.add("layerHandle")
 		moveHandle.id("middle")
+
+		this.BoxOutline = createDiv()
+		this.BoxOutline.elt.classList.add("resizeableSquareOutline")
+		this.BoxOutline.parent(this.Holder);
 
 
 
@@ -83,6 +89,17 @@ class ResizeableSquare
 			this.UpdateList(this.RightList, false, true, this.Width + this.X, this.Height + this.Y);
 			this.UpdateList(this.BottomList, true, false, this.Width + this.X, this.Height + this.Y);
 		}
+
+		let holderWidth = this.Holder.size().width;
+		let holderHeight = this.Holder.size().height;
+
+		let offsetX = (holderWidth - CanvasWidth * Zoom) / 2;
+		let offsetY = (holderHeight - CanvasHeight * Zoom) / 2;
+
+		this.BoxOutline.elt.style.left = `${this.X * Zoom + offsetX}px`;
+		this.BoxOutline.elt.style.top = `${this.Y * Zoom + offsetY}px`;
+		this.BoxOutline.elt.style.width = `${this.Width * Zoom}px`;
+		this.BoxOutline.elt.style.height = `${this.Height * Zoom}px`;
 	}
 
 	UpdateList(list, lockedX, lockedY, forcedX=null, forcedY=null)

@@ -278,6 +278,12 @@ footer{
 	position: relative;
 }
 
+
+.resizeableSquareOutline{
+	position: absolute;
+	border: red dashed calc(3px * var(--canvasZoom));
+}
+
 .layerHandle{
 	position: absolute;
 	border-radius: 50%;
