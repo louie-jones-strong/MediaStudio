@@ -90,19 +90,27 @@ function OpenNewProject()
 	templateHolder.id("templatesHolder")
 	templateHolder.parent(setupHolder);
 
-	let loadTemplateButton = createButton(`Social Media Selling`);
-	loadTemplateButton.parent(templateHolder);
-	loadTemplateButton.mousePressed(function(event)
+	let templateDict = {}
+	templateDict["Social Media Selling"] = "Templates/SocialMediaSelling_Quick.json"
+	templateDict["Webcam Overlay"] = "Templates/WebcamOverlay.json"
+	for (const key in templateDict)
 	{
-		loadJSON(
-			"Templates/SocialMediaSelling_Quick.json",
-			text => {
-				console.log(text);
-				Template.LoadTemplate(text)
-			},
-			() => print('Failed to Load: '+ file),
-		)
-	});
+		let loadTemplateButton = createButton(key);
+		loadTemplateButton.parent(templateHolder);
+		let path = templateDict[key]
+		loadTemplateButton.mousePressed(function(event)
+		{
+			loadJSON(
+				path,
+				text => {
+					console.log(text);
+					Template.LoadTemplate(text)
+				},
+				() => print('Failed to Load: '+ path),
+			)
+		});
+	}
+
 
 	let uploadTemplate = createFileInput(handleFile);
 	uploadTemplate.elt.accept = "application/JSON"

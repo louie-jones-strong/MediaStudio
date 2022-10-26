@@ -1,0 +1,32 @@
+{
+	"Name": "Webcam Overlay",
+	"Description": "",
+	"StartingCanvasWidth": 500,
+	"StartingCanvasHeight": 500,
+	"FastEffects": false,
+	"Inputs": {
+	},
+	"Layers": {
+		"WaterMark": {
+			"Alpha": 0.15,
+			"Image": "Templates/Louie_Watermark.png",
+			"ResizeAnchorX": 0.5,
+			"ResizeAnchorY": 0.5,
+			"ResizeWidth": 1,
+			"ResizeHeight": 1,
+			"Effects": [
+			]
+		},
+		"Webcam": {
+			"Alpha": 1,
+			"ResizeAnchorX": 0.5,
+			"ResizeAnchorY": 0.5,
+			"DisplaySource": 2,
+			"Effects": [
+				{
+					"Type": "Flip"
+				}
+			]
+		}
+	}
+}

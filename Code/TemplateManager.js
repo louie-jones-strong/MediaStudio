@@ -170,7 +170,11 @@ class TemplateManager
 			if (layerData.ResizeHeight != null)
 				resizeHeight = layerData.ResizeHeight;
 
-			let layer = new Layer(Layers.Layers.length, key, img, ResizeAnchorX, ResizeAnchorY, resizeWidth, resizeHeight, DisplaySource.Graphic);
+			let displaySource = DisplaySource.Graphic
+			if (layerData.DisplaySource != null)
+				displaySource = layerData.DisplaySource;
+
+			let layer = new Layer(Layers.Layers.length, key, img, ResizeAnchorX, ResizeAnchorY, resizeWidth, resizeHeight, displaySource);
 			Layers.AddLayer(layer);
 
 			for (let i = 0; i < layerData.Effects.length; i++)
