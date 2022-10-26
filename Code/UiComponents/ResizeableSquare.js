@@ -48,6 +48,8 @@ class ResizeableSquare
 		this.RightList = [this.TopRightDrag, this.BottomRightDrag]
 		this.TopList = [this.TopLeftDrag, this.TopRightDrag]
 		this.BottomList = [this.BottomLeftDrag, this.BottomRightDrag]
+
+		this.AllList = [this.TopLeftDrag, this.TopRightDrag, this.BottomLeftDrag, this.BottomRightDrag]
 	}
 
 	Remove()
@@ -63,6 +65,14 @@ class ResizeableSquare
 	{
 		if (this.MiddleMoveDrag == Draggable.Selected)
 		{
+			let xDelta = this.MiddleMoveDrag.X - this.MiddleMoveDrag.LastX;
+			let yDelta = this.MiddleMoveDrag.Y - this.MiddleMoveDrag.LastY;
+			console.log(xDelta, yDelta);
+			for (let i = 0; i < this.AllList.length; i++)
+			{
+				const item = this.AllList[i];
+				item.SetPos(item.X + xDelta, item.Y + yDelta);
+			}
 		}
 
 		this.UpdateList(this.LeftList, false, true);

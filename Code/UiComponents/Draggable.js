@@ -23,6 +23,12 @@ class Draggable
 
 	static Update()
 	{
+		for (let i = 0; i < Draggable.Items.length; i++)
+		{
+			const item = Draggable.Items[i];
+			item.SetPos(item.X, item.Y)
+		}
+
 		if (!Draggable.LastMouseDown && MouseLeftPressed)
 		{
 			// mouseJust pressed down
@@ -55,16 +61,13 @@ class Draggable
 
 		Draggable.LastMouseDown = MouseLeftPressed;
 
-		for (let i = 0; i < Draggable.Items.length; i++)
-		{
-			const item = Draggable.Items[i];
-			item.SetPos(item.X, item.Y)
-		}
+
 	}
 
 	SetPos(x, y)
 	{
-		// CanvasWidth * Zoom
+		this.LastX = this.X;
+		this.LastY = this.Y;
 		this.X = x;
 		this.Y = y;
 
