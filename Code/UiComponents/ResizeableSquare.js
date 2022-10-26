@@ -67,7 +67,7 @@ class ResizeableSquare
 		{
 			let xDelta = this.MiddleMoveDrag.X - this.MiddleMoveDrag.LastX;
 			let yDelta = this.MiddleMoveDrag.Y - this.MiddleMoveDrag.LastY;
-			console.log(xDelta, yDelta);
+
 			for (let i = 0; i < this.AllList.length; i++)
 			{
 				const item = this.AllList[i];
