@@ -94,8 +94,7 @@ class Layer extends Selectable
 		let layer = createDiv(``);
 
 		// layer header
-		let layerHeader = createDiv(`<h3>${this.LayerName }</h3>
-			<input type="checkbox" id="Layer${this.LayerId}ShowToggle" checked>`);
+		let layerHeader = createDiv(`<h3>${this.LayerName }</h3>`);
 
 		layerHeader.parent(layer);
 		layerHeader.class("layerHeader");
@@ -108,6 +107,8 @@ class Layer extends Selectable
 			ToolManager.SelectTool(null);
 			self.SetSelected(true);
 		});
+
+		layerHeader.html(`<input type="checkbox" id="Layer${this.LayerId}ShowToggle" checked>`, true)
 
 
 		layer.mouseClicked(onClick);
