@@ -165,6 +165,7 @@ class Layer extends Selectable
 			{
 				let name = self.DisplaySourceDropDown.value();
 				self.DisplaySource = DisplaySourceLookup[name];
+				ToolManager.SetCanUseTools(DisplaySourceLookup[name] == DisplaySource.Drawing);
 			});
 
 			this.AlphaSlider = this.AddValueSlider("Alpha", "Alpha", 0, 1, this.Alpha, 0.01);

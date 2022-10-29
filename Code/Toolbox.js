@@ -14,7 +14,7 @@ class Toolbox
 		{
 			if (this.CanUseTools == false)
 			{
-				this.SelectTool(this.Tools[0].Id);
+				// this.SelectTool(this.Tools[0].Id);
 			}
 		}
 		else
