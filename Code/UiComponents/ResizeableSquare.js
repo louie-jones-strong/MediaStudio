@@ -59,6 +59,8 @@ class ResizeableSquare
 		this.BottomLeftDrag.Remove();
 		this.BottomRightDrag.Remove();
 		this.MiddleMoveDrag.Remove();
+
+		this.BoxOutline.remove();
 	}
 
 	Update()
