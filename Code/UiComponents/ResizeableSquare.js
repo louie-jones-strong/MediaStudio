@@ -102,16 +102,11 @@ class ResizeableSquare
 			this.UpdateList(this.BottomList, true, false, this.Width + this.X, this.Height + this.Y);
 		}
 
-		let holderWidth = this.Holder.size().width;
-		let holderHeight = this.Holder.size().height;
 
-		let offsetX = (holderWidth - CanvasWidth * Zoom) / 2;
-		let offsetY = (holderHeight - CanvasHeight * Zoom) / 2;
 
-		this.BoxOutline.elt.style.left = `${this.X * Zoom + offsetX}px`;
-		this.BoxOutline.elt.style.top = `${this.Y * Zoom + offsetY}px`;
-		this.BoxOutline.elt.style.width = `${this.Width * Zoom}px`;
-		this.BoxOutline.elt.style.height = `${this.Height * Zoom}px`;
+
+
+		this.UpdateOutline();
 
 		if (this.MiddleMoveDrag != Draggable.Selected)
 		{
@@ -119,6 +114,37 @@ class ResizeableSquare
 			let y = this.Y + this.Height / 2;
 			this.MiddleMoveDrag.SetPos(x, y)
 		}
+	}
+
+	UpdateOutline()
+	{
+		let boxX = this.X;
+		let boxY = this.Y;
+		let boxWidth = this.Width;
+		let boxHeight = this.Height;
+
+		if (boxWidth < 0)
+		{
+			boxX += boxWidth;
+			boxWidth = Math.abs(boxWidth)
+		}
+
+		if (boxHeight < 0)
+		{
+			boxY += boxHeight;
+			boxHeight = Math.abs(boxHeight)
+		}
+
+		let holderWidth = this.Holder.size().width;
+		let holderHeight = this.Holder.size().height;
+
+		let offsetX = (holderWidth - CanvasWidth * Zoom) / 2;
+		let offsetY = (holderHeight - CanvasHeight * Zoom) / 2;
+
+		this.BoxOutline.elt.style.left = `${boxX * Zoom + offsetX}px`;
+		this.BoxOutline.elt.style.top = `${boxY * Zoom + offsetY}px`;
+		this.BoxOutline.elt.style.width = `${boxWidth * Zoom}px`;
+		this.BoxOutline.elt.style.height = `${boxHeight * Zoom}px`;
 	}
 
 	UpdateList(list, lockedX, lockedY, forcedX=null, forcedY=null)
