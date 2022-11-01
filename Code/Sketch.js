@@ -75,7 +75,7 @@ function OpenNewProject()
 {
 	//create a canvas to fill the content div from index.html
 	let canvasContainer = select('#content');
-	Resize(canvasContainer.size().width - 10, canvasContainer.size().height - 10)
+	Resize(CanvasWidth, CanvasHeight)
 
 	ToolManager.Reset();
 	Layers.SetBasicLayers();
@@ -120,10 +120,10 @@ function OpenNewProject()
 
 	let blankCanvasHolder = createDiv(`<h3 class="">Blank Canvas</h3>
 		<label for="canvasX">X:</label>
-		<input id="canvasX" type="number" min=${1} max=${100000} step=1 value=${canvasContainer.size().width - 10}></input>
+		<input id="canvasX" type="number" min=${1} max=${100000} step=1 value=${CanvasWidth}></input>
 		<br>
 		<label for="canvasY">Y:</label>
-		<input id="canvasY" type="number" min=${1} max=${100000} step=1 value=${canvasContainer.size().height - 10}></input>`)
+		<input id="canvasY" type="number" min=${1} max=${100000} step=1 value=${CanvasHeight}></input>`)
 	blankCanvasHolder.id("blankCanvasHolder")
 	blankCanvasHolder.parent(setupHolder);
 
