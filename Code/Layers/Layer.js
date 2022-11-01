@@ -24,12 +24,14 @@ DisplaySourceLookup["Webcam"] = DisplaySource.Webcam;
 class Layer extends Selectable
 {
 	static NumEffectsCreated = 0;
-	constructor(layerId, layerName, graphic,
+	constructor(layerName, graphic,
 		resizeAnchorX=0, resizeAnchorY=0, resizeWidth=-1, resizeHeight=-1,
 		displaySource=DisplaySource.Drawing)
 	{
 		super();
-		this.LayerId = layerId;
+		this.LayerId = LayerManger.NumberOfCreatedLayers;
+		LayerManger.NumberOfCreatedLayers += 1;
+
 		this.LayerName = layerName;
 		this.Name = `Layer: ${this.LayerName}`;
 

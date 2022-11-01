@@ -244,7 +244,7 @@ function handleFile(file)
 			file.data,
 			img => {
 				ResizeToFit(img.width, img.height)
-				let layer = new Layer(Layers.Layers.length, file.name, img);
+				let layer = new Layer(file.name, img);
 				Layers.AddLayer(layer);
 			},
 			() => print('Image Failed to Load: '+ file),

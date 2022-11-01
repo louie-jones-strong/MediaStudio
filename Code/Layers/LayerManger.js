@@ -1,5 +1,7 @@
 class LayerManger
 {
+	static NumberOfCreatedLayers = 0;
+
 	constructor()
 	{
 		this.SetBasicLayers()
@@ -12,7 +14,7 @@ class LayerManger
 		let img = createGraphics(CanvasWidth, CanvasHeight);
 		img.background(255);
 
-		let baseLayer = new Layer(0, "background", img);
+		let baseLayer = new Layer("background", img);
 		this.AddLayer(baseLayer);
 
 
@@ -33,6 +35,7 @@ class LayerManger
 
 	ClearLayers()
 	{
+		LayerManger.NumberOfCreatedLayers = 0;
 		this.Layers = [];
 		const container = document.getElementById('layerListHolder');
 

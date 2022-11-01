@@ -3,7 +3,7 @@ function HelperFunctions()
 
 	select("#addLayerButton").mouseClicked(function() {
 
-		let temp = new Layer(Layers.Layers.length, `Layer ${Layers.Layers.length}`, null);
+		let temp = new Layer(`Layer ${Layers.Layers.length}`, null);
 		Layers.AddLayer(temp);
 	});
 
@@ -30,10 +30,8 @@ function HelperFunctions()
 	});
 
 	select("#duplicateLayerButton").mouseClicked(function() {
-		let img = createGraphics(CanvasWidth, CanvasHeight);
-		img.image(Layers.CurrentImg, 0, 0);
 
-		let baseLayer = new Layer(Layers.Layers.length, Layers.Layers[Layers.SelectedIndex].LayerName + " Copy", img);
+		let baseLayer = new Layer(Layers.Layers[Layers.SelectedIndex].LayerName + " Copy", Layers.CurrentImg);
 		Layers.AddLayer(baseLayer);
 
 	});

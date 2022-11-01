@@ -174,7 +174,7 @@ class TemplateManager
 			if (layerData.DisplaySource != null)
 				displaySource = layerData.DisplaySource;
 
-			let layer = new Layer(Layers.Layers.length, key, img, ResizeAnchorX, ResizeAnchorY, resizeWidth, resizeHeight, displaySource);
+			let layer = new Layer(key, img, ResizeAnchorX, ResizeAnchorY, resizeWidth, resizeHeight, displaySource);
 			Layers.AddLayer(layer);
 
 			for (let i = 0; i < layerData.Effects.length; i++)
