@@ -1,9 +1,8 @@
 const eShape = {
-	Emoji: 0,
-	Ellipse: 1,
-	Rect: 2,
-	Pentagon: 3,
-	Hexagon: 4,
+	Ellipse: 0,
+	Rect: 1,
+	Pentagon: 2,
+	Hexagon: 3,
 }
 
 
@@ -22,8 +21,6 @@ class ShapeTool extends Tool
 		this.StartMouseX = -1;
 		this.StartMouseY = -1;
 		this.Drawing = false;
-
-		this.EmojiImage = loadImage("assets/Shapes/Emoji.png");
 	}
 
 	Draw()
@@ -67,11 +64,6 @@ class ShapeTool extends Tool
 					case eShape.Ellipse:
 					{
 						Layers.CurrentImg.ellipse(this.StartMouseX, this.StartMouseY, size[0] * 2, size[1] * 2);
-						break;
-					}
-					case eShape.Emoji:
-					{
-						Layers.CurrentImg.image(this.EmojiImage, this.StartMouseX, this.StartMouseY, size[0], size[1])
 						break;
 					}
 					case eShape.Pentagon:
@@ -140,7 +132,6 @@ class ShapeTool extends Tool
 				break;
 			}
 			case eShape.Rect:
-			case eShape.Emoji:
 			{
 				footerHtml += "<p>Size: "+size[0]+", "+size[1]+"</p>";
 				footerHtml += "<p>click for first corner, drag and release for opposite corner</p>";
