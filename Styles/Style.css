@@ -281,7 +281,7 @@ footer{
 
 .resizeableSquareOutline{
 	position: absolute;
-	border: red dashed calc(3px * var(--canvasZoom));
+	border: red dashed calc(2px * var(--canvasZoom));
 }
 
 .layerHandle{

@@ -12,7 +12,7 @@ class Draggable
 
 		Draggable.Items.push(this);
 		this.SetPos(x, y)
-		this.StartDragRange = 50;
+		this.StartDragRange = 25;
 	}
 
 	Remove()

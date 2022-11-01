@@ -143,8 +143,9 @@ class ResizeableSquare
 
 		this.BoxOutline.elt.style.left = `${boxX * Zoom + offsetX}px`;
 		this.BoxOutline.elt.style.top = `${boxY * Zoom + offsetY}px`;
-		this.BoxOutline.elt.style.width = `${boxWidth * Zoom}px`;
-		this.BoxOutline.elt.style.height = `${boxHeight * Zoom}px`;
+		let borderSize = -2;
+		this.BoxOutline.elt.style.width = `${(boxWidth + borderSize * 2) * Zoom}px`;
+		this.BoxOutline.elt.style.height = `${(boxHeight  + borderSize * 2) * Zoom}px`;
 	}
 
 	UpdateList(list, lockedX, lockedY, forcedX=null, forcedY=null)
