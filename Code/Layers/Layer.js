@@ -173,8 +173,8 @@ class Layer extends Selectable
 
 			this.AlphaSlider = this.AddValueSlider("Alpha", "Alpha", 0, 1, this.Alpha, 0.01);
 
-			let x = this.ResizeAnchorX * CanvasWidth - (CanvasWidth * this.ResizeWidth) / 2
-			let y = this.ResizeAnchorY * CanvasHeight - (CanvasHeight * this.ResizeHeight) / 2
+			let x = this.ResizeAnchorX * (CanvasWidth * this.ResizeWidth) - (this.ResizePivotX) * (CanvasWidth * this.ResizeWidth)
+			let y = this.ResizeAnchorY * (CanvasHeight * this.ResizeHeight) - (this.ResizePivotY) * (CanvasHeight * this.ResizeHeight)
 			this.ResizeSquare = new ResizeableSquare(x, y, CanvasWidth * this.ResizeWidth, CanvasHeight * this.ResizeHeight)
 		}
 		else if (!selected)
@@ -282,14 +282,10 @@ class Layer extends Selectable
 		{
 			this.ResizeSquare.Update()
 
-			this.XOffset = this.ResizeSquare.X / CanvasWidth
-			this.YOffset = this.ResizeSquare.Y / CanvasHeight
-			this.ResizeAnchorX = 0;
-			this.ResizeAnchorY = 0;
-			this.ResizePivotX = 0;
-			this.ResizePivotY = 0;
-			this.ResizeWidth = this.ResizeSquare.Width / CanvasWidth
-			this.ResizeHeight = this.ResizeSquare.Height / CanvasHeight
+			this.XOffset = this.ResizeSquare.X / CanvasWidth;
+			this.YOffset = this.ResizeSquare.Y / CanvasHeight;
+			this.ResizeWidth = this.ResizeSquare.Width / CanvasWidth;
+			this.ResizeHeight = this.ResizeSquare.Height / CanvasHeight;
 
 
 			this.Alpha = this.AlphaSlider.Value;
