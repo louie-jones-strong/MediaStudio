@@ -159,8 +159,9 @@ class Layer extends Selectable
 
 	SetSelected(selected)
 	{
+		let wasSelected = this.IsSelected()
 		super.SetSelected(selected)
-		if (selected)
+		if (selected && !wasSelected)
 		{
 			var self = this;
 			this.DisplaySourceDropDown = this.AddDropDownOption(DisplaySourceLookup, 0, function()
@@ -176,7 +177,7 @@ class Layer extends Selectable
 			let y = this.ResizeAnchorY * CanvasHeight - (CanvasHeight * this.ResizeHeight) / 2
 			this.ResizeSquare = new ResizeableSquare(x, y, CanvasWidth * this.ResizeWidth, CanvasHeight * this.ResizeHeight)
 		}
-		else
+		else if (!selected)
 		{
 			this.DisplaySourceDropDown = null;
 			this.AlphaSlider = null;
