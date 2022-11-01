@@ -112,6 +112,13 @@ class ResizeableSquare
 		this.BoxOutline.elt.style.top = `${this.Y * Zoom + offsetY}px`;
 		this.BoxOutline.elt.style.width = `${this.Width * Zoom}px`;
 		this.BoxOutline.elt.style.height = `${this.Height * Zoom}px`;
+
+		if (this.MiddleMoveDrag != Draggable.Selected)
+		{
+			let x = this.X + this.Width / 2;
+			let y = this.Y + this.Height / 2;
+			this.MiddleMoveDrag.SetPos(x, y)
+		}
 	}
 
 	UpdateList(list, lockedX, lockedY, forcedX=null, forcedY=null)
