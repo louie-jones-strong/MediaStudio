@@ -55,7 +55,7 @@ function setup()
 	ToolManager.AddTool(new FreehandTool());
 	ToolManager.AddTool(new LineToTool());
 	ToolManager.AddTool(new SprayCanTool());
-	ToolManager.AddTool(new MirrorDrawTool());
+	// ToolManager.AddTool(new MirrorDrawTool());
 	ToolManager.AddTool(new ShapeTool());
 	ToolManager.AddTool(new EditableShapeTool());
 	ToolManager.AddTool(new FloodFillTool());
