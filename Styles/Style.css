@@ -46,7 +46,11 @@ button:hover{
 body{
 	display: grid;
 	height: 100%;
-	grid-template-columns: 60px 20px 230px minmax(200px, 1fr) 200px;
+
+	--RecentColoursCellSize: 2.5em;
+	--RecentColoursPad: 0.5em;
+
+	grid-template-columns: 60px 20px calc(var(--RecentColoursCellSize) * 4.25) minmax(200px, 1fr) 200px;
 	grid-template-rows: 50px minmax(300px, 1fr) 200px 1.5em;
 	grid-template-areas:
 			"header header header header header"

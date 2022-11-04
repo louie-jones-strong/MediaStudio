@@ -58,16 +58,15 @@
 /* .recentColors */
 .recentColorsGrid{
 	display: grid;
-	grid-template-rows: 50px 50px 50px;
-	grid-template-columns: 50px 50px 50px 50px;
+	grid-template-rows: var(--RecentColoursCellSize) var(--RecentColoursCellSize) var(--RecentColoursCellSize);
+	grid-template-columns: var(--RecentColoursCellSize) var(--RecentColoursCellSize) var(--RecentColoursCellSize) var(--RecentColoursCellSize);
 }
 
 .recentColorHolder{
 	background: url(ColorPicker/alpha.png);
-	height: 45px;
-	width: 45px;
-	margin: 2px;
-	border-radius: 10px;
+	height: calc(var(--RecentColoursCellSize) - var(--RecentColoursPad));
+	width: calc(var(--RecentColoursCellSize) - var(--RecentColoursPad));
+	border-radius: 25%;
 	transition-duration: 0.3s;
 	display: flex;
 	justify-content: center;
