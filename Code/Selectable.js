@@ -117,7 +117,6 @@ class Selectable
 
 	SetSelectedOptionSelected(option, selected)
 	{
-		console.log(option);
 		if (selected)
 		{
 			option.elt.classList.add("selected");
