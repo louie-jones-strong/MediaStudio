@@ -23,6 +23,13 @@ class LineToTool extends Tool
 		return footerHtml;
 	}
 
+	SelectTool()
+	{
+		super.SelectTool();
+
+		Brushes.DrawOptions();
+	}
+
 	Draw()
 	{
 		super.Draw();
@@ -88,7 +95,7 @@ class LineToTool extends Tool
 				}
 
 				//draw line on top of the last saved state of the canvas
-				Layers.CurrentImg.line(this.StartMouseX, this.StartMouseY, endX, endY);
+				Brushes.Line(this.StartMouseX, this.StartMouseY, endX, endY);
 			}
 		}
 		else if(this.Drawing) //if the user has released the mouse while drawing we reset the tool

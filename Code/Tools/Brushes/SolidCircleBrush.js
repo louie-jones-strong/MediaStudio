@@ -5,7 +5,7 @@ class SolidCircleBrush extends Brush
 		super();
 		this.Name = "Solid Circle Brush";
 		this.Id = "Solid_Circle_Brush";
-		this.Icon = "";
+		this.Icon = "assets/Brushes/SolidCircle.png";
 	}
 
 	Point(x, y)

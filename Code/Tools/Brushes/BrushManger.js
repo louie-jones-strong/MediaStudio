@@ -19,10 +19,11 @@ class BrushManger extends Selectable
 	DrawOptions()
 	{
 		var self = this
-		for (var i = 0; i < this.Brushes.length; i++)
+		for (let i = 0; i < this.Brushes.length; i++)
 		{
 			const item = this.Brushes[i];
-			this.AddOption(item.Id, item.Icon, function(){self.SelectedBrush = i})
+			var index = i
+			this.AddOption(item.Id, item.Icon, function(){self.SelectedBrush = index})
 		}
 
 		this.SelectOption(this.Brushes[this.SelectedBrush].Id);

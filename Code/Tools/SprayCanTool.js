@@ -41,7 +41,7 @@ class SprayCanTool extends Tool
 				let x = MousePosX + Math.sin(angle) * distance;
 				let y = MousePosY + Math.cos(angle) * distance;
 
-				Layers.CurrentImg.point(x, y);
+				Brushes.Point(x, y);
 			}
 		}
 	}
@@ -52,5 +52,7 @@ class SprayCanTool extends Tool
 		super.SelectTool();
 
 		this.SpreadSlider = this.AddValueSlider("Spread", "Spread", 10, 300, this.Spread);
+
+		Brushes.DrawOptions();
 	}
 }

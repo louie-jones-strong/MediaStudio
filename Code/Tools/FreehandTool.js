@@ -26,6 +26,13 @@ class FreehandTool extends Tool
 		return footerHtml;
 	}
 
+	SelectTool()
+	{
+		super.SelectTool();
+
+		Brushes.DrawOptions();
+	}
+
 	Draw()
 	{
 		super.Draw();
@@ -44,7 +51,8 @@ class FreehandTool extends Tool
 			{
 				//if we already have values for previousX and Y we can draw a line from
 				//there to the current mouse location
-				Layers.CurrentImg.line(this.PreviousMouseX, this.PreviousMouseY, MousePosX, MousePosY);
+				Brushes.Line(this.PreviousMouseX, this.PreviousMouseY, MousePosX, MousePosY);
+				// Layers.CurrentImg.line(this.PreviousMouseX, this.PreviousMouseY, MousePosX, MousePosY);
 				this.PreviousMouseX = MousePosX;
 				this.PreviousMouseY = MousePosY;
 			}
