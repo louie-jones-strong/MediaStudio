@@ -157,7 +157,7 @@ class ShapeTool extends Tool
 
 		for (const key in eShape)
 		{
-			this.AddToolOption(key, "assets/Shapes/"+key+".png", function(){self.Shape = eShape[key];});
+			this.AddOption(key, "assets/Shapes/"+key+".png", function(){self.Shape = eShape[key];});
 		}
 		this.SelectOption(Object.keys(eShape)[this.Shape]);
 	}

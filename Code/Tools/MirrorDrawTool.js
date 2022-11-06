@@ -158,7 +158,7 @@ class MirrorDrawTool extends Tool
 
 		for (const key in eAxis)
 		{
-			this.AddToolOption(key, "assets/MirrorAxis/"+key+".png", function(){self.Axis = eAxis[key];})
+			this.AddOption(key, "assets/MirrorAxis/"+key+".png", function(){self.Axis = eAxis[key];})
 		}
 		this.SelectOption(Object.keys(eAxis)[this.Axis]);
 	}

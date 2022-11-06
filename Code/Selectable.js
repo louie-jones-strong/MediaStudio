@@ -91,19 +91,19 @@ class Selectable
 		return dropDown;
 	}
 
-	AddToolOption(name, icon, onSelect)
+	AddOption(id, icon, onSelect)
 	{
-		let button = this.AddButton(name, icon);
+		let button = this.AddButton(id, icon);
 
 		var self = this;
 		button.mouseClicked(function()
 		{
-			self.SelectOption(name);
+			self.SelectOption(id);
 			onSelect();
 		});
 	}
 
-	SelectOption(name)
+	SelectOption(id)
 	{
 		let items = selectAll(".optionsBarItem");
 		for (let i = 0; i < items.length; i++)
@@ -111,12 +111,13 @@ class Selectable
 			//remove selected styling from all tools
 			this.SetSelectedOptionSelected(items[i], false)
 		}
-		let item = select("#" + name + "optionsBarItem");
+		let item = select("#" + id + "optionsBarItem");
 		this.SetSelectedOptionSelected(item, true)
 	}
 
 	SetSelectedOptionSelected(option, selected)
 	{
+		console.log(option);
 		if (selected)
 		{
 			option.elt.classList.add("selected");
@@ -139,11 +140,11 @@ class Selectable
 		}
 	}
 
-	AddButton(name, icon)
+	AddButton(id, icon)
 	{
 		let button = createDiv("<img src='" + icon + "'></img>");
 		button.class('optionsBarItem')
-		button.id(name + "optionsBarItem")
+		button.id(id + "optionsBarItem")
 		button.parent(select(".SelectedOptions"));
 
 		return button;

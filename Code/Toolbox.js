@@ -72,21 +72,19 @@ class Toolbox
 		}
 	}
 
-	//add a new tool icon to the html page
-	AddToolIcon(icon, name)
-	{
-		let iconButton = createDiv("<img src='" + icon + "'></div>");
-		iconButton.class('iconButton');
-		iconButton.id(name + "iconButton");
-		iconButton.parent('toolListHolder');
-		iconButton.mouseClicked(this.ToolbarItemClick);
-	}
-
 	//add a tool to the tools array
 	AddTool(tool)
 	{
 		this.Tools.push(tool);
-		this.AddToolIcon(tool.Icon, tool.Id);
+
+		//add a new tool icon to the html page
+		let iconButton = createDiv("<img src='" + tool.Icon + "'></div>");
+		iconButton.class('iconButton');
+		iconButton.id(tool.Id + "iconButton");
+		iconButton.parent('toolListHolder');
+		iconButton.mouseClicked(this.ToolbarItemClick);
+
+
 		//if no tool is selected (ie. none have been added so far)
 		//make this tool the selected one.
 		if (this.SelectedTool == null)

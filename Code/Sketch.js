@@ -31,7 +31,8 @@ function setup()
 		event.preventDefault();
 	});
 
-
+	//create a ToolManager for storing the tools
+	Brushes = new BrushManger();
 
 	//create a ToolManager for storing the tools
 	ToolManager = new Toolbox();
