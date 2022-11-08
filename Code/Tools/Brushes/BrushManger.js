@@ -8,7 +8,8 @@ class BrushManger extends Selectable
 		this.SelectedBrush = 0;
 
 		this.Brushes.push(new SolidCircleBrush());
-		this.Brushes.push(new CustomBrush());
+		this.Brushes.push(new CustomBrush(0, "assets/Brushes/Custom1.png"));
+		this.Brushes.push(new CustomBrush(1, "assets/Brushes/SmoothCircle.png"));
 	}
 
 	SelectBrush(index)

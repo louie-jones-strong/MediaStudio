@@ -1,11 +1,11 @@
 class CustomBrush extends Brush
 {
-	constructor(index, name="Custom Brush")
+	constructor(index, img, name="Custom Brush")
 	{
 		super();
 		this.Name = name;
 		this.Id = "_Custom_Brush_" + index;
-		this.Icon = "assets/Brushes/Custom1.png";
+		this.Icon = img;
 		this.BrushImage = loadImage(this.Icon);
 	}
 
