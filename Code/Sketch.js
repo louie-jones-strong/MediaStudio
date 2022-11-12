@@ -118,13 +118,42 @@ function OpenNewProject()
 	uploadTemplate.parent(templateHolder);
 
 
+	let simpleImgHolder = createDiv("<h3>Start From an Image</h3>")
+	simpleImgHolder.parent(setupHolder);
+
+	let uploadImage = createFileInput(function(file)
+	{
+		console.log("handle file:", file);
+		if (file.type === 'image')
+		{
+			console.log("Load image");
+			loadImage(
+				file.data,
+				img => {
+					Resize(img.width, img.height)
+
+					ToolManager.Reset();
+					Layers.ClearLayers()
+
+					let layer = new Layer(file.name, img);
+					Layers.AddLayer(layer);
+					CloseOverlay()
+				},
+				() => print('Image Failed to Load: '+ file),
+			);
+		}
+		FileInput.elt.value = null
+	});
+	uploadImage.elt.accept = "image/*"
+	uploadImage.parent(simpleImgHolder);
+
 
 	let blankCanvasHolder = createDiv(`<h3 class="">Blank Canvas</h3>
 		<label for="canvasX">X:</label>
-		<input id="canvasX" type="number" min=${1} max=${100000} step=1 value=${CanvasWidth}></input>
+		<input id="canvasX" type="number" min=${1} max=${10000} step=1 value=${CanvasWidth}></input>
 		<br>
 		<label for="canvasY">Y:</label>
-		<input id="canvasY" type="number" min=${1} max=${100000} step=1 value=${CanvasHeight}></input>`)
+		<input id="canvasY" type="number" min=${1} max=${10000} step=1 value=${CanvasHeight}></input>`)
 	blankCanvasHolder.id("blankCanvasHolder")
 	blankCanvasHolder.parent(setupHolder);
 
@@ -143,6 +172,7 @@ function OpenNewProject()
 		CloseOverlay()
 		ToolManager.SelectTool(ToolManager.Tools[0].Id);
 	});
+
 
 
 }
