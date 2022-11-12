@@ -124,7 +124,7 @@ function HelperFunctions()
 		return hexString;
 	}
 
-	this.RgbToBw = function(rgbaLevelsColor, withAlpha=true)
+	this.RgbToBw = function(rgbaLevelsColor, withAlpha=true, normalize=false)
 	{
 		let value = 0
 		value += rgbaLevelsColor[0];
@@ -134,7 +134,12 @@ function HelperFunctions()
 
 		if (withAlpha)
 		{
-			value *= rgbaLevelsColor[3];
+			value *= (rgbaLevelsColor[3] / 255);
+		}
+
+		if(normalize)
+		{
+			value /= 255;
 		}
 
 		return value;
