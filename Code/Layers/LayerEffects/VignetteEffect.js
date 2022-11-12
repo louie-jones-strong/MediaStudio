@@ -15,7 +15,9 @@ class VignetteEffect extends LayerEffect
 		if (this.DistanceSlider != null)
 		{
 			this.Distance = this.DistanceSlider.Value;
-			this.Amount = this.AmountSlider.Value
+			this.Amount = this.AmountSlider.Value;
+
+			this.CachedOverlay = null
 		}
 	}
 
@@ -39,31 +41,44 @@ class VignetteEffect extends LayerEffect
 	{
 		let img = super.ApplyEffect(startImg);
 
-		img.loadPixels();
+		let overlay = this.GetOverlayImg(img.width, img.height);
 
-		let center = createVector(img.width / 2, img.height / 2);
-		let maxDistance = createVector(0, 0).dist(center);
+		img.image(overlay, 0, 0);
+		return img
+	}
 
-		for (var x = 0; x < img.width; x++)
+	GetOverlayImg(width, height)
+	{
+		if (this.CachedOverlay == null ||
+			this.CachedOverlay.width != width ||
+			this.CachedOverlay.height != height)
 		{
-			for (var y = 0; y < img.height; y++)
+
+			this.CachedOverlay = createGraphics(width, height);
+
+			this.CachedOverlay.background(0);
+			this.CachedOverlay.loadPixels();
+
+			let center = createVector(width / 2, height / 2);
+			let maxDistance = createVector(0, 0).dist(center);
+
+			for (var x = 0; x < width; x++)
 			{
-				let colour = Helpers.GetPixel(img, x, y);
+				for (var y = 0; y < height; y++)
+				{
 
-				let pos = createVector(x, y);
-				let distance = center.dist(pos);
+					let pos = createVector(x, y);
+					let distance = center.dist(pos);
 
-				let dynLum = map(distance, maxDistance - this.Distance, maxDistance, 1, 1-this.Amount);
-				dynLum = constrain(dynLum, 0, 1);
+					let dynLum = map(distance, maxDistance - this.Distance, maxDistance, 1, 1-this.Amount);
+					dynLum = constrain(dynLum, 0, 1);
 
-				colour[0] = colour[0] * dynLum;
-				colour[1] = colour[1] * dynLum;
-				colour[2] = colour[2] * dynLum;
-
-				Helpers.SetPixel(img, x, y, colour);
+					Helpers.SetPixel(this.CachedOverlay, x, y, [0,0,0,255 -( dynLum * 255)]);
+				}
 			}
+			this.CachedOverlay.updatePixels();
 		}
-		img.updatePixels();
-		return img;
+
+		return this.CachedOverlay;
 	}
 }
