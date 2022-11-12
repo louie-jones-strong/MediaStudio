@@ -26,7 +26,7 @@ class Layer extends Selectable
 {
 	static NumEffectsCreated = 0;
 	constructor(layerName, graphic,
-		resizeAnchorX=0, resizeAnchorY=0, resizeWidth=-1, resizeHeight=-1,
+		resizeAnchorX=0, resizeAnchorY=0, resizeWidth=1, resizeHeight=1,
 		displaySource=DisplaySource.Drawing)
 	{
 		super();
