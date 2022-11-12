@@ -51,7 +51,6 @@ class CustomBrush extends Brush
 		if (!(hex in this.TintedCache))
 		{
 			let tintLevels = ColorP.SelectedColor.levels;
-			console.log(this.BrushImage);
 			this.TintedCache[hex] = Helpers.Tint(this.BrushImage, tintLevels)
 		}
 

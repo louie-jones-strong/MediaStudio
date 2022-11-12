@@ -158,10 +158,10 @@ function HelperFunctions()
 			{
 				let colour = Helpers.GetPixel(img, x, y)
 
-				colour[0] *= tintColourLevels[0]
-				colour[1] *= tintColourLevels[1]
-				colour[2] *= tintColourLevels[2]
-				colour[3] *= tintColourLevels[3]
+				colour[0] *= tintColourLevels[0] / 255
+				colour[1] *= tintColourLevels[1] / 255
+				colour[2] *= tintColourLevels[2] / 255
+				colour[3] *= tintColourLevels[3] / 255
 
 				Helpers.SetPixel(outImg, x, y, colour);
 			}
