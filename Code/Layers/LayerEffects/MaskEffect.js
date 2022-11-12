@@ -17,7 +17,7 @@ class MaskEffect extends LayerEffect
 			this.LayerMaskDropDown = this.AddDropDownOption(Layers.GetLayerDict(), 0, function()
 			{
 				let name = self.LayerMaskDropDown.value();
-				self.DisplaySource = Layers.GetLayerDict()[name];
+				this.MaskLayer = Layers.GetLayerDict()[name];
 			});
 		}
 		else
