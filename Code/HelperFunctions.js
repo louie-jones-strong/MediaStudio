@@ -144,4 +144,31 @@ function HelperFunctions()
 
 		return value;
 	}
+
+	this.Tint = function Tint(img, tintColourLevels) {
+		let outImg = createGraphics(img.width, img.height);
+
+		img.loadPixels();
+		outImg.loadPixels();
+
+
+		for (let x = 0; x < img.width; x += 1)
+		{
+			for (let y = 0; y < img.height; y += 1)
+			{
+				let colour = Helpers.GetPixel(img, x, y)
+
+				colour[0] *= tintColourLevels[0]
+				colour[1] *= tintColourLevels[1]
+				colour[2] *= tintColourLevels[2]
+				colour[3] *= tintColourLevels[3]
+
+				Helpers.SetPixel(outImg, x, y, colour);
+			}
+		}
+		img.updatePixels();
+		outImg.updatePixels();
+
+		return outImg
+	}
 }

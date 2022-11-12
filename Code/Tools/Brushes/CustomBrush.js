@@ -6,7 +6,19 @@ class CustomBrush extends Brush
 		this.Name = name;
 		this.Id = "_Custom_Brush_" + index;
 		this.Icon = img;
-		this.BrushImage = loadImage(this.Icon);
+		this.BrushImage = null;
+
+		var self = this;
+		loadImage(
+			this.Icon,
+			img => {
+				self.BrushImage = createGraphics(img.width, img.height)
+				self.BrushImage.image(img, 0, 0);
+			},
+			() => print('Image Failed to Load: '+ file),
+		);
+
+		this.TintedCache = {}
 	}
 
 	Point(x, y)
@@ -17,12 +29,8 @@ class CustomBrush extends Brush
 		y -= size / 2;
 
 
-		push();
-		let levels = ColorP.SelectedColor.levels
-		Layers.CurrentImg.tint(levels[0], levels[1], levels[2], levels[3]);
-
-		Layers.CurrentImg.image(this.BrushImage, x, y, size, size)
-		pop();
+		let tintedBrush = this.GetTintedBrush();
+		Layers.CurrentImg.image(tintedBrush, x, y, size, size)
 	}
 
 	Line(x1, y1, x2, y2)
@@ -34,5 +42,21 @@ class CustomBrush extends Brush
 		{
 			this.Point(x1 + step.x * i, y1 + step.y * i)
 		}
+	}
+
+	GetTintedBrush()
+	{
+		let hex = Helpers.GetColorHex(ColorP.SelectedColor, true)
+
+		if (!(hex in this.TintedCache))
+		{
+			let tintLevels = ColorP.SelectedColor.levels;
+			console.log(this.BrushImage);
+			this.TintedCache[hex] = Helpers.Tint(this.BrushImage, tintLevels)
+		}
+
+		return this.TintedCache[hex]
+
+
 	}
 }
