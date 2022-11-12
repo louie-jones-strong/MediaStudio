@@ -4,8 +4,7 @@ class MaskEffect extends LayerEffect
 	{
 		super();
 		this.Name = "Mask";
-
-		this.Mask = null
+		this.MaskLayer = null
 	}
 
 	SetSelected(selected)
@@ -14,10 +13,10 @@ class MaskEffect extends LayerEffect
 		if (selected)
 		{
 			var self = this;
-			this.LayerMaskDropDown = this.AddDropDownOption(Layers.GetLayerDict(), 0, function()
+			this.LayerMaskDropDown = this.AddDropDownOption(Layers.GetLayerDict("Select A Layer", null), 0, function()
 			{
 				let name = self.LayerMaskDropDown.value();
-				this.MaskLayer = Layers.GetLayerDict()[name];
+				self.MaskLayer = Layers.GetLayerDict()[name];
 			});
 		}
 		else
@@ -31,7 +30,7 @@ class MaskEffect extends LayerEffect
 		let img = super.ApplyEffect(startImg);
 
 
-		if (this.Mask != null)
+		if (this.MaskLayer != null)
 		{
 			img.loadPixels();
 
@@ -40,7 +39,7 @@ class MaskEffect extends LayerEffect
 			{
 				for (let y = 0; y < img.height; y += 1)
 				{
-					let alpha = Helpers.RgbToBw(Helpers.GetPixel(this.Mask, x, y), true)
+					let alpha = Helpers.RgbToBw(Helpers.GetPixel(this.MaskLayer.LayerImage, x, y), true)
 
 					let colour = Helpers.GetPixel(img, x, y);
 					colour[3] *= alpha

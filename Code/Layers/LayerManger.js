@@ -7,9 +7,15 @@ class LayerManger
 		this.SetBasicLayers()
 	}
 
-	GetLayerDict()
+	GetLayerDict(key=null, value=null)
 	{
 		let dict = {}
+
+		if (key != null)
+		{
+			dict[key] = value;
+		}
+
 		for (let i = 0; i < this.Layers.length; i++)
 		{
 			const layer = this.Layers[i];
