@@ -20,24 +20,6 @@
 			"OutputFileType": "png",
 			"Width": 500,
 			"Height": 500
-		},
-		{
-			"OutputName": "250x500",
-			"OutputFileType": "png",
-			"Width": 250,
-			"Height": 500
-		},
-		{
-			"OutputName": "500x250",
-			"OutputFileType": "png",
-			"Width": 500,
-			"Height": 250
-		},
-		{
-			"OutputName": "250x250",
-			"OutputFileType": "png",
-			"Width": 250,
-			"Height": 250
 		}
 	],
 	"Layers": {
