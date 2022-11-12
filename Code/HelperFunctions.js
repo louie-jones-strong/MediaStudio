@@ -123,4 +123,20 @@ function HelperFunctions()
 
 		return hexString;
 	}
+
+	this.RgbToBw = function(rgbaLevelsColor, withAlpha=true)
+	{
+		let value = 0
+		value += rgbaLevelsColor[0];
+		value += rgbaLevelsColor[1];
+		value += rgbaLevelsColor[2];
+		value /= 3;
+
+		if (withAlpha)
+		{
+			value *= rgbaLevelsColor[3];
+		}
+
+		return value;
+	}
 }

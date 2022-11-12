@@ -7,6 +7,17 @@ class LayerManger
 		this.SetBasicLayers()
 	}
 
+	GetLayerDict()
+	{
+		let dict = {}
+		for (let i = 0; i < this.Layers.length; i++)
+		{
+			const layer = this.Layers[i];
+			dict[layer.LayerName] = layer
+		}
+		return dict
+	}
+
 	SetBasicLayers()
 	{
 		this.ClearLayers()
