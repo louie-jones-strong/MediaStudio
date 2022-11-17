@@ -261,7 +261,17 @@ footer{
 	border: rgb(160, 0, 0) 2px solid;
 	background-color: #444;
 
+	overflow: hidden;
+}
+
+.popupCover{
+	max-height: 30vh;
+}
+
+.popupContent{
+
 	padding: 1em;
+	padding-top: 0px;;
 }
 
 .popupButtonGroup{

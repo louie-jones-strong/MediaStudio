@@ -82,7 +82,7 @@ function OpenNewProject()
 	Layers.SetBasicLayers();
 	Layers.CurrentImg.loadPixels();
 
-	let popup = OpenPopup(`<h1 class="center">Media Studio</h1>`);
+	let popup = OpenPopup(`<h1 class="center">Media Studio</h1>`, "thumbnail.png");
 	let setupHolder = createDiv()
 	setupHolder.id("setupHolder")
 	setupHolder.parent(popup);
@@ -337,16 +337,26 @@ function Resize(width, height)
 	ToolManager.Reset()
 }
 
-function OpenPopup(popupHtml="")
+function OpenPopup(popupHtml="", coverImg=null)
 {
 	let holder = ShowOverlay("")
 
+
 	let popup = createDiv();
+
+	if (coverImg != null)
+	{
+		popup.html(`<img src="${coverImg}" class="popupCover" alt="Cover Image" >`)
+	}
 	popup.parent(holder);
 	popup.elt.classList.add("popup")
-	popup.html(popupHtml)
 
-	return popup;
+	let content = createDiv();
+	content.parent(popup);
+	content.html(popupHtml)
+	content.elt.classList.add("popupContent")
+
+	return content;
 }
 
 function ShowOverlay(overlayHtml="", fadeTimeSecs=-1)
