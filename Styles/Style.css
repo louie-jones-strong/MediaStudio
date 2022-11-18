@@ -271,7 +271,12 @@ footer{
 .popupContent{
 
 	padding: 1em;
-	padding-top: 0px;;
+	padding-top: 0px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	width: max-content;
+	height: max-content;
 }
 
 .popupButtonGroup{
