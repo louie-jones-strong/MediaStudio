@@ -84,21 +84,62 @@ class LayerManger
 
 
 		// need to reselect layer
-		// SelectIndex(index);
+		if (startingIndex == this.SelectedIndex)
+		{
+			this.SelectIndex(endIndex);
+		}
+		else if (endIndex == this.SelectedIndex)
+		{
+			this.SelectIndex(startingIndex);
+		}
+
+
+		let holder = select('#offscreen');
+		for (let i = 0; i < this.Layers.length; i++)
+		{
+			const layer = this.Layers[i];
+
+			let icon = layer.GetLayerIconDiv()
+			icon.parent(holder);
+		}
+
+		holder = select('#layerListHolder');
+		for (let i = 0; i < this.Layers.length; i++)
+		{
+			const layer = this.Layers[i];
+
+			let icon = layer.GetLayerIconDiv()
+			icon.parent(holder);
+		}
+
 	}
 
 	AddLayer(layer)
 	{
 		let holder = select('#layerListHolder');
 
-		var index = this.Layers.length;
+		var id = layer.LayerId //this.Layers.length;
 		layer.AddLayerUiHtml(holder, function() {
-			Layers.SelectIndex(index);
+			// Layers.SelectIndex(index);
+			Layers.SelectId(id)
 		});
 
 		this.Layers.push(layer);
 
 		this.SelectIndex(this.Layers.length-1)
+	}
+
+	SelectId(id)
+	{
+		for (let i = 0; i < this.Layers.length; i++)
+		{
+			const layer = this.Layers[i];
+			if (layer.LayerId == id)
+			{
+				this.SelectIndex(i)
+				break;
+			}
+		}
 	}
 
 	SelectIndex(index)

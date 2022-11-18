@@ -158,6 +158,11 @@ class Layer extends Selectable
 		});
 	}
 
+	GetLayerIconDiv()
+	{
+		return select(`#Layer${this.LayerId}`);
+	}
+
 	SetSelected(selected)
 	{
 		let wasSelected = this.IsSelected()
