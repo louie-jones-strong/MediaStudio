@@ -60,6 +60,33 @@ class LayerManger
 		this.SelectedIndex = null
 	}
 
+	MoveLayer(startingIndex, endIndex)
+	{
+
+		if (startingIndex < 0 ||
+			startingIndex >= this.Layers.length ||
+			endIndex < 0 ||
+			endIndex >= this.Layers.length)
+		{
+			return;
+		}
+
+		let draggedLayer = this.Layers[startingIndex];
+
+
+		// this needs to be moved to swapping layers down or up
+		this.Layers[startingIndex] = this.Layers[endIndex];
+
+
+
+
+		this.Layers[endIndex] = draggedLayer;
+
+
+		// need to reselect layer
+		// SelectIndex(index);
+	}
+
 	AddLayer(layer)
 	{
 		let holder = select('#layerListHolder');
@@ -95,6 +122,36 @@ class LayerManger
 
 		let canUseTools = this.Layers[this.SelectedIndex].DisplaySource == DisplaySource.Drawing;
 		ToolManager.SetCanUseTools(canUseTools);
+
+		if (this.Layers.length <= 1)
+		{
+			select("#moveUpLayer").attribute('disabled', '');
+			select("#moveDownLayer").attribute('disabled', '');
+			select("#removeLayerButton").attribute('disabled', '');
+
+		}
+		else
+		{
+			select("#removeLayerButton").removeAttribute('disabled');
+
+			if (this.SelectedIndex >= this.Layers.length - 1)
+			{
+				select("#moveUpLayer").attribute('disabled', '');
+			}
+			else
+			{
+				select("#moveUpLayer").removeAttribute('disabled');
+			}
+
+			if (this.SelectedIndex <= 0)
+			{
+				select("#moveDownLayer").attribute('disabled', '');
+			}
+			else
+			{
+				select("#moveDownLayer").removeAttribute('disabled');
+			}
+		}
 	}
 
 

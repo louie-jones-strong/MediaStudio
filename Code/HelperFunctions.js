@@ -57,6 +57,15 @@ function HelperFunctions()
 	});
 
 
+	select("#moveUpLayer").mouseClicked(function() {
+		Layers.MoveLayer(Layers.SelectedIndex, Layers.SelectedIndex + 1)
+	});
+
+	select("#moveDownLayer").mouseClicked(function() {
+		Layers.MoveLayer(Layers.SelectedIndex, Layers.SelectedIndex - 1)
+	});
+
+
 	//faster function to get the color of pixels
 	this.GetPixel = function(img, x, y, d=null)
 	{
