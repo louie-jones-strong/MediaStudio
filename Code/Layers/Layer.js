@@ -120,7 +120,7 @@ class Layer extends Selectable
 		layer.parent(holder);
 		layer.id(`Layer${this.LayerId}`);
 
-		let iconWidth = 150;
+		let iconWidth = 200;
 		let iconHeight = height / (width / iconWidth);
 
 		this.Canvas = this.P5.createCanvas(iconWidth, iconHeight);
