@@ -43,6 +43,7 @@ class LayerEffect extends Selectable
 			this.CachedImg = createGraphics(width, height);
 		}
 
+		this.CachedImg.clear()
 		return this.CachedImg;
 	}
 }
