@@ -2,29 +2,20 @@ class ImageAction extends BaseAction
 {
 	constructor()
 	{
-		super();
-		this.Icon = "";
-		this.Name = "";
-
-		let layer = Layers.Layers[Layers.SelectedIndex].LayerImage
-
-		this.StartingImage = createGraphics(layer.width, layer.height);
-		this.StartingImage.image(layer, 0, 0, layer.width, layer.height);
+		super("", "");
+		this.StartingData = this.GetLayerData();
 	}
 
 
 	EndAction()
 	{
-		let layer = Layers.Layers[Layers.SelectedIndex].LayerImage
-		this.EndImage = createGraphics(layer.width, layer.height);
-		this.EndImage.image(layer, 0, 0, layer.width, layer.height);
+		this.EndData = this.GetLayerData();
 	}
 
 	Undo()
 	{
 
-		let layer = Layers.Layers[Layers.SelectedIndex].LayerImage
-		layer.image(this.StartingImage, 0, 0, layer.width, layer.height);
+		this.SetLayerData(this.StartingData)
 	}
 
 	Redo()
@@ -33,7 +24,23 @@ class ImageAction extends BaseAction
 		{
 			return
 		}
+		this.SetLayerData(this.EndData)
+	}
+
+	GetLayerData()
+	{
+
+
 		let layer = Layers.Layers[Layers.SelectedIndex].LayerImage
-		layer.image(this.EndImage, 0, 0, layer.width, layer.height);
+		let img = createGraphics(layer.width, layer.height);
+		img.image(layer, 0, 0, layer.width, layer.height);
+		return img
+	}
+
+	SetLayerData(data)
+	{
+		let layer = Layers.Layers[Layers.SelectedIndex].LayerImage
+		layer.clear()
+		layer.image(data, 0, 0, layer.width, layer.height);
 	}
 }

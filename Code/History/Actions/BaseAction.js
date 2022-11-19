@@ -1,9 +1,9 @@
 class BaseAction
 {
-	constructor()
+	constructor(icon="", name="")
 	{
-		this.Icon = "";
-		this.Name = "";
+		this.Icon = icon;
+		this.Name = name;
 		this.Ended = false;
 	}
 

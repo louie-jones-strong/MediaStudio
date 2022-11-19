@@ -152,7 +152,7 @@ class LayerManger
 		}
 	}
 
-	SelectIndex(index)
+	SelectIndex(index, addToHistory=true)
 	{
 		if (this.SelectedIndex != null)
 		{
@@ -160,11 +160,14 @@ class LayerManger
 			this.Layers[this.SelectedIndex].UseFastEffect = false;
 		}
 
-
-
-
-
+		if (addToHistory)
+		{
+			ActionHistory.AddAction(new SelectLayerAction(this.SelectedIndex, index))
+		}
 		this.SelectedIndex = index;
+
+
+
 		this.CurrentImg = this.Layers[this.SelectedIndex].LayerImage;
 
 
