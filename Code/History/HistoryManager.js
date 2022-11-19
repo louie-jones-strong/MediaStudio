@@ -25,9 +25,15 @@ class HistoryManager
 			return;
 		}
 
+		let current = this.ActionsStack[this.CurrentIndex];
+		if (!current.Ended)
+		{
+			current.EndAction();
+		}
+
 		this.ActionsStack[this.CurrentIndex].Undo();
 
-		this.CurrentIndex -= 1;
+		this.SetCurrent(this.CurrentIndex - 1)
 	}
 
 	Redo()
@@ -39,7 +45,7 @@ class HistoryManager
 
 		this.ActionsStack[this.CurrentIndex].Redo();
 
-		this.CurrentIndex += 1
+		this.SetCurrent(this.CurrentIndex + 1)
 	}
 
 	Update()
@@ -72,6 +78,21 @@ class HistoryManager
 
 
 		this.ActionsStack.push(action)
-		this.CurrentIndex += 1;
+		this.SetCurrent(this.CurrentIndex + 1)
+	}
+
+	SetCurrent(index)
+	{
+		if (this.CurrentIndex >= 0 && this.CurrentIndex < this.ActionsStack.length)
+		{
+			this.ActionsStack[this.CurrentIndex].SetIsCurrent(false);
+		}
+
+		this.CurrentIndex = index
+
+		if (this.CurrentIndex >= 0 && this.CurrentIndex < this.ActionsStack.length)
+		{
+			this.ActionsStack[this.CurrentIndex].SetIsCurrent(true);
+		}
 	}
 }

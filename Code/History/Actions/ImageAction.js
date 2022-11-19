@@ -19,6 +19,7 @@ class ImageAction extends BaseAction
 
 	EndAction()
 	{
+		super.EndAction()
 		this.EndData = this.GetLayerData();
 	}
 

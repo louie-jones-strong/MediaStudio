@@ -234,7 +234,7 @@ function keyPressed()
 
 	if (CTRLPressed && key == "y")
 	{
-		// ActionHistory.Redo();
+		ActionHistory.Redo();
 	}
 }
 

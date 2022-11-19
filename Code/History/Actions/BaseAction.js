@@ -24,11 +24,19 @@ class BaseAction
 	EndAction()
 	{
 		this.Ended = true;
+		select(`#${this.Id}`).elt.classList.add("ended");
 	}
 
 	SetIsCurrent(isCurrent)
 	{
-
+		if (isCurrent)
+		{
+			select(`#${this.Id}`).elt.classList.add("current");
+		}
+		else
+		{
+			select(`#${this.Id}`).elt.classList.remove("current");
+		}
 	}
 
 	Undo()
