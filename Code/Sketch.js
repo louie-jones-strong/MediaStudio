@@ -20,6 +20,10 @@ var MouseLeftDown = false;
 var MouseRightDown = false;
 var MouseCenterDown = false;
 var MouseLeftOrRightDown = false;
+var LastMouseLeftDown = false;
+var LastMouseRightDown = false;
+var LastMouseCenterDown = false;
+var LastMouseLeftOrRightDown = false;
 
 var NormalizeAspectRatio = false;
 
@@ -321,6 +325,11 @@ function HandleMouse()
 	MouseRightPressed = MouseRightDown && !LastMouseRightDown
 	MouseCenterPressed = MouseCenterDown && !LastMouseCenterDown
 	MouseLeftOrRightPressed = MouseLeftOrRightDown && !LastMouseLeftOrRightDown
+
+	MouseLeftReleased = !MouseLeftDown && LastMouseLeftDown
+	MouseRightReleased = !MouseRightDown && LastMouseRightDown
+	MouseCenterReleased = !MouseCenterDown && LastMouseCenterDown
+	MouseLeftOrRightReleased = !MouseLeftOrRightDown && LastMouseLeftOrRightDown
 
 	LastMouseLeftDown = MouseLeftDown
 	LastMouseRightDown = MouseRightDown

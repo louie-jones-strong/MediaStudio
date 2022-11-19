@@ -38,7 +38,7 @@ class HistoryManager
 
 	Redo()
 	{
-		if (this.CurrentIndex >= this.ActionsStack.length)
+		if (this.CurrentIndex >= this.ActionsStack.length -1)
 		{
 			return;
 		}
@@ -54,6 +54,14 @@ class HistoryManager
 		if (MouseLeftOrRightPressed)
 		{
 			this.AddAction(new ImageAction())
+		}
+		else if (MouseLeftOrRightReleased)
+		{
+			let current = this.ActionsStack[this.CurrentIndex];
+			if (!current.Ended)
+			{
+				current.EndAction();
+			}
 		}
 	}
 
