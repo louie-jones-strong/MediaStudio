@@ -43,7 +43,7 @@ class MirrorDrawTool extends Tool
 		Layers.CurrentImg.updatePixels();
 
 		//do the drawing if the mouse is pressed
-		if (MouseLeftOrRightPressed)
+		if (MouseLeftOrRightDown)
 		{
 			//if the previous values are -1 set them to the current mouse location
 			//and mirrored positions

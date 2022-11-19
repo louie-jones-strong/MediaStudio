@@ -29,9 +29,9 @@ class ColorPalette
 		this.RightClickColor.UpdateColor();
 
 		//update selectedColor based on what mouse button pressed
-		if (MouseLeftOrRightPressed)
+		if (MouseLeftOrRightDown)
 		{
-			if (MouseLeftPressed)
+			if (MouseLeftDown)
 			{
 				this.SelectedColor = this.LeftClickColor.RgbaColor;
 
@@ -40,7 +40,7 @@ class ColorPalette
 					this.LeftClickColor.UseColor();
 				}
 			}
-			else if (MouseRightPressed)
+			else if (MouseRightDown)
 			{
 				this.SelectedColor = this.RightClickColor.RgbaColor;
 

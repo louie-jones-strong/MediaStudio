@@ -27,7 +27,7 @@ class ShapeTool extends Tool
 	{
 		super.Draw();
 
-		if(MouseLeftOrRightPressed)
+		if(MouseLeftOrRightDown)
 		{
 			if(!this.Drawing &&
 				Helpers.PosOnCanvas(MousePosX, MousePosY))

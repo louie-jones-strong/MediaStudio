@@ -42,7 +42,7 @@ class TextTool extends Tool
 		Layers.CurrentImg.textSize(this.TextSize);
 
 		Layers.CurrentImg.updatePixels();
-		if(MouseLeftOrRightPressed && Helpers.PosOnCanvas(MousePosX, MousePosY))
+		if(MouseLeftOrRightDown && Helpers.PosOnCanvas(MousePosX, MousePosY))
 		{
 			this.FinishCurrentText();
 

@@ -38,7 +38,7 @@ class FreehandTool extends Tool
 		super.Draw();
 
 		//if the mouse is pressed
-		if(MouseLeftOrRightPressed)
+		if(MouseLeftOrRightDown)
 		{
 			//check if they previousX and Y are -1. set them to the current
 			//mouse X and Y if they are.

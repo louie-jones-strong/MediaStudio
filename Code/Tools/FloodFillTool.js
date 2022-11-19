@@ -52,7 +52,7 @@ class FloodFillTool extends Tool
 			Layers.CurrentImg.updatePixels();
 
 		}
-		else if (MouseLeftOrRightPressed && Helpers.PosOnCanvas(MousePosX, MousePosY))
+		else if (MouseLeftOrRightDown && Helpers.PosOnCanvas(MousePosX, MousePosY))
 		{
 			let x = Math.round(MousePosX);
 			let y = Math.round(MousePosY);

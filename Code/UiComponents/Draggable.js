@@ -29,7 +29,7 @@ class Draggable
 			item.SetPos(item.X, item.Y)
 		}
 
-		if (!Draggable.LastMouseDown && MouseLeftPressed)
+		if (!Draggable.LastMouseDown && MouseLeftDown)
 		{
 			// mouseJust pressed down
 			let closestDist = 0;
@@ -48,7 +48,7 @@ class Draggable
 				}
 			}
 		}
-		else if (!MouseLeftPressed)
+		else if (!MouseLeftDown)
 		{
 			// mouse released
 			Draggable.Selected = null;
@@ -59,7 +59,7 @@ class Draggable
 			Draggable.Selected.SetPos(MousePosX, MousePosY)
 		}
 
-		Draggable.LastMouseDown = MouseLeftPressed;
+		Draggable.LastMouseDown = MouseLeftDown;
 
 
 	}

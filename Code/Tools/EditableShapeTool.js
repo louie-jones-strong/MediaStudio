@@ -35,7 +35,7 @@ class EditableShapeTool extends Tool
 	{
 		super.Draw();
 
-		if(MouseLeftOrRightPressed && Helpers.PosOnCanvas(MousePosX, MousePosY))
+		if(MouseLeftOrRightDown && Helpers.PosOnCanvas(MousePosX, MousePosY))
 		{
 			if (this.IsEditMode)
 			{

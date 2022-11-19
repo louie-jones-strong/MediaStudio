@@ -16,10 +16,10 @@ var FileInput = null;
 
 var MousePosX = 0;
 var MousePosY = 0;
-var MouseLeftPressed = false;
-var MouseRightPressed = false;
-var MouseCenterPressed = false;
-var MouseLeftOrRightPressed = false;
+var MouseLeftDown = false;
+var MouseRightDown = false;
+var MouseCenterDown = false;
+var MouseLeftOrRightDown = false;
 
 var NormalizeAspectRatio = false;
 
@@ -298,10 +298,20 @@ function HandleMouse()
 	MousePosX = mouseX; // / d;
 	MousePosY = mouseY; // / d;
 
-	MouseLeftPressed = mouseIsPressed && mouseButton === LEFT;
-	MouseRightPressed = mouseIsPressed && mouseButton === RIGHT;
-	MouseCenterPressed = mouseIsPressed && mouseButton === CENTER;
-	MouseLeftOrRightPressed = MouseLeftPressed || MouseRightPressed;
+	MouseLeftDown = mouseIsPressed && mouseButton === LEFT;
+	MouseRightDown = mouseIsPressed && mouseButton === RIGHT;
+	MouseCenterDown = mouseIsPressed && mouseButton === CENTER;
+	MouseLeftOrRightDown = MouseLeftDown || MouseRightDown;
+
+	MouseLeftPressed = MouseLeftDown && !LastMouseLeftDown
+	MouseRightPressed = MouseRightDown && !LastMouseRightDown
+	MouseCenterPressed = MouseCenterDown && !LastMouseCenterDown
+	MouseLeftOrRightPressed = MouseLeftOrRightDown && !LastMouseLeftOrRightDown
+
+	LastMouseLeftDown = MouseLeftDown
+	LastMouseRightDown = MouseRightDown
+	LastMouseCenterDown = MouseCenterDown
+	LastMouseLeftOrRightDown = MouseLeftOrRightDown
 }
 
 function ResizeToFit(contentWidth, contentHeight)

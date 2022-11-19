@@ -32,7 +32,7 @@ class SprayCanTool extends Tool
 		//if the mouse is pressed paint on the canvas
 		//spread describes how far to spread the paint from the mouse pointer
 		//points holds how many pixels of paint for each mouse press.
-		if(MouseLeftOrRightPressed && Helpers.PosOnCanvas(MousePosX, MousePosY))
+		if(MouseLeftOrRightDown && Helpers.PosOnCanvas(MousePosX, MousePosY))
 		{
 			for(let i = 0; i < this.Points; i++)
 			{

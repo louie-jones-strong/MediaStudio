@@ -41,12 +41,12 @@ class ActionsManger
 			}
 			case "MouseDown":
 			{
-				MouseLeftOrRightPressed = true;
+				MouseLeftOrRightDown = true;
 				break;
 			}
 			case "MouseUp":
 			{
-				MouseLeftOrRightPressed = false;
+				MouseLeftOrRightDown = false;
 				break;
 			}
 			default:

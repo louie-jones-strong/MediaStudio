@@ -34,7 +34,7 @@ class LineToTool extends Tool
 	{
 		super.Draw();
 
-		if(MouseLeftOrRightPressed)
+		if(MouseLeftOrRightDown)
 		{
 			//check if this is the start of the line
 			if(this.StartMouseX == -1)

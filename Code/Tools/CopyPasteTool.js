@@ -81,7 +81,7 @@ class CopyPasteTool extends Tool
 
 	Selecting()
 	{
-		if(MouseLeftOrRightPressed && Helpers.PosOnCanvas(MousePosX, MousePosY))
+		if(MouseLeftOrRightDown && Helpers.PosOnCanvas(MousePosX, MousePosY))
 		{
 			if(this.State == eCopyPasteState.None)
 			{
@@ -115,7 +115,7 @@ class CopyPasteTool extends Tool
 				this.DrawSelection();
 			}
 		}
-		else if(!MouseLeftOrRightPressed && this.State == eCopyPasteState.Selecting) //if the user has released the mouse while drawing we reset the tool
+		else if(!MouseLeftOrRightDown && this.State == eCopyPasteState.Selecting) //if the user has released the mouse while drawing we reset the tool
 		{
 			//reset canvas to last saved canvas
 			//this updates the pixels on the canvas from the pixel array
@@ -134,7 +134,7 @@ class CopyPasteTool extends Tool
 
 		Layers.CurrentImg.image(this.CopiedImage, MousePosX - this.SelectionWidth/2, MousePosY - this.SelectionHeight/2)
 
-		if(MouseLeftOrRightPressed && Helpers.PosOnCanvas(MousePosX, MousePosY))
+		if(MouseLeftOrRightDown && Helpers.PosOnCanvas(MousePosX, MousePosY))
 		{
 			//save current canvas state
 			//this loads the pixels on the canvas in to the pixel array
