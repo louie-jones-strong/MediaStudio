@@ -48,6 +48,7 @@ function setup()
 
 	Actions = new ActionsManger();
 	Template = new TemplateManager();
+	ActionHistory = new HistoryManager();
 
 	Layers = new LayerManger();
 
@@ -79,6 +80,7 @@ function OpenNewProject()
 	Resize(CanvasWidth, CanvasHeight)
 
 	ToolManager.Reset();
+	ActionHistory.Reset();
 	Layers.SetBasicLayers();
 	Layers.CurrentImg.loadPixels();
 
@@ -133,6 +135,7 @@ function OpenNewProject()
 					Resize(img.width, img.height)
 
 					ToolManager.Reset();
+					ActionHistory.Reset();
 					Layers.ClearLayers()
 
 					let layer = new Layer(file.name, img);
@@ -181,8 +184,11 @@ function OpenNewProject()
 function draw()
 {
 	HandleMouse();
+
+
 	if (!OverlayShowing)
 	{
+		ActionHistory.Update();
 		ColorP.UpdateColors();
 		Draggable.Update();
 		//call the draw function on the selected tool
@@ -219,6 +225,16 @@ function keyPressed()
 	if (keyCode === SHIFT)
 	{
 		NormalizeAspectRatio = true;
+	}
+
+	if (CTRLPressed && key == "z")
+	{
+		ActionHistory.Undo();
+	}
+
+	if (CTRLPressed && key == "y")
+	{
+		// ActionHistory.Redo();
 	}
 }
 
@@ -344,7 +360,7 @@ function Resize(width, height)
 		Layers.Resize(width, height);
 	}
 
-	ToolManager.Reset()
+	ToolManager.Reset();
 }
 
 function OpenPopup(popupHtml="", coverImg=null)
