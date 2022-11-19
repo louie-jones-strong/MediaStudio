@@ -80,7 +80,6 @@ function OpenNewProject()
 	Resize(CanvasWidth, CanvasHeight)
 
 	ToolManager.Reset();
-	ActionHistory.Reset();
 	Layers.SetBasicLayers();
 	Layers.CurrentImg.loadPixels();
 
@@ -176,8 +175,7 @@ function OpenNewProject()
 		ToolManager.SelectTool(ToolManager.Tools[0].Id);
 	});
 
-
-
+	ActionHistory.Reset();
 }
 
 
