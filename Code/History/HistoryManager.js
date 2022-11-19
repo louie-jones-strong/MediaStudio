@@ -7,6 +7,13 @@ class HistoryManager
 
 	Reset()
 	{
+		if (this.ActionsStack != null)
+		{
+			for (let i = 0; i < this.ActionsStack.length; i++)
+			{
+				this.ActionsStack.pop().Remove()
+			}
+		}
 		this.ActionsStack = []
 		this.CurrentIndex = -1;
 	}
@@ -59,7 +66,7 @@ class HistoryManager
 		{
 			for (let i = this.ActionsStack.length - 1; i > this.CurrentIndex; i--)
 			{
-				this.ActionsStack.pop()
+				this.ActionsStack.pop().Remove()
 			}
 		}
 

@@ -37,6 +37,17 @@ function HelperFunctions()
 
 	});
 
+
+	select("#undo").mouseClicked(function() {
+
+		ActionHistory.Undo();
+	});
+
+	select("#redo").mouseClicked(function() {
+
+		ActionHistory.Redo();
+	});
+
 	//p5.dom click click events. Notice that there is no this. at the
 	//start we don't need to do that here because the event will
 	//be added to the button and doesn't 'belong' to the object

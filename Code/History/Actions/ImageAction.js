@@ -2,10 +2,20 @@ class ImageAction extends BaseAction
 {
 	constructor()
 	{
-		super("", "");
+		super("assets/freehandTool.png", "Drawing");
 		this.StartingData = this.GetLayerData();
 	}
 
+	Remove()
+	{
+		super.Remove()
+		this.StartingData.remove();
+		if (this.EndData != null)
+		{
+			this.EndData.remove();
+		}
+
+	}
 
 	EndAction()
 	{
@@ -14,12 +24,13 @@ class ImageAction extends BaseAction
 
 	Undo()
 	{
-
+		super.Undo()
 		this.SetLayerData(this.StartingData)
 	}
 
 	Redo()
 	{
+		super.Redo()
 		if (!this.Ended)
 		{
 			return
