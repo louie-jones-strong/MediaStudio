@@ -53,6 +53,16 @@ class LayerManger
 	ClearLayers()
 	{
 		LayerManger.NumberOfCreatedLayers = 0;
+
+		if (this.Layers != null)
+		{
+			for (let i = 0; i < this.Layers.length; i++)
+			{
+				const layer = this.Layers[i];
+				layer.Remove();
+			}
+		}
+
 		this.Layers = [];
 		const container = document.getElementById('layerListHolder');
 

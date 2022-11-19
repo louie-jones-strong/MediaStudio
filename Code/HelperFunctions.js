@@ -14,6 +14,7 @@ function HelperFunctions()
 			let layerToRemove = Layers.Layers[Layers.SelectedIndex]
 			select(`#Layer${layerToRemove.LayerId}`).remove();
 
+			Layers.Layers[Layers.SelectedIndex].Remove();
 			Layers.Layers.splice(Layers.SelectedIndex, 1);
 
 			let newIndex = Layers.SelectedIndex - 1;

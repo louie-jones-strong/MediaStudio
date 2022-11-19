@@ -6,6 +6,14 @@ class LayerEffect extends Selectable
 		this.Name = "Base Effect";
 	}
 
+	Remove()
+	{
+		if (this.CachedImg != null)
+		{
+			this.CachedImg.remove();
+		}
+	}
+
 	ApplyEffect(startImg)
 	{
 
@@ -21,4 +29,20 @@ class LayerEffect extends Selectable
 		super.SetSelected(selected)
 	}
 
+	GetCachedImage(width, height)
+	{
+		if (this.CachedImg == null ||
+			this.CachedImg.width != width ||
+			this.CachedImg.height != height)
+		{
+			if (this.CachedImg != null)
+			{
+				this.CachedImg.remove();
+			}
+
+			this.CachedImg = createGraphics(width, height);
+		}
+
+		return this.CachedImg;
+	}
 }

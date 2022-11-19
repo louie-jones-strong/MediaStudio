@@ -54,7 +54,7 @@ class VignetteEffect extends LayerEffect
 			this.CachedOverlay.height != height)
 		{
 
-			this.CachedOverlay = createGraphics(width, height);
+			this.CachedOverlay = this.GetCachedImage(width, height);
 
 			this.CachedOverlay.background(0);
 			this.CachedOverlay.loadPixels();

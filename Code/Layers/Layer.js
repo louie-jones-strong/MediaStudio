@@ -61,8 +61,27 @@ class Layer extends Selectable
 		this.Resize(CanvasWidth, CanvasHeight, graphic)
 	}
 
+	Remove()
+	{
+		for (let i = 0; i < this.LayerEffects.length; i++)
+		{
+			const effect = this.LayerEffects[i];
+			effect.Remove();
+		}
+
+		this.LayerImage.remove();
+		this.AffectEffectsCache.remove();
+		this.FastEffectsCache.remove();
+	}
+
 	Resize(width, height, graphic)
 	{
+
+		if (this.LayerImage != null)
+		{
+			this.LayerImage.remove();
+		}
+
 		this.LayerImage = createGraphics(width, height);
 
 		if (graphic != null)
@@ -86,6 +105,15 @@ class Layer extends Selectable
 		// 	let y = floor((this.ResizeAnchorY * height) - (this.ResizeAnchorY * imgHeight));
 
 			this.LayerImage.image(graphic, 0, 0, CanvasWidth, CanvasHeight);
+		}
+
+		if (this.AffectEffectsCache != null)
+		{
+			this.AffectEffectsCache.remove();
+		}
+		if (this.FastEffectsCache != null)
+		{
+			this.FastEffectsCache.remove();
 		}
 
 		this.AffectEffectsCache = createGraphics(width, height);
