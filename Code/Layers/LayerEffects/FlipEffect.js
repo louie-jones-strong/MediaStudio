@@ -4,6 +4,9 @@ class FlipEffect extends LayerEffect
 	{
 		super();
 		this.Name = "Flip";
+
+		this.FlipX = true;
+		this.FlipY = false;
 	}
 
 	ApplyEffect(startImg)
@@ -21,7 +24,20 @@ class FlipEffect extends LayerEffect
 			for (let y = 0; y < img.height; y += 1)
 			{
 				let colour = Helpers.GetPixel(img, x, y);
-				Helpers.SetPixel(flippedImg, (img.width-x), y, colour);
+
+				let outX = x;
+				let outY = y;
+				if (this.FlipX)
+				{
+					outX = (img.width - x);
+				}
+
+				if (this.FlipY)
+				{
+					outY = (img.height - y);
+				}
+
+				Helpers.SetPixel(flippedImg, outX, outY, colour);
 			}
 		}
 		flippedImg.updatePixels();
