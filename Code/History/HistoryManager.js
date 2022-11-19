@@ -11,7 +11,7 @@ class HistoryManager
 		{
 			for (let i = 0; i < this.ActionsStack.length; i++)
 			{
-				this.ActionsStack.pop().Remove()
+				this.ActionsStack[i].Remove()
 			}
 		}
 		this.ActionsStack = []
@@ -80,7 +80,8 @@ class HistoryManager
 		{
 			for (let i = this.ActionsStack.length - 1; i > this.CurrentIndex; i--)
 			{
-				this.ActionsStack.pop().Remove()
+				let action = this.ActionsStack.pop()
+				action.Remove()
 			}
 		}
 
