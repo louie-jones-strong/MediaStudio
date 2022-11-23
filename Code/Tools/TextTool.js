@@ -12,7 +12,7 @@ class TextTool extends Tool
 		this.PosX = -1;
 		this.PosY = -1;
 		this.CurrentString = "";
-		this.TextSize = 50;
+		this.TextSize = 75;
 
 		this.LineShowing = true;
 		this.LineFlashTimer = Date.now();

@@ -48,8 +48,8 @@
 				},
 				{
 					"Type": "MousePos",
-					"PixelsX": 420,
-					"PixelsY": 495
+					"PixelsX": 380,
+					"PixelsY": 465
 				},
 				{
 					"Type": "MouseDown"
@@ -70,10 +70,10 @@
 		"BlackBoard": {
 			"Alpha": 1,
 			"Image": "Templates/LynnyKnits/BlackBoard.png",
-			"ResizeAnchorX": 1,
-			"ResizeAnchorY": 1,
-			"ResizeWidth": 0.2,
-			"ResizeHeight": 0.115,
+			"ResizeAnchorX": 0.975,
+			"ResizeAnchorY": 0.975,
+			"ResizeWidth": 0.3,
+			"ResizeHeight": 0.2,
 			"Effects": [
 			]
 		},
