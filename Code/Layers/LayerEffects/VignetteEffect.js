@@ -5,8 +5,8 @@ class VignetteEffect extends LayerEffect
 		super();
 		this.Name = "Vignette";
 
-		this.Distance = 100
-		this.Amount = 0.4
+		this.Distance = 250
+		this.Amount = 1
 	}
 
 	Draw()

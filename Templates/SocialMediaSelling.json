@@ -48,7 +48,7 @@
 				},
 				{
 					"Type": "MousePos",
-					"PixelsX": 370,
+					"PixelsX": 420,
 					"PixelsY": 495
 				},
 				{
@@ -72,14 +72,14 @@
 			"Image": "Templates/LynnyKnits/BlackBoard.png",
 			"ResizeAnchorX": 1,
 			"ResizeAnchorY": 1,
-			"ResizeWidth": 0.3,
+			"ResizeWidth": 0.2,
 			"ResizeHeight": 0.115,
 			"Effects": [
 			]
 		},
 		"WaterMark": {
-			"Alpha": 0.15,
-			"Image": "Templates/Louie_Watermark.png",
+			"Alpha": 0.05,
+			"Image": "Templates/Lynny_Watermark.png",
 			"ResizeAnchorX": 0.5,
 			"ResizeAnchorY": 0.5,
 			"ResizeWidth": 1,
@@ -93,6 +93,9 @@
 			"ResizeAnchorX": 0.5,
 			"ResizeAnchorY": 0.5,
 			"Effects": [
+				{
+					"Type": "Vignette"
+				}
 			]
 		}
 	}
