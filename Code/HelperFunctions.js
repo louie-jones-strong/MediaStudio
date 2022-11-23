@@ -62,11 +62,12 @@ function HelperFunctions()
 	//local file system.
 	select("#saveImageButton").mouseClicked(function() {
 
-		if (!Template.TrySaveOutputs())
-		{
-			saveCanvas()
-		}
+		let popup = OpenPopup(`<h2 class="center">Saving Image</h2>
+			<p class="center">What would you like the image to be saved as?</p> <br>
+			<input type="text" id="saveImageName" value="untitled"> <br>
+			<div class="popupButtonGroup"><button onclick="SaveImage()">Save</button></div>`);
 	});
+
 
 
 	select("#moveUpLayer").mouseClicked(function() {
@@ -191,5 +192,18 @@ function HelperFunctions()
 		outImg.updatePixels();
 
 		return outImg
+	}
+}
+
+function SaveImage()
+{
+
+	let saveAsName = select("#saveImageName").value()
+
+	CloseOverlay();
+
+	if (!Template.TrySaveOutputs(saveAsName))
+	{
+		saveCanvas(saveAsName)
 	}
 }

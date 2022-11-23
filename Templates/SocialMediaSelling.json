@@ -16,7 +16,7 @@
 	},
 	"Outputs": [
 		{
-			"OutputName": "500x500",
+			"OutputName": "",
 			"OutputFileType": "png",
 			"Width": 500,
 			"Height": 500

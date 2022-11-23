@@ -13,7 +13,7 @@ class TemplateManager
 		this.CollectInputs();
 	}
 
-	TrySaveOutputs()
+	TrySaveOutputs(saveAsName)
 	{
 		if (this.Template == null ||
 			this.Template.Outputs == null ||
@@ -29,7 +29,7 @@ class TemplateManager
 
 			RenderImage();
 
-			saveCanvas(output.OutputName, output.OutputFileType);
+			saveCanvas(saveAsName + output.OutputName, output.OutputFileType);
 
 		}
 		return true;
