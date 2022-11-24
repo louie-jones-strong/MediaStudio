@@ -15,11 +15,9 @@ html, body{
 /* Buttons */
 button{
 	transition-duration: 0.5s;
-	border: none;
 	margin: 5px;
-	background-color: white;
 	color: black;
-	border-radius: 0.25em;
+	border-radius: 0.5em;
 	box-shadow:	0.125em 0.125em 0.25em 0 rgba(0,0,0,50%);
 	display: flex;
 	align-items: center;
@@ -27,7 +25,20 @@ button{
 	transition: transform 0.2s;
 	transform: scale(1);
 	cursor: pointer;
+
+	padding: 0.25em;
+	padding-inline: 0.5em;
+	border: black 2px solid;
+	box-shadow: 0em 0.125em 0.25em 0 rgba(0,0,0,50%);
+	background: linear-gradient(to bottom,rgb(255, 255, 255) 0%, rgb(220, 220, 220) 50%,rgb(150, 150, 150) 100%);
 }
+
+button.small{
+	padding: 0.1em;
+	padding-inline: 0.25em;
+	margin: 0.1em;
+}
+
 button > *{
 	margin: 0;
 }
@@ -44,7 +55,7 @@ button:hover:not(button:disabled){
 
 button:disabled{
 	cursor:not-allowed;
-	background-color: rgb(100, 100, 100);
+	background: linear-gradient(to bottom, rgb(50, 50, 50) 0%, rgb(75,75, 75) 85%,rgb(100, 100, 100) 100%);
 }
 
 
@@ -306,6 +317,7 @@ footer{
 }
 
 .popupCover{
+	object-fit: cover;
 	max-height: 30vh;
 }
 

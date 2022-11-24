@@ -135,6 +135,7 @@ class Layer extends Selectable
 
 		let editButton = createButton(`<span class="material-icons">edit</span>`);
 		editButton.parent(layerHeader);
+		editButton.class("small")
 		editButton.mousePressed(function() {
 			ToolManager.SelectTool(null);
 			self.SetSelected(true);
@@ -151,12 +152,14 @@ class Layer extends Selectable
 		let iconWidth = 200;
 		let iconHeight = height / (width / iconWidth);
 
+
+
 		this.Canvas = this.P5.createCanvas(iconWidth, iconHeight);
 		this.Canvas.id(`Layer${this.LayerId}Canvas`);
 		this.Canvas.elt.classList.add("canvas")
 		this.Canvas.parent(layer);
 
-		layer.html(`Effects<input type="checkbox" id="Layer${this.LayerId}EffectsToggle" checked>`, true);
+		layer.html(`<br> Effects<input type="checkbox" id="Layer${this.LayerId}EffectsToggle" checked>`, true);
 
 		let effectsHolder = createDiv();
 		effectsHolder.class("effectHolder")
@@ -244,12 +247,14 @@ class Layer extends Selectable
 
 		let removeButton = createButton('X');
 		removeButton.parent(effectDiv);
+		removeButton.class("small")
 		removeButton.mousePressed(function() {
 			self.RemoveEffect(effect.Id);
 		});
 
 		let editButton = createButton(`<span class="material-icons">edit</span>`);
 		editButton.parent(effectDiv);
+		editButton.class("small")
 		editButton.mousePressed(function() {
 			self.EditEffect(effect.Id);
 		});

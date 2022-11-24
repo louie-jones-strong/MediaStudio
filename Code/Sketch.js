@@ -157,7 +157,6 @@ function OpenNewProject()
 	let blankCanvasHolder = createDiv(`<h3 class="">Blank Canvas</h3>
 		<label for="canvasX">X:</label>
 		<input id="canvasX" type="number" min=${1} max=${10000} step=1 value=${CanvasWidth}></input>
-		<br>
 		<label for="canvasY">Y:</label>
 		<input id="canvasY" type="number" min=${1} max=${10000} step=1 value=${CanvasHeight}></input>`)
 	blankCanvasHolder.id("blankCanvasHolder")
