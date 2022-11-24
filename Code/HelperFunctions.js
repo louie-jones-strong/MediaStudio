@@ -38,15 +38,23 @@ function HelperFunctions()
 	});
 
 
-	select("#undo").mouseClicked(function() {
+	let undoButton = select("#undo");
+	if (undoButton != null)
+	{
+		undoButton.mouseClicked(function() {
 
-		ActionHistory.Undo();
-	});
+			ActionHistory.Undo();
+		});
+	}
 
-	select("#redo").mouseClicked(function() {
+	let redoButton = select("#redo");
+	if (redoButton != null)
+	{
+		redoButton.mouseClicked(function() {
 
-		ActionHistory.Redo();
-	});
+			ActionHistory.Redo();
+		});
+	}
 
 	//p5.dom click click events. Notice that there is no this. at the
 	//start we don't need to do that here because the event will
