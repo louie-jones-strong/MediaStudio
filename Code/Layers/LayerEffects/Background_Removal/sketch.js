@@ -9,6 +9,8 @@ var NoteGrid;
 var OpticalFlow;
 var Particles;
 
+const BlobRadius = 6
+var BlobKernel;
 const FlowStep = 4;
 const ScaleFactor = 4;
 var ShouldFlipVideo = true;
@@ -17,10 +19,14 @@ function setup()
 {
 	createCanvas(640 * 3, 480 * 2);
 	pixelDensity(1);
-	Video = createCapture(VIDEO);
+	Video = createCapture(VIDEO, CapturePrev);
 	Video.hide();
 
 	OpticalFlow = new FlowCalculator(FlowStep);
+
+
+	BlobKernel = GetBlobKernel();
+	console.log(BlobKernel);
 
 	background(0);
 }
@@ -55,13 +61,14 @@ function draw()
 		let threshold = document.getElementById("thresholdSlider").value;
 		let threshold2 = document.getElementById("thresholdSlider2").value;
 		let flowThreshold = document.getElementById("flowThresholdSlider").value;
-		let blur = document.getElementById("blurlider").value;
+		let blurPre = document.getElementById("blurSliderPre").value;
+		let blurPost = document.getElementById("blurSliderPost").value;
 		let blobThreshold = document.getElementById("blobThresholdSlider").value;
 
 		DiffImg = CalculateImgDelta(CurrImg, PrevImg, threshold, threshold2);
-		BlobMask = MaskBlobDetection(DiffImg, CurrImg, blobThreshold, 4)
-		DiffImg.filter(BLUR, blur);
-		BlobMask.filter(BLUR, blur);
+		DiffImg.filter(BLUR, blurPre);
+		BlobMask = MaskBlobDetection(DiffImg, CurrImg, blobThreshold)
+		BlobMask.filter(BLUR, blurPost);
 
 		let output = ApplyMask(CurrImg, BlobMask, threshold2)
 
@@ -76,12 +83,6 @@ function draw()
 		OpticalFlow.calculate(LastImg.pixels, CurrImg.pixels, CurrImg.width, CurrImg.height);
 		DrawFlow(Video.width, flowThreshold);
 	}
-	else
-	{
-		// copy current image into prevImg
-		PrevImg = createImage(CurrImg.width, CurrImg.height);
-		PrevImg.copy(CurrImg, 0, 0, CurrImg.width, CurrImg.height, 0, 0, CurrImg.width, CurrImg.height);
-	}
 
 
 	LastImg = createImage(CurrImg.width, CurrImg.height);
@@ -93,10 +94,14 @@ function keyPressed()
 {
 	if (key == "y")
 	{
-		// copy current image into prevImg
-		PrevImg = createImage(CurrImg.width, CurrImg.height);
-		PrevImg.copy(CurrImg, 0, 0, CurrImg.width, CurrImg.height, 0, 0, CurrImg.width, CurrImg.height);
+		CapturePrev();
 	}
+}
+
+function CapturePrev()
+{
+	PrevImg = createImage(CurrImg.width, CurrImg.height);
+	PrevImg.copy(CurrImg, 0, 0, CurrImg.width, CurrImg.height, 0, 0, CurrImg.width, CurrImg.height);
 }
 
 function CalculateImgDelta(currImg, prevImg, threshold, threshold2)
@@ -161,10 +166,10 @@ function ApplyMask(image, mask, threshold2)
 			var index = (x + (y * image.width)) * 4;
 
 			let maskValue = mask.pixels[index + 0] / 255
-			if (maskValue >= threshold2)
-			{
-				maskValue = 1
-			}
+			// if (maskValue >= threshold2)
+			// {
+			// 	maskValue = 1
+			// }
 
 			if (maskValue <= 0)
 			{
@@ -175,9 +180,9 @@ function ApplyMask(image, mask, threshold2)
 			}
 			else
 			{
-				output.pixels[index + 0] = (maskValue) * image.pixels[index + 0];
-				output.pixels[index + 1] = (maskValue) * image.pixels[index + 1];
-				output.pixels[index + 2] = (maskValue) * image.pixels[index + 2];
+				output.pixels[index + 0] = min(maskValue * threshold2, 1) * image.pixels[index + 0];
+				output.pixels[index + 1] = min(maskValue * threshold2, 1) * image.pixels[index + 1];
+				output.pixels[index + 2] = min(maskValue * threshold2, 1) * image.pixels[index + 2];
 				output.pixels[index + 3] = 255;
 			}
 		}
@@ -216,7 +221,7 @@ function DrawFlow(xOffset, flowThreshold)
 }
 
 
-function MaskBlobDetection(mask, image, colourDeltaThreshold, maxDistance)
+function MaskBlobDetection(mask, image, colourDeltaThreshold)
 {
 	let colourDeltaThresholdSquared = colourDeltaThreshold * colourDeltaThreshold
 	let output = createImage(image.width, image.height);
@@ -241,27 +246,35 @@ function MaskBlobDetection(mask, image, colourDeltaThreshold, maxDistance)
 
 
 			// kernel
-			for (let kX = max(x-maxDistance, 0); kX < min(x+maxDistance, image.width); kX++)
+			for (let kX = max(x-BlobRadius, 0); kX <= min(x+BlobRadius, image.width); kX++)
 			{
-				for (let kY = max(y-maxDistance, 0); kY < min(y+maxDistance, image.height); kY++)
+				for (let kY = max(y-BlobRadius, 0); kY <= min(y+BlobRadius, image.height); kY++)
 				{
+					let i = (kX - x) + BlobRadius
+					let j = (kY - y) + BlobRadius
+					let kValue = BlobKernel[i][j]
+					if (kValue == 0)
+					{
+						continue;
+					}
+
 					var kIndex = (kX + (kY * image.width)) * 4;
 					let kr = image.pixels[kIndex + 0]
 					let kg = image.pixels[kIndex + 1]
 					let kb = image.pixels[kIndex + 2]
 					var d = DistSquared3d(sr, sg, sb, kr, kg, kb);
 
-					let newValue = maskValue;
 					if (d < colourDeltaThresholdSquared)
 					{
-						output.pixels[kIndex + 0] = max(output.pixels[kIndex], newValue)
-						output.pixels[kIndex + 1] = max(output.pixels[kIndex], newValue)
-						output.pixels[kIndex + 2] = max(output.pixels[kIndex], newValue)
+						// let newValue = output.pixels[kIndex] + maskValue * kValue
+						let newValue = max(output.pixels[kIndex], maskValue * kValue)
+
+
+						output.pixels[kIndex + 0] = newValue
+						output.pixels[kIndex + 1] = newValue
+						output.pixels[kIndex + 2] = newValue
 						output.pixels[kIndex + 3] = 255
 					}
-
-
-
 				}
 			}
 
@@ -273,6 +286,39 @@ function MaskBlobDetection(mask, image, colourDeltaThreshold, maxDistance)
 	image.updatePixels();
 	mask.updatePixels();
 	return output;
+}
+
+function GetBlobKernel()
+{
+	let kernel = [];
+	let maxDist = DistSquared2d(0,0,BlobRadius, 0)
+	maxDist *= maxDist
+
+	let numValues = (BlobRadius*2+1)*(BlobRadius*2+1)
+	let maxValue = 0
+	for (let x = -BlobRadius; x <= BlobRadius; x++)
+	{
+		let row = []
+		for (let y = -BlobRadius; y <= BlobRadius; y++)
+		{
+			let dist = DistSquared2d(0,0,x, y)
+			dist *= dist
+			let value = 1 - (dist / maxDist)
+			row.push(value)
+			maxValue = max(maxValue, value);
+		}
+		kernel.push(row)
+	}
+
+	for (let x = 0; x < kernel.length; x++)
+	{
+		for (let y = 0; y < kernel.length; y++)
+		{
+			kernel[x][y] = max(0, kernel[x][y] /maxValue)
+		}
+	}
+
+	return kernel
 }
 
 
