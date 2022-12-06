@@ -9,7 +9,7 @@ var NoteGrid;
 var OpticalFlow;
 var Particles;
 
-const BlobRadius = 6
+const BlobRadius = 0
 var BlobKernel;
 const FlowStep = 4;
 const ScaleFactor = 4;
@@ -128,7 +128,10 @@ function CalculateImgDelta(currImg, prevImg, threshold, threshold2)
 			var prevG = prevImg.pixels[index + 1];
 			var prevB = prevImg.pixels[index + 2];
 
-			var d = DistSquared3d(currR, currG, currB, prevR, prevG, prevB);
+			// var d = DistSquared3d(currR, currG, currB, prevR, prevG, prevB);
+			let d = ColourDelta(
+				color(currR, currG, currB),
+				color(prevR, prevG, prevB))
 
 			if (d < thresholdSquared)
 			{
@@ -262,7 +265,10 @@ function MaskBlobDetection(mask, image, colourDeltaThreshold)
 					let kr = image.pixels[kIndex + 0]
 					let kg = image.pixels[kIndex + 1]
 					let kb = image.pixels[kIndex + 2]
-					var d = DistSquared3d(sr, sg, sb, kr, kg, kb);
+					let d = ColourDelta(
+						color(image.pixels[index + 0], image.pixels[index + 1], image.pixels[index + 2]),
+						color(image.pixels[kIndex + 0], image.pixels[kIndex + 1], image.pixels[kIndex + 2]))
+					// var d = DistSquared3d(sr, sg, sb, kr, kg, kb);
 
 					if (d < colourDeltaThresholdSquared)
 					{
@@ -290,6 +296,10 @@ function MaskBlobDetection(mask, image, colourDeltaThreshold)
 
 function GetBlobKernel()
 {
+	if (BlobRadius == 0)
+	{
+		return [[1]]
+	}
 	let kernel = [];
 	let maxDist = DistSquared2d(0,0,BlobRadius, 0)
 	maxDist *= maxDist
@@ -338,6 +348,19 @@ function DistSquared3d(x1, y1, z1, x2, y2, z2)
 	return d / 3;
 }
 
+
+function ColourDelta(c1, c2)
+{
+	// let delta = DistSquared3d(hue(c1), saturation(c1), brightness(c1), hue(c2), saturation(c2), brightness(c2))
+	// delta = 0
+	let delta = DistSquared3d(c1.levels[0], c1.levels[1], c1.levels[2], c2.levels[0], c2.levels[1], c2.levels[2])
+	// return delta
+	// delta = Math.abs( hue(c1) - hue(c2))
+	// delta = round(delta/10, 1)
+	// delta += Math.abs( saturation(c1) - saturation(c2))
+	delta += Math.abs( brightness(c1) - brightness(c2))
+	return delta * delta
+}
 
 function FlipImage(img)
 {
