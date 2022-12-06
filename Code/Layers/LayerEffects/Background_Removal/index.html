@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <body>
+		<div id="content">
+			<div id="settings">
+			<button id="toggleFlip">Toggle Flip</button>
+
+			<label for="thresholdSlider">Diff threshold</label>
+			<input id="thresholdSlider" type="range" min="0" max="255" step="1" value="0">
+
+			<label for="thresholdSlider2">Diff threshold2</label>
+			<input id="thresholdSlider2" type="range" min="0" max="1" step="0.001" value="1">
+			<label for="flowThresholdSlider">flow threshold</label>
+			<input id="flowThresholdSlider" type="range" min="0" max="20" step="0.1" value="5">
+
+
+
+			<label for="blurSlider">blur</label>
+			<input id="blurlider" type="range" min="1" max="10" step="1" value="1">
+		</div>
+	</body>
+  <head>
+    <meta charset="UTF-8">
+    <title>graphicsProgramming - Coursera</title>
+    <script src="libraries/p5.min.js" type="text/javascript"></script>
+    <script src="libraries/p5.sound.min.js" type="text/javascript"></script>
+
+    <script src="sketch.js" type="text/javascript"></script>
+    <script src="flow.js" type="text/javascript"></script>
+
+    <style>
+			body {
+				padding: 0;
+				margin: 0;
+			}
+			canvas {
+				vertical-align: top;
+			}
+			#settings {
+				background-color: black;
+				color: white;
+				position: fixed;
+				display: flex;
+				flex-direction: column;
+				width: 10em;
+				gap: 10px;
+				opacity: 0.35;
+				padding: 0.5em;
+			}
+			#settings:hover{
+				opacity: 1;
+			}
+			#settings > button{
+				padding-block: 0.5em;
+				border-radius: 0.75em;
+			}
+		</style>
+  </head>
+</html>
