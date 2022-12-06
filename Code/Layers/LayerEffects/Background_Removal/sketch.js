@@ -3,18 +3,19 @@ var PrevImg;
 var LastImg;
 var DiffImg;
 var CurrImg;
+var BlobMask;
 
 var NoteGrid;
 var OpticalFlow;
 var Particles;
 
 const FlowStep = 4;
-const ScaleFactor = 2;
+const ScaleFactor = 4;
 var ShouldFlipVideo = true;
 
 function setup()
 {
-	createCanvas(640 * 2, 480 * 2);
+	createCanvas(640 * 3, 480 * 2);
 	pixelDensity(1);
 	Video = createCapture(VIDEO);
 	Video.hide();
@@ -55,13 +56,18 @@ function draw()
 		let threshold2 = document.getElementById("thresholdSlider2").value;
 		let flowThreshold = document.getElementById("flowThresholdSlider").value;
 		let blur = document.getElementById("blurlider").value;
+		let blobThreshold = document.getElementById("blobThresholdSlider").value;
 
 		DiffImg = CalculateImgDelta(CurrImg, PrevImg, threshold, threshold2);
+		BlobMask = MaskBlobDetection(DiffImg, CurrImg, blobThreshold, 4)
 		DiffImg.filter(BLUR, blur);
-		let output = ApplyMask(CurrImg, DiffImg, threshold2)
+		BlobMask.filter(BLUR, blur);
+
+		let output = ApplyMask(CurrImg, BlobMask, threshold2)
 
 		// resize diff image to full size to make it easier to debug
 		image(DiffImg, 640, 0, Video.width, Video.height);
+		image(BlobMask, 640*2, 0, Video.width, Video.height);
 
 		image(PrevImg, 0, 480, Video.width, Video.height);
 		image(output, 640, 480, Video.width, Video.height);
@@ -209,6 +215,65 @@ function DrawFlow(xOffset, flowThreshold)
 	}
 }
 
+
+function MaskBlobDetection(mask, image, colourDeltaThreshold, maxDistance)
+{
+	let colourDeltaThresholdSquared = colourDeltaThreshold * colourDeltaThreshold
+	let output = createImage(image.width, image.height);
+	output.loadPixels();
+	image.loadPixels();
+	mask.loadPixels();
+
+	for (var x = 0; x < image.width; x += 1)
+	{
+		for (var y = 0; y < image.height; y += 1)
+		{
+			var index = (x + (y * image.width)) * 4;
+
+			let maskValue = mask.pixels[index + 0]
+			let sr = image.pixels[index + 0]
+			let sg = image.pixels[index + 1]
+			let sb = image.pixels[index + 2]
+			if (maskValue <= 0)
+			{
+				continue
+			}
+
+
+			// kernel
+			for (let kX = max(x-maxDistance, 0); kX < min(x+maxDistance, image.width); kX++)
+			{
+				for (let kY = max(y-maxDistance, 0); kY < min(y+maxDistance, image.height); kY++)
+				{
+					var kIndex = (kX + (kY * image.width)) * 4;
+					let kr = image.pixels[kIndex + 0]
+					let kg = image.pixels[kIndex + 1]
+					let kb = image.pixels[kIndex + 2]
+					var d = DistSquared3d(sr, sg, sb, kr, kg, kb);
+
+					let newValue = maskValue;
+					if (d < colourDeltaThresholdSquared)
+					{
+						output.pixels[kIndex + 0] = max(output.pixels[kIndex], newValue)
+						output.pixels[kIndex + 1] = max(output.pixels[kIndex], newValue)
+						output.pixels[kIndex + 2] = max(output.pixels[kIndex], newValue)
+						output.pixels[kIndex + 3] = 255
+					}
+
+
+
+				}
+			}
+
+			// end of kernal
+		}
+	}
+
+	output.updatePixels();
+	image.updatePixels();
+	mask.updatePixels();
+	return output;
+}
 
 
 
