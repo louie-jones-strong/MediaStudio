@@ -71,8 +71,22 @@ function setup()
 	FileInput = createFileInput(handleFile);
 	FileInput.parent(select("#header"));
 
-
 	OpenNewProject();
+
+	const urlParams = new URLSearchParams(window.location.search);
+	const templatePath = urlParams.get('templatePath')
+	if (templatePath != null)
+	{
+		loadJSON(
+			templatePath,
+			text => {
+				console.log(text);
+				Template.LoadTemplate(text)
+			},
+			() => print('Failed to Load: '+ templatePath),
+		)
+	}
+
 
 	SetZoom(Zoom)
 }
@@ -96,14 +110,12 @@ function OpenNewProject()
 	templateHolder.id("templatesHolder")
 	templateHolder.parent(setupHolder);
 
-	let templateDict = {}
-	templateDict["Social Media Selling"] = "Templates/SocialMediaSelling.json"
-	templateDict["Webcam Overlay"] = "Templates/WebcamOverlay.json"
-	for (const key in templateDict)
+
+	for (const key in TemplateManager.TemplateDict)
 	{
 		let loadTemplateButton = createButton(key);
 		loadTemplateButton.parent(templateHolder);
-		let path = templateDict[key]
+		let path = TemplateManager.TemplateDict[key]
 		loadTemplateButton.mousePressed(function(event)
 		{
 			loadJSON(

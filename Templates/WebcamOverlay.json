@@ -1,8 +1,8 @@
 {
 	"Name": "Webcam Overlay",
 	"Description": "",
-	"StartingCanvasWidth": 500,
-	"StartingCanvasHeight": 500,
+	"StartingCanvasWidth": 640,
+	"StartingCanvasHeight": 480,
 	"FastEffects": false,
 	"Inputs": {
 	},

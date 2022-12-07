@@ -1,5 +1,10 @@
 class TemplateManager
 {
+	static TemplateDict = {
+		"Social Media Selling": "Templates/SocialMediaSelling.json",
+		"Webcam Overlay": "Templates/WebcamOverlay.json"}
+
+
 	constructor()
 	{
 		this.Template = null;

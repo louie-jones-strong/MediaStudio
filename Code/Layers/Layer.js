@@ -387,7 +387,7 @@ class Layer extends Selectable
 					this.Video.hide();
 				}
 
-				this.LayerImage.image(this.Video, 0, 0, this.LayerImage.width, this.LayerImage.height);
+				this.LayerImage.image(this.Video, 0, 0);
 
 				break;
 			}
