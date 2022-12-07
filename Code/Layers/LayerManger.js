@@ -44,7 +44,7 @@ class LayerManger
 		{
 			const layer = this.Layers[i];
 
-			layer.Resize(width, height, layer.LayerImage)
+			layer.Resize(width, height, layer.PreEffectsImage)
 		}
 
 		this.SelectIndex(this.SelectedIndex);
@@ -168,7 +168,7 @@ class LayerManger
 
 
 
-		this.CurrentImg = this.Layers[this.SelectedIndex].LayerImage;
+		this.CurrentImg = this.Layers[this.SelectedIndex].PreEffectsImage;
 
 
 		this.Layers[this.SelectedIndex].SetCurrentLayer(true);

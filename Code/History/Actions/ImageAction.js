@@ -43,7 +43,7 @@ class ImageAction extends BaseAction
 	{
 
 
-		let layer = Layers.Layers[Layers.SelectedIndex].LayerImage
+		let layer = Layers.Layers[Layers.SelectedIndex].PreEffectsImage
 		let img = createGraphics(layer.width, layer.height);
 		img.image(layer, 0, 0, layer.width, layer.height);
 		return img
@@ -51,7 +51,7 @@ class ImageAction extends BaseAction
 
 	SetLayerData(data)
 	{
-		let layer = Layers.Layers[Layers.SelectedIndex].LayerImage
+		let layer = Layers.Layers[Layers.SelectedIndex].PreEffectsImage
 		layer.clear()
 		layer.image(data, 0, 0, layer.width, layer.height);
 	}

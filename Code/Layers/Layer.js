@@ -8,6 +8,8 @@ EffectLookup["Noise"] = NoiseEffect;
 EffectLookup["Flip"] = FlipEffect;
 EffectLookup["Vignette"] = VignetteEffect;
 EffectLookup["Mask"] = MaskEffect;
+EffectLookup["Blob"] = MaskBlobDetectionEffect;
+EffectLookup["DeltaMask"] = MaskFromDeltaEffect;
 
 const DisplaySource = {
 	Drawing: 0,
@@ -69,7 +71,7 @@ class Layer extends Selectable
 			effect.Remove();
 		}
 
-		this.LayerImage.remove();
+		this.PreEffectsImage.remove();
 		this.AffectEffectsCache.remove();
 		this.FastEffectsCache.remove();
 	}
@@ -77,12 +79,12 @@ class Layer extends Selectable
 	Resize(width, height, graphic)
 	{
 
-		if (this.LayerImage != null)
+		if (this.PreEffectsImage != null)
 		{
-			this.LayerImage.remove();
+			this.PreEffectsImage.remove();
 		}
 
-		this.LayerImage = createGraphics(width, height);
+		this.PreEffectsImage = createGraphics(width, height);
 
 		if (graphic != null)
 		{
@@ -104,7 +106,7 @@ class Layer extends Selectable
 		// 	let x = floor((this.ResizeAnchorX * width) - (this.ResizeAnchorX * imgWidth));
 		// 	let y = floor((this.ResizeAnchorY * height) - (this.ResizeAnchorY * imgHeight));
 
-			this.LayerImage.image(graphic, 0, 0, CanvasWidth, CanvasHeight);
+			this.PreEffectsImage.image(graphic, 0, 0, CanvasWidth, CanvasHeight);
 		}
 
 		if (this.AffectEffectsCache != null)
@@ -201,7 +203,8 @@ class Layer extends Selectable
 		if (selected && !wasSelected)
 		{
 			var self = this;
-			this.DisplaySourceDropDown = this.AddDropDownOption(DisplaySourceLookup, 0, function()
+			console.log(this.DisplaySource);
+			this.DisplaySourceDropDown = this.AddDropDownOption(DisplaySourceLookup, this.DisplaySource, function()
 			{
 				let name = self.DisplaySourceDropDown.value();
 				self.DisplaySource = DisplaySourceLookup[name];
@@ -343,24 +346,30 @@ class Layer extends Selectable
 			return;
 		}
 
-		let afterEffectsImg = this.ApplyEffects();
+		this.PostEffectsImage = this.ApplyEffects();
 
-		push();
-		if (this.Alpha < 1)
+		let x = 0;
+		let y = 0;
+
+		if (this.Alpha > 0)
 		{
-			tint(255, this.Alpha * 255);
+			push();
+			if (this.Alpha < 1)
+			{
+				tint(255, this.Alpha * 255);
+			}
+
+
+			x = (this.ResizeAnchorX * CanvasWidth) - ((this.ResizePivotX * CanvasWidth ) * this.ResizeWidth)+ this.XOffset * CanvasWidth;
+			y = (this.ResizeAnchorY * CanvasHeight) - ((this.ResizePivotY * CanvasHeight ) * this.ResizeHeight) + this.YOffset * CanvasHeight;
+			image(this.PostEffectsImage, x, y, CanvasWidth * this.ResizeWidth, CanvasHeight * this.ResizeHeight);
+			pop();
 		}
-
-
-		let x = (this.ResizeAnchorX * CanvasWidth) - ((this.ResizePivotX * CanvasWidth ) * this.ResizeWidth)+ this.XOffset * CanvasWidth;
-		let y = (this.ResizeAnchorY * CanvasHeight) - ((this.ResizePivotY * CanvasHeight ) * this.ResizeHeight) + this.YOffset * CanvasHeight;
-		image(afterEffectsImg, x, y, CanvasWidth * this.ResizeWidth, CanvasHeight * this.ResizeHeight);
-		pop();
 
 		this.P5.clear()
 		x = (this.ResizeAnchorX * this.P5.width) - ((this.ResizePivotX * this.P5.width ) * this.ResizeWidth)+ this.XOffset * this.P5.width;
 		y = (this.ResizeAnchorY * this.P5.height) - ((this.ResizePivotY * this.P5.height ) * this.ResizeHeight) + this.YOffset * this.P5.height;
-		this.P5.image(afterEffectsImg, x, y, this.P5.width * this.ResizeWidth, this.P5.height * this.ResizeHeight);
+		this.P5.image(this.PostEffectsImage, x, y, this.P5.width * this.ResizeWidth, this.P5.height * this.ResizeHeight);
 
 
 		for (let i = 0; i < this.LayerEffects.length; i++)
@@ -370,7 +379,7 @@ class Layer extends Selectable
 		}
 	}
 
-	UpdateLayerImage()
+	UpdatePreEffectsImage()
 	{
 		switch (this.DisplaySource)
 		{
@@ -381,13 +390,14 @@ class Layer extends Selectable
 			}
 			case DisplaySource.Webcam:
 			{
+				this.ForceEffectRefresh = true;
 				if (this.Video == null)
 				{
 					this.Video = createCapture(VIDEO);
 					this.Video.hide();
 				}
 
-				this.LayerImage.image(this.Video, 0, 0);
+				this.PreEffectsImage.image(this.Video, 0, 0);
 
 				break;
 			}
@@ -401,12 +411,12 @@ class Layer extends Selectable
 
 	ApplyEffects()
 	{
-		this.UpdateLayerImage();
+		this.UpdatePreEffectsImage();
 
 		if (this.LayerEffects.length == 0 ||
 			this.MuteEffects)
 		{
-			return this.LayerImage;
+			return this.PreEffectsImage;
 		}
 
 		if (!this.ForceEffectRefresh)
@@ -423,13 +433,13 @@ class Layer extends Selectable
 		if (this.UseFastEffect)
 		{
 			this.FastEffectsCache.clear();
-			this.FastEffectsCache.image(this.LayerImage, 0, 0, this.FastEffectsCache.width, this.FastEffectsCache.height);
+			this.FastEffectsCache.image(this.PreEffectsImage, 0, 0, this.FastEffectsCache.width, this.FastEffectsCache.height);
 			img = this.FastEffectsCache;
 		}
 		else
 		{
 			this.AffectEffectsCache.clear();
-			this.AffectEffectsCache.image(this.LayerImage, 0, 0);
+			this.AffectEffectsCache.image(this.PreEffectsImage, 0, 0);
 			img = this.AffectEffectsCache;
 		}
 

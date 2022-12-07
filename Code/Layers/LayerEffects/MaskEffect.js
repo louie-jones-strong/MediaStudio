@@ -33,14 +33,14 @@ class MaskEffect extends LayerEffect
 		if (this.MaskLayer != null)
 		{
 			img.loadPixels();
-			this.MaskLayer.LayerImage.loadPixels();
+			this.MaskLayer.PostEffectsImage.loadPixels();
 
 
 			for (let x = 0; x < img.width; x += 1)
 			{
 				for (let y = 0; y < img.height; y += 1)
 				{
-					let maskColour = Helpers.GetPixel(this.MaskLayer.LayerImage, x, y)
+					let maskColour = Helpers.GetPixel(this.MaskLayer.PostEffectsImage, x, y)
 					let alpha = Helpers.RgbToBw(maskColour, true, true)
 
 					let colour = Helpers.GetPixel(img, x, y);
@@ -50,7 +50,7 @@ class MaskEffect extends LayerEffect
 				}
 			}
 			img.updatePixels();
-			this.MaskLayer.LayerImage.updatePixels();
+			this.MaskLayer.PostEffectsImage.updatePixels();
 		}
 		return img;
 	}

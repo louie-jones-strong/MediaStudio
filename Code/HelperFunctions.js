@@ -94,17 +94,11 @@ function HelperFunctions()
 			d = img.pixelDensity();
 
 		let color = [];
-		for (let i = 0; i < d; ++i)
-		{
-			for (let j = 0; j < d; ++j)
-			{
-				let idx = 4 * ((y * d + j) * img.width * d + (x * d + i));
-				color[0] = img.pixels[idx];
-				color[1] = img.pixels[idx+1];
-				color[2] = img.pixels[idx+2];
-				color[3] = img.pixels[idx+3];
-			}
-		}
+		let idx = 4 * ((y * d) * img.width * d + (x * d));
+		color[0] = img.pixels[idx];
+		color[1] = img.pixels[idx+1];
+		color[2] = img.pixels[idx+2];
+		color[3] = img.pixels[idx+3];
 		return color;
 	}
 

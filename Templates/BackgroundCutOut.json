@@ -1,0 +1,51 @@
+{
+	"Name": "Background Cut out",
+	"Description": "",
+	"StartingCanvasWidth": 640,
+	"StartingCanvasHeight": 480,
+	"Inputs": {
+	},
+	"Layers": {
+		"Webcam": {
+			"Alpha": 1,
+			"ResizeAnchorX": 0.5,
+			"ResizeAnchorY": 0.5,
+			"DisplaySource": 2,
+			"Effects": [
+				{
+					"Type": "Mask"
+				}
+			]
+		},
+		"Mask": {
+			"Alpha": 0,
+			"ResizeAnchorX": 0.5,
+			"ResizeAnchorY": 0.5,
+			"DisplaySource": 2,
+			"Effects": [
+				{
+					"Type": "DeltaMask"
+				},
+				{
+					"Type": "Blob"
+				}
+			]
+		},
+		"StartFrame": {
+			"Alpha": 0,
+			"ResizeAnchorX": 0.5,
+			"ResizeAnchorY": 0.5,
+			"DisplaySource": 2,
+			"Effects": [
+			]
+		},
+		"Background": {
+			"Alpha": 1,
+			"ResizeAnchorX": 0.5,
+			"ResizeAnchorY": 0.5,
+			"DisplaySource": 0,
+			"Effects": [
+			]
+		}
+	}
+}
