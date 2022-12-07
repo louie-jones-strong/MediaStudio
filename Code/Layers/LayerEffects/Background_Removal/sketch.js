@@ -9,7 +9,7 @@ var NoteGrid;
 var OpticalFlow;
 var Particles;
 
-const BlobRadius = 0
+const BlobRadius = 3
 var BlobKernel;
 const FlowStep = 4;
 const ScaleFactor = 4;
@@ -358,8 +358,8 @@ function ColourDelta(c1, c2)
 	// delta = Math.abs( hue(c1) - hue(c2))
 	// delta = round(delta/10, 1)
 	// delta += Math.abs( saturation(c1) - saturation(c2))
-	delta += Math.abs( brightness(c1) - brightness(c2))
-	return delta * delta
+	delta += Math.abs( brightness(c1) - brightness(c2)) * Math.abs( brightness(c1) - brightness(c2))
+	return delta / 2
 }
 
 function FlipImage(img)
