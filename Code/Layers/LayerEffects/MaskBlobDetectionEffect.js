@@ -35,7 +35,7 @@ class MaskBlobDetectionEffect extends LayerEffect
 		{
 
 
-			let output = this.GetCachedImage(img.width, img.width);
+			let output = createGraphics(img.width, img.width);
 			output.loadPixels();
 			this.BlobLayer.PostEffectsImage.loadPixels();
 			img.loadPixels();
@@ -93,10 +93,6 @@ class MaskBlobDetectionEffect extends LayerEffect
 				let i = (kX - x) + this.KernelRadius
 				let j = (kY - y) + this.KernelRadius
 				let kValue = kernel[i][j]
-				if (kValue == 0)
-				{
-					continue;
-				}
 
 				let kColour = Helpers.GetPixel(this.BlobLayer.PostEffectsImage, kX, kY, density_blobLayer);
 
@@ -181,12 +177,12 @@ class MaskBlobDetectionEffect extends LayerEffect
 	{
 		// let delta = DistSquared3d(hue(c1), saturation(c1), brightness(c1), hue(c2), saturation(c2), brightness(c2))
 		// delta = 0
-		let delta = this.DistSquared3d(c1.levels[0], c1.levels[1], c1.levels[2], c2.levels[0], c2.levels[1], c2.levels[2])
+		let delta = this.DistSquared3d(c1[0], c1[1], c1[2], c2[0], c2[1], c2[2])
 		// return delta
 		// delta = Math.abs( hue(c1) - hue(c2))
 		// delta = round(delta/10, 1)
 		// delta += Math.abs( saturation(c1) - saturation(c2))
-		delta += Math.abs( brightness(c1) - brightness(c2)) * Math.abs( brightness(c1) - brightness(c2))
-		return delta / 2
+		// delta += Math.abs( brightness(c1) - brightness(c2)) * Math.abs( brightness(c1) - brightness(c2))
+		return delta /255
 	}
 }

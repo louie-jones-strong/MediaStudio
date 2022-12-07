@@ -33,6 +33,15 @@
 				}
 			]
 		},
+		"Blob": {
+			"UseFastEffect": true,
+			"Alpha": 0,
+			"ResizeAnchorX": 0.5,
+			"ResizeAnchorY": 0.5,
+			"DisplaySource": 2,
+			"Effects": [
+			]
+		},
 		"StartFrame": {
 			"UseFastEffect": true,
 			"Alpha": 0,
