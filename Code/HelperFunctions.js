@@ -88,6 +88,17 @@ function HelperFunctions()
 
 
 	//faster function to get the color of pixels
+	this.GetMaskValue = function(img, x, y, d=null)
+	{
+		if (d == null)
+			d = img.pixelDensity();
+
+		let idx = 4 * ((y * d) * img.width * d + (x * d));
+
+		return img.pixels[idx];;
+	}
+
+	//faster function to get the color of pixels
 	this.GetPixel = function(img, x, y, d=null)
 	{
 		if (d == null)

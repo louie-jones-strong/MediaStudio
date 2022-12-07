@@ -29,7 +29,7 @@ class Layer extends Selectable
 	static NumEffectsCreated = 0;
 	constructor(layerName, graphic,
 		resizeAnchorX=0, resizeAnchorY=0, resizeWidth=1, resizeHeight=1,
-		displaySource=DisplaySource.Drawing)
+		displaySource=DisplaySource.Drawing, fastEffects)
 	{
 		super();
 		this.LayerId = LayerManger.NumberOfCreatedLayers;
@@ -72,8 +72,7 @@ class Layer extends Selectable
 		}
 
 		this.PreEffectsImage.remove();
-		this.AffectEffectsCache.remove();
-		this.FastEffectsCache.remove();
+		this.PostEffectsImage.remove();
 	}
 
 	Resize(width, height, graphic)
@@ -109,17 +108,19 @@ class Layer extends Selectable
 			this.PreEffectsImage.image(graphic, 0, 0, CanvasWidth, CanvasHeight);
 		}
 
-		if (this.AffectEffectsCache != null)
+		if (this.PostEffectsImage != null)
 		{
-			this.AffectEffectsCache.remove();
-		}
-		if (this.FastEffectsCache != null)
-		{
-			this.FastEffectsCache.remove();
+			this.PostEffectsImage.remove();
 		}
 
-		this.AffectEffectsCache = createGraphics(width, height);
-		this.FastEffectsCache = createGraphics(floor(width / FastEffectScaleFactor), floor(height / FastEffectScaleFactor));
+		if (this.UseFastEffect)
+		{
+			this.PostEffectsImage = createGraphics(floor(width / FastEffectScaleFactor), floor(height / FastEffectScaleFactor));
+		}
+		else
+		{
+			this.PostEffectsImage = createGraphics(width, height);
+		}
 		this.ForceEffectRefresh = true;
 	}
 
@@ -346,7 +347,7 @@ class Layer extends Selectable
 			return;
 		}
 
-		this.PostEffectsImage = this.ApplyEffects();
+		let affectEffectsImg = this.ApplyEffects();
 
 		let x = 0;
 		let y = 0;
@@ -362,14 +363,14 @@ class Layer extends Selectable
 
 			x = (this.ResizeAnchorX * CanvasWidth) - ((this.ResizePivotX * CanvasWidth ) * this.ResizeWidth)+ this.XOffset * CanvasWidth;
 			y = (this.ResizeAnchorY * CanvasHeight) - ((this.ResizePivotY * CanvasHeight ) * this.ResizeHeight) + this.YOffset * CanvasHeight;
-			image(this.PostEffectsImage, x, y, CanvasWidth * this.ResizeWidth, CanvasHeight * this.ResizeHeight);
+			image(affectEffectsImg, x, y, CanvasWidth * this.ResizeWidth, CanvasHeight * this.ResizeHeight);
 			pop();
 		}
 
 		this.P5.clear()
 		x = (this.ResizeAnchorX * this.P5.width) - ((this.ResizePivotX * this.P5.width ) * this.ResizeWidth)+ this.XOffset * this.P5.width;
 		y = (this.ResizeAnchorY * this.P5.height) - ((this.ResizePivotY * this.P5.height ) * this.ResizeHeight) + this.YOffset * this.P5.height;
-		this.P5.image(this.PostEffectsImage, x, y, this.P5.width * this.ResizeWidth, this.P5.height * this.ResizeHeight);
+		this.P5.image(affectEffectsImg, x, y, this.P5.width * this.ResizeWidth, this.P5.height * this.ResizeHeight);
 
 
 		for (let i = 0; i < this.LayerEffects.length; i++)
@@ -413,55 +414,39 @@ class Layer extends Selectable
 	{
 		this.UpdatePreEffectsImage();
 
-		if (this.LayerEffects.length == 0 ||
-			this.MuteEffects)
+		if (!this.ForceEffectRefresh &&
+			this.LayerEffects.length > 0 &&
+			!this.MuteEffects)
 		{
-			return this.PreEffectsImage;
-		}
-
-		if (!this.ForceEffectRefresh)
-		{
-			if (this.UseFastEffect)
-				return this.FastEffectsCache;
-			else
-				return this.AffectEffectsCache;
+			return this.PostEffectsImage
 		}
 
 
 
-		let img  = null;
+		this.PostEffectsImage.clear();
 		if (this.UseFastEffect)
 		{
-			this.FastEffectsCache.clear();
-			this.FastEffectsCache.image(this.PreEffectsImage, 0, 0, this.FastEffectsCache.width, this.FastEffectsCache.height);
-			img = this.FastEffectsCache;
+			this.PostEffectsImage.image(this.PreEffectsImage, 0, 0, this.PostEffectsImage.width, this.PostEffectsImage.height);
 		}
 		else
 		{
-			this.AffectEffectsCache.clear();
-			this.AffectEffectsCache.image(this.PreEffectsImage, 0, 0);
-			img = this.AffectEffectsCache;
+			this.PostEffectsImage.image(this.PreEffectsImage, 0, 0);
 		}
 
-		for (let i = 0; i < this.LayerEffects.length; i++)
+		if (this.LayerEffects.length > 0 &&
+			!this.MuteEffects)
 		{
-			const effect = this.LayerEffects[i];
-			img = effect.ApplyEffect(img);
+			for (let i = 0; i < this.LayerEffects.length; i++)
+			{
+				const effect = this.LayerEffects[i];
+				this.PostEffectsImage = effect.ApplyEffect(this.PostEffectsImage);
+			}
 		}
 
-
-		if (this.UseFastEffect)
-		{
-			this.FastEffectsCache = img;
-		}
-		else
-		{
-			this.AffectEffectsCache = img;
-		}
 
 		this.ForceEffectRefresh = false;
 
-		return img;
+		return this.PostEffectsImage;
 	}
 }
 

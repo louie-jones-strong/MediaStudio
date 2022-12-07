@@ -35,18 +35,20 @@ class MaskEffect extends LayerEffect
 			img.loadPixels();
 			this.MaskLayer.PostEffectsImage.loadPixels();
 
+			let density_Mask = this.MaskLayer.PostEffectsImage.pixelDensity();
+			let density_Img = img.pixelDensity();
+
 
 			for (let x = 0; x < img.width; x += 1)
 			{
 				for (let y = 0; y < img.height; y += 1)
 				{
-					let maskColour = Helpers.GetPixel(this.MaskLayer.PostEffectsImage, x, y)
-					let alpha = Helpers.RgbToBw(maskColour, true, true)
+					let alpha = Helpers.GetMaskValue(this.MaskLayer.PostEffectsImage, x, y, density_Mask)
 
-					let colour = Helpers.GetPixel(img, x, y);
+					let colour = Helpers.GetPixel(img, x, y, density_Img);
 					colour[3] *= alpha
 
-					Helpers.SetPixel(img, x, y, colour);
+					Helpers.SetPixel(img, x, y, colour, density_Img);
 				}
 			}
 			img.updatePixels();

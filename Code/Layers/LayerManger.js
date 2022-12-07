@@ -34,8 +34,6 @@ class LayerManger
 		let baseLayer = new Layer("background", img);
 		this.AddLayer(baseLayer);
 
-
-		this.FastEffects = true;
 	}
 
 	Resize(width, height)
@@ -157,7 +155,6 @@ class LayerManger
 		if (this.SelectedIndex != null)
 		{
 			this.Layers[this.SelectedIndex].SetCurrentLayer(false);
-			this.Layers[this.SelectedIndex].UseFastEffect = false;
 		}
 
 		if (addToHistory)
@@ -172,7 +169,6 @@ class LayerManger
 
 
 		this.Layers[this.SelectedIndex].SetCurrentLayer(true);
-		this.Layers[this.SelectedIndex].UseFastEffect = this.FastEffects;
 
 		let canUseTools = this.Layers[this.SelectedIndex].DisplaySource == DisplaySource.Drawing;
 		ToolManager.SetCanUseTools(canUseTools);

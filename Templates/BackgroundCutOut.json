@@ -7,6 +7,7 @@
 	},
 	"Layers": {
 		"Webcam": {
+			"UseFastEffect": true,
 			"Alpha": 1,
 			"ResizeAnchorX": 0.5,
 			"ResizeAnchorY": 0.5,
@@ -18,6 +19,7 @@
 			]
 		},
 		"Mask": {
+			"UseFastEffect": true,
 			"Alpha": 0,
 			"ResizeAnchorX": 0.5,
 			"ResizeAnchorY": 0.5,
@@ -32,6 +34,7 @@
 			]
 		},
 		"StartFrame": {
+			"UseFastEffect": true,
 			"Alpha": 0,
 			"ResizeAnchorX": 0.5,
 			"ResizeAnchorY": 0.5,
@@ -40,6 +43,7 @@
 			]
 		},
 		"Background": {
+			"UseFastEffect": true,
 			"Alpha": 1,
 			"ResizeAnchorX": 0.5,
 			"ResizeAnchorY": 0.5,

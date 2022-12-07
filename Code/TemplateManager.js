@@ -146,9 +146,6 @@ class TemplateManager
 
 		Layers.ClearLayers();
 
-		if (this.Template.FastEffects != null)
-			Layers.FastEffects = this.Template.FastEffects
-
 		let layerKeys = Object.keys(this.Template.Layers);
 		for (let k = layerKeys.length-1; k >= 0; k--)
 		{
@@ -179,8 +176,13 @@ class TemplateManager
 			if (layerData.DisplaySource != null)
 				displaySource = layerData.DisplaySource;
 
-			let layer = new Layer(key, img, ResizeAnchorX, ResizeAnchorY, resizeWidth, resizeHeight, displaySource);
+			let fastEffects = false;
+			if (layerData.UseFastEffect != null)
+				fastEffects = layerData.UseFastEffect;
+
+			let layer = new Layer(key, img, ResizeAnchorX, ResizeAnchorY, resizeWidth, resizeHeight, displaySource, fastEffects);
 			Layers.AddLayer(layer);
+
 
 			for (let i = 0; i < layerData.Effects.length; i++)
 			{
